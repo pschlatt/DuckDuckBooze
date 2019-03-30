@@ -13,11 +13,11 @@
 
 #seven users(shoppers)
 @user_11 = User.create(role: 1, enable_disable: 0, name: "Sally Shopper", street: "123 Busy Way", city: "Denver", state: "CO", zip: "80222", email: "sally@gmail.com", password: "12345678")
-@user_11 = User.create(role: 1, enable_disable: 0, name: "Sam Spender", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "sam@gmail.com", password: "password")
-@user_11 = User.create(role: 1, enable_disable: 0, name: "Bill Jones", street: "2 Cole Ave", city: "Lakewood", state: "CO", zip: "80228", email: "bill@gmail.com", password: "yolo1234")
-@user_11 = User.create(role: 1, enable_disable: 0, name: "Bobby Buyer", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "bobby@gmail.com", password: "yolo1234")
-@user_11 = User.create(role: 1, enable_disable: 0, name: "Betty Buyer", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "betty@gmail.com", password: "yolo1234")
-@user_11 = User.create(role: 1, enable_disable: 0, name: "Paul Purchaser", street: "60 Stories Too Many", city: "Seattle", state: "WA", zip: "98315", email: "paul@gmail.com", password: "password")
+@user_12 = User.create(role: 1, enable_disable: 0, name: "Sam Spender", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "sam@gmail.com", password: "password")
+@user_13 = User.create(role: 1, enable_disable: 0, name: "Bill Jones", street: "2 Cole Ave", city: "Lakewood", state: "CO", zip: "80228", email: "bill@gmail.com", password: "yolo1234")
+@user_14 = User.create(role: 1, enable_disable: 0, name: "Bobby Buyer", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "bobby@gmail.com", password: "yolo1234")
+@user_15 = User.create(role: 1, enable_disable: 0, name: "Betty Buyer", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "betty@gmail.com", password: "yolo1234")
+@user_16 = User.create(role: 1, enable_disable: 0, name: "Paul Purchaser", street: "60 Stories Too Many", city: "Seattle", state: "WA", zip: "98315", email: "paul@gmail.com", password: "password")
 
 #five merchants
 @user_21 = User.create(role: 2, enable_disable: 0, name: "Mike Merchant", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "mike@gmail.com", password: "password")

@@ -14,32 +14,9 @@
  *= require_self
  */
 
-@import url(https://use.fontawesome.com/releases/v5.7.2/css/all.css)
-
-
-#nav-bar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #ffe866;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-
 h2 {
   color: white;
   text-align: center;
-}
-
-body.home {
-  background: url(https://c.pxhere.com/images/51/8b/d59973d306d923a47bb2ba9334bf-1455465.jpg!d) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 
 a:link { 

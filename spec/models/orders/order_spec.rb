@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   describe 'Validations' do
-    it { should validate_presence_of :name}
-    it { should validate_presence_of :description}
-    it { should validate_presence_of :stock}
-    it { should validate_presence_of :item_price}
+    it { should validate_presence_of :status}
+
+    it { should validate_numericality_of :status}
+    it { should validate_inclusion_of :status, in: 0..3}
   end
 
   describe 'Relationships' do

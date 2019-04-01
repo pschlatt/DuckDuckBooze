@@ -8,7 +8,17 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
+  <body class=‘home’>
+    <section id=‘nav-bar’>
+      <ul id=‘nav’>
+        <li id=‘shop-link’><a href=“/items”>Shop Beers</a></li>
+        <li id=‘merchants-link’><a href=“/merchants”>Merchants</a></li>
+        <li id=‘login-link’><a href=“/login/new”>Login</a></li>
+        <li id=‘register-link’><a href=“/register/new”>Register</a></li>
+        <li id=‘cart-nav’ style=‘float:right’><a href=“/cart/new”>Cart</a></li>
+        <li id=‘about’ style=‘float:right’><a href=“/about”>About</a></li>
+      </ul>
+    </section>
     <%= yield %>
   </body>
 </html>

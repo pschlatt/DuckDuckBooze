@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+body.home {
+    background: url(https://c.pxhere.com/images/51/8b/d59973d…-1455465.jpg!d) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#nav-bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffe866;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+@media (max-width: 420px) and (orientation: portrait), (max-height: 560px)
+body {
+    margin: 0 auto;
+}

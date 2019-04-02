@@ -7,11 +7,12 @@ RSpec.describe OrderItem, type: :model do
     it { should validate_presence_of :order_price}
 
     it { should validate_numericality_of :quantity}
-    it { should validate_inclusion_of :state, in: [true, false]}
+    it { should validate_numericality_of :order_price}
+    it { should validate_inclusion_of(:fulfilled).in_array([true, false])}
   end
 
   describe 'Relationships' do
-    it { belongs_to :order}
-    it { belongs_to :item}
+    it { should belong_to :order }
+    it { should belong_to :item }
   end
 end

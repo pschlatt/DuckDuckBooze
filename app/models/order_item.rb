@@ -4,7 +4,8 @@ class OrderItem < ApplicationRecord
   validates_presence_of :order_price
 
   validates_numericality_of :quantity
-  validates_inclusion_of :state, in: [true, false]
+  validates_numericality_of :order_price
+  validates_inclusion_of :fulfilled, in: [true, false]
 
   belongs_to :item
   belongs_to :order

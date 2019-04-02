@@ -27,7 +27,7 @@ RSpec.describe 'navigation bar' do
         click_on 'Cart'
       end  
       
-      expect(current_path).to eq(login_path)
+      expect(current_path).to eq(cart_path)
 
       within '#nav-bar' do 
         click_on 'Register'

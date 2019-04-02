@@ -14,6 +14,22 @@
  *= require_self
  */
 
+@import url(https://use.fontawesome.com/releases/v5.7.2/css/all.css);
+ 
+body.home {	
+  background: url(https://c.pxhere.com/images/51/8b/d59973d306d923a47bb2ba9334bf-1455465.jpg!d) no-repeat center center fixed; 	
+  -webkit-background-size: cover;	
+  -moz-background-size: cover;	
+  -o-background-size: cover;	
+  background-size: cover;	
+}
+
+h2 {
+  color: white;
+  text-align: center;
+  font-size: 25pt;
+}
+
 a:link { 
   color: white;
   text-decoration: none;
@@ -34,7 +50,7 @@ a:active {
   padding: 0;
   overflow: hidden;
   background-color: #ffe866;
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
 }
@@ -44,15 +60,15 @@ a:active {
 }
 
 #nav-bar li a {
-  display: block;
+  display: inline-block;
   color: black;
   text-align: center;
-  padding: 14px 16px;
+  padding: 10px 30px 10px 10px;                          
   text-decoration: none;
 }
 
 #nav-bar li a:hover:not(.active) {
-  background-color: gray;
+  background-color: #5F9EA0;
   color: white;
 }
 

@@ -13,7 +13,6 @@ RSpec.describe User, type: :model do
 
     it { should validate_uniqueness_of :email}
     it { should validate_inclusion_of(:enabled).in_array([true, false])}
-
     # it { should validate_numericality_of :role}
     # it { should validate_inclusion_of(:role).in_array([0,1,2,3])}
   end

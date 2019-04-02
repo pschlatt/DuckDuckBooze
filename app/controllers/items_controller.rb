@@ -4,6 +4,10 @@ class ItemsController < ApplicationController
     @items = enabled_items
   end
 
+  def show
+    
+  end
+
 end
 
 private

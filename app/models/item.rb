@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   validates_presence_of :description
   validates_presence_of :stock
   validates_presence_of :item_price
-  validates_inclusion_of :enabled, :in => [true, false]
+  validates_inclusion_of :enabled, in: [true, false]
   # validates_presence_of :image
 
   validates_numericality_of :stock

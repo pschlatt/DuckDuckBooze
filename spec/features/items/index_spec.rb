@@ -34,7 +34,6 @@ RSpec.describe 'Item Index Page', type: :feature do
         within ".thumbnail" do
           expect(page).to have_xpath("//img[@src='#{@beer_1.image}']")
         end
-        expect(page).to have_xpath("//img[@src='#{@beer_1.image}']")
         expect(page).to have_content("Name: #{@beer_1.name}")
         expect(page).to have_content("Merchant: #{@beer_1.user.name}")
         expect(page).to have_content("Stock: #{@beer_1.stock}")

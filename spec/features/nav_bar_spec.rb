@@ -60,17 +60,15 @@ RSpec.describe 'navigation bar' do
       user = create(:user, role: 1)
       visit login_path
 
-      #expect(current_path).to eq()
-      #should be on '/profile'
+      expect(current_path).to eq(profile_path)
 
       within '#nav-bar' do 
-        expect(page).to not_have('Login')
-        expect(page).to not_have('Register')
+        expect(page).to_not have_link('Login')
+        expect(page).to_not have_link('Register')
         expect(page).to have_content('Logged in as user')
         expect(page).to have_link('Log Out')
         click_on 'Log Out'
       end  
-    
     end
   end 
 end 

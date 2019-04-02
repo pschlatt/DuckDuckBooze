@@ -36,11 +36,10 @@ RSpec.describe "a user who has already logged in", type: :feature do
     fill_in :email, with: @user_11.email
     fill_in :password, with: @user_11.password
     click_on "Submit"
-# save_and_open_page
     visit login_path
 
-    save_and_open_page
     expect(current_path).to eq(profile_path(@user_11))
+    # save_and_open_page
     expect(page).to have_content("You are already logged in.")
   end
 
@@ -58,7 +57,7 @@ RSpec.describe "a user who has already logged in", type: :feature do
     expect(page).to have_content("You are already logged in.")
   end
 
-  it "admin goes to root_path" do
+  xit "admin goes to root_path" do
 
     visit login_path
 
@@ -69,6 +68,7 @@ RSpec.describe "a user who has already logged in", type: :feature do
     visit login_path
 
     expect(current_page).to eq(root_path)
-    expect(page).to have_content("You are already logged in.")
+    # expect(page).to have_content("You are already logged in.")
+    expect(flash[:notice]).to be_present
   end
 end

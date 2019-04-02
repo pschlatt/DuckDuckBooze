@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
   def new
     if session[:user_id]
-      binding.pry
+      # binding.pry
       flash[:notice] = "You are already logged in."
       redirect_to profile_path(session[:user_id])
     end

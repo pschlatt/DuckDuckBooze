@@ -18,17 +18,41 @@ RSpec.describe 'Item Index Page', type: :feature do
     it 'shows all items in the system except for disabled items' do
 
       visit items_path
-      save_and_open_page
+
       expect(page).to have_content(@beer_1.name)
       expect(page).to have_content(@beer_2.name)
       expect(page).to have_content(@beer_3.name)
       expect(page).to have_content(@beer_4.name)
       expect(page).to_not have_content(@beer_5.name)
-      #expect to see all but @beer_5 (disabled)
     end
 
     it 'shows the following information for each item (name, thumbnail, merchant, merchants stock, current price)' do
 
+      visit items_path
+      save_and_open_page
+      within "#item-#{@beer_1.id}" do
+        # expect(page).to have_content(@beer_1.image)
+        # expect(page).to have_xpath("//img[@src='#{@beer_1.image}']")
+        # within ".thumbnail" do
+        #   # expect(page).to have_xpath("//img[@src='#{@beer_1.image}']")
+        # end
+        expect(page).to have_content("Name: #{@beer_1.name}")
+        expect(page).to have_content("Merchant: #{@beer_1.user.name}")
+        expect(page).to have_content("Stock: #{@beer_1.stock}")
+        expect(page).to have_content("Price: #{@beer_1.item_price}")
+      end
+
+      within "#item-#{@beer_2.id}" do
+        # expect(page).to have_content(@beer_2.image)
+        # expect(page).to have_xpath("//img[@src='#{@beer_2.image}']")
+        # within ".thumbnail" do
+        #   # expect(page).to have_xpath("//img[@src='#{@beer_2.image}']")
+        # end
+        expect(page).to have_content("Name: #{@beer_2.name}")
+        expect(page).to have_content("Merchant: #{@beer_2.user.name}")
+        expect(page).to have_content("Stock: #{@beer_2.stock}")
+        expect(page).to have_content("Price: #{@beer_2.item_price}")
+      end
     end
 
     it 'the item name and item thumbnail are links to the show page of the item' do

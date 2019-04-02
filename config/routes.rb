@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
   end
 
+  namespace :dashboard do
+    get '/', to: 'merchants#show'
+  end
+
   resources :users, only: [:new, :create]
 
   get '/login', to: 'sessions#new'

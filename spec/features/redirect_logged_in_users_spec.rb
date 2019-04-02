@@ -1,26 +1,4 @@
 require 'rails_helper'
-# As a registered user, merchant, or admin
-# When I visit the login path
-# If I am a regular user, I am redirected to my profile page
-# If I am a merchant user, I am redirected to my merchant dashboard page
-# If I am an admin user, I am redirected to the home page of the site
-# And I see a flash message that tells me I am already logged in
-
-# visit login_path which goes to sessions#new
-# fill in form for logging in and submit (POST)
-# submission to (sessions#create)
-# find user by username from params
-# authenticate user via method in User model
-# set session[:user_id] to user.id
-# case user.id.role OR session[:user_id].role
-# when 1
-#   redirect_to profile_path(user.id)
-# when 2
-#   redirect_to dashboard_path(user.id)
-# when 3
-#   redirect_to root_path
-# end
-
 
 RSpec.describe "a user who has already logged in", type: :feature do
   before :each do
@@ -39,7 +17,6 @@ RSpec.describe "a user who has already logged in", type: :feature do
     visit login_path
 
     expect(current_path).to eq(profile_path(@user_11))
-    # save_and_open_page
     expect(page).to have_content("You are already logged in.")
   end
 
@@ -53,11 +30,11 @@ RSpec.describe "a user who has already logged in", type: :feature do
 
     visit login_path
 
-    expect(current_page).to eq(dashboard_path(@user_21))
+    expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("You are already logged in.")
   end
 
-  xit "admin goes to root_path" do
+  it "admin goes to root_path" do
 
     visit login_path
 
@@ -67,8 +44,7 @@ RSpec.describe "a user who has already logged in", type: :feature do
 
     visit login_path
 
-    expect(current_page).to eq(root_path)
-    # expect(page).to have_content("You are already logged in.")
-    expect(flash[:notice]).to be_present
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content("You are already logged in.")
   end
 end

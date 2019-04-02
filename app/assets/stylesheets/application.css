@@ -14,10 +14,10 @@
  *= require_self
  */
 
-@import url(https://use.fontawesome.com/releases/v5.7.2/css/all.css);
+@import url('https://use.fontawesome.com/releases/v5.7.2/css/all.css');
  
 body.home {	
-  background: url(https://c.pxhere.com/images/51/8b/d59973d306d923a47bb2ba9334bf-1455465.jpg!d) no-repeat center center fixed; 	
+  background: url('https://c.pxhere.com/images/51/8b/d59973d306d923a47bb2ba9334bf-1455465.jpg!d') no-repeat center center fixed; 	
   -webkit-background-size: cover;	
   -moz-background-size: cover;	
   -o-background-size: cover;	

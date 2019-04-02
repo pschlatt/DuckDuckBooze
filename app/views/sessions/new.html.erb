@@ -1,0 +1,11 @@
+<%= form_tag @user do %>
+
+<%= label_tag :email %>
+<%= text_field_tag :email %>
+
+<%= label_tag :password_digest %>
+<%= password_field_tag :password %>
+
+<%= submit_tag "Submit" %>
+
+<% end %>

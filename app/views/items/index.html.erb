@@ -3,9 +3,10 @@
 <% @items.each do |beer| %>
 <section id='item-<%= beer.id %>'>
   <div class="thumbnail">
-    <%= beer.image %>
+    <img src = <%= beer.image%>>
   </div>
   <p>
+    <%= beer.image %>
     Name: <%= beer.name %><br/>
     Description: <%= beer.description %><br/>
     Merchant: <%= beer.user.name %>

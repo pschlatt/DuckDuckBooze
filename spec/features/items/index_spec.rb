@@ -29,13 +29,12 @@ RSpec.describe 'Item Index Page', type: :feature do
     it 'shows the following information for each item (name, thumbnail, merchant, merchants stock, current price)' do
 
       visit items_path
-      save_and_open_page
+
       within "#item-#{@beer_1.id}" do
-        # expect(page).to have_content(@beer_1.image)
-        # expect(page).to have_xpath("//img[@src='#{@beer_1.image}']")
-        # within ".thumbnail" do
-        #   # expect(page).to have_xpath("//img[@src='#{@beer_1.image}']")
-        # end
+        within ".thumbnail" do
+          expect(page).to have_xpath("//img[@src='#{@beer_1.image}']")
+        end
+        expect(page).to have_xpath("//img[@src='#{@beer_1.image}']")
         expect(page).to have_content("Name: #{@beer_1.name}")
         expect(page).to have_content("Merchant: #{@beer_1.user.name}")
         expect(page).to have_content("Stock: #{@beer_1.stock}")
@@ -43,11 +42,9 @@ RSpec.describe 'Item Index Page', type: :feature do
       end
 
       within "#item-#{@beer_2.id}" do
-        # expect(page).to have_content(@beer_2.image)
-        # expect(page).to have_xpath("//img[@src='#{@beer_2.image}']")
-        # within ".thumbnail" do
-        #   # expect(page).to have_xpath("//img[@src='#{@beer_2.image}']")
-        # end
+        within ".thumbnail" do
+          expect(page).to have_xpath("//img[@src='#{@beer_2.image}']")
+        end
         expect(page).to have_content("Name: #{@beer_2.name}")
         expect(page).to have_content("Merchant: #{@beer_2.user.name}")
         expect(page).to have_content("Stock: #{@beer_2.stock}")

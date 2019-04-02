@@ -8,11 +8,13 @@ class User < ApplicationRecord
   validates_presence_of :password_digest
   validates_presence_of :role
   validates_presence_of :enabled
-  
+
   validates :email, uniqueness: true
-  validates_numericality_of :role
-  validates_inclusion_of :role, :in => 0..3
+  # validates_numericality_of :role
+  # validates_inclusion_of :role, :in => 0..3
 
   has_many :items
   has_many :orders
+
+  enum role: ['visitor', 'registered_user', 'merchant', 'admin']
 end

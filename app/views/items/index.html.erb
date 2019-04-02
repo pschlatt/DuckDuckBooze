@@ -1,0 +1,14 @@
+<h1>Beer Index Page</h1>
+
+<% @items.each do |beer| %>
+<section id='item-<%= beer.id %>'>
+  <div class="thumbnail" <%= beer.image %>></div>
+  <p>
+    <%= beer.name %><br/>
+    <%= beer.description %><br/>
+    <%= beer.user.name %>
+    <%= beer.stock %><br/>
+    <%= beer.item_price %>
+  </p>
+</section>
+<% end %>

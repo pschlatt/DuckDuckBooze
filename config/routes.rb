@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#new'
   get '/cart', to: 'cart#show'
-
+  get '/profile', to: 'user#show'
 end

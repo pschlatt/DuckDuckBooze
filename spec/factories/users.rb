@@ -8,6 +8,6 @@ FactoryBot.define do
     city { "Springfield "}
     state { "Illinois" }
     zip { "99999" }
-    password { "password" }
+    password_digest { "password" }
   end 
 end 

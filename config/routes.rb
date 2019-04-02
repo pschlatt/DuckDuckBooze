@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :items, only: [:index]
+  resources :items, only: [:index, :show]
 
-  namespace :merchants do 
+  namespace :merchants do
     resources :users, only: [:index]
-  end 
+  end
 
   resources :users, only: [:new, :create]
 

@@ -18,7 +18,12 @@ RSpec.describe 'Item Index Page', type: :feature do
     it 'shows all items in the system except for disabled items' do
 
       visit items_path
-
+      save_and_open_page
+      expect(page).to have_content(@beer_1.name)
+      expect(page).to have_content(@beer_2.name)
+      expect(page).to have_content(@beer_3.name)
+      expect(page).to have_content(@beer_4.name)
+      expect(page).to_not have_content(@beer_5.name)
       #expect to see all but @beer_5 (disabled)
     end
 

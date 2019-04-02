@@ -33,6 +33,7 @@ RSpec.describe 'Item Index Page', type: :feature do
         expect(page).to have_content("Merchant: #{@beer_1.user.name}")
         expect(page).to have_content("Stock: #{@beer_1.stock}")
         expect(page).to have_content("Price: #{@beer_1.item_price}")
+
         within ".thumbnail" do
           expect(page).to have_xpath("//img[@src='#{@beer_1.image}']")
         end
@@ -43,6 +44,7 @@ RSpec.describe 'Item Index Page', type: :feature do
         expect(page).to have_content("Merchant: #{@beer_2.user.name}")
         expect(page).to have_content("Stock: #{@beer_2.stock}")
         expect(page).to have_content("Price: #{@beer_2.item_price}")
+
         within ".thumbnail" do
           expect(page).to have_xpath("//img[@src='#{@beer_2.image}']")
         end
@@ -52,11 +54,11 @@ RSpec.describe 'Item Index Page', type: :feature do
     it 'the item name and item thumbnail are links to the show page of the item' do
 
       visit items_path
-    
+
       within "#item-#{@beer_1.id}" do
         find("a.thumbnail").click
       end
-        expect(current_path).to eq(item_path(@beer_1))
+      expect(current_path).to eq(item_path(@beer_1))
 
       visit items_path
 

@@ -76,4 +76,21 @@ RSpec.describe 'navigation bar' do
       end 
     end
   end 
+
+  context 'as an admin' do
+    it 'should see a navigation bar with links' do
+      admin = create(:admin)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit admins_users_path
+
+      within '#nav-bar' do
+        expect(page).to_not have_link('Login')
+        expect(page).to_not have_link('Register')
+        expect(page).to_not have_link('Cart')
+        expect(page).to have_link('Log Out')
+        expect(page).to have_link('Dashboard')
+      end 
+    end
+  end 
 end 

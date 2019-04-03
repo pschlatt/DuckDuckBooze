@@ -15,15 +15,15 @@ RSpec.describe 'Item Show Page', type: :feature do
 
       @order_item = OrderItem.create(item_id: @beer_1.id, order_id: @order_1.id, fulfilled: true, quantity: 12, order_price: 15.62, created_at: 2.days.ago, updated_at: 1.day.ago)
       #need to clear test data
-
       #class method - avg time where name = hein
-
     end
+
     it 'shows the name, description, and large image of the item' do
 
       visit item_path(@beer_1)
 
-
+      expect(page).to have_content(@beer_1.name)
+      expect(page).to have_xpath("//img[@src='#{@beer_1.image}']")
     end
 
     it 'shows the name of the merchant, their stock of the item, and the current item price' do

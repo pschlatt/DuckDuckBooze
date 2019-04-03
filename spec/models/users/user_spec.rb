@@ -22,4 +22,31 @@ RSpec.describe User, type: :model do
     it { should have_many :items} #merchants
     it { should have_many :orders}
   end
+
+  describe "roles" do
+    it "can be created as an admin" do 
+      @user = create(:user)
+      @user.update(role: 3)
+      
+      expect(@user.role).to eq("admin")
+      expect(@user.admin?).to be_truthy
+    end
+
+    it "can be created as an merchant" do 
+      @user = create(:user)
+      @user.update(role: 2)
+
+      expect(@user.role).to eq("merchant")
+      expect(@user.merchant?).to be_truthy
+    end
+
+    it "can be created as an admin" do 
+      @user = create(:user)
+      @user.update(role: 1)
+
+      expect(@user.role).to eq("registered_user")
+      expect(@user.registered_user?).to be_truthy
+    end
+  end
+
 end

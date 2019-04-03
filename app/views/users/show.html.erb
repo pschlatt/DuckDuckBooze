@@ -1,1 +1,6 @@
-<h2 id='welcome'>Welcome, <%= @user.name %>!</h2>
+<h2 id='welcome'>Welcome, <%= current_user.name %>!</h2>
+
+<h3>Email: <%= current_user.email %></h3>
+
+<h4>Address: <%= current_user.street %></h4><br>
+<h4>         <%= current_user.city %>,<%= current_user.state%> <%= current_user.zip%></h4><br>

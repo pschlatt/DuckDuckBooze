@@ -26,5 +26,15 @@ RSpec.describe 'User Profile Page' do
       expect(page).to have_content(@user.zip)
 
     end
+    it 'has a link to edit info' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
+      visit profile_path
+
+      click_on "Edit Info"
+
+      expect(current_path).to eq(edit_user_path(@user))
+
+    end
   end
 end

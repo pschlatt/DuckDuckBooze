@@ -1,0 +1,20 @@
+<br/>
+<br/>
+<br/>
+<h1>Beer Index</h1>
+
+<% @items.each do |beer| %>
+<section id='item-<%= beer.id %>'>
+  <a class="thumbnail" href="<%= item_path(beer) %>">
+    <img src="<%= beer.image %>"
+    alt=" beer pic " width="200">
+  </a>
+  <p>
+    Name: <%= link_to beer.name, item_path(beer) %><br/>
+    Description: <%= beer.description %><br/>
+    Merchant: <%= beer.user.name %><br/>
+    Stock: <%= beer.stock %><br/>
+    Price: <%= beer.item_price %>
+  </p>
+</section>
+<% end %>

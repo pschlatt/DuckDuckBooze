@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :items, only: [:index]
+  resources :items, only: [:index, :show]
 
   namespace :merchants do
     resources :users, only: [:index]
@@ -15,8 +15,8 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
+  
   get '/cart', to: 'cart#show'
 
   get '/profile', to: 'users#show'
-
 end

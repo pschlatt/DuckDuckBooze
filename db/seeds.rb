@@ -10,29 +10,29 @@ Order.destroy_all
 Item.destroy_all
 User.destroy_all
 #two visitors
-@user_01 = User.create(role: 0, enabled: false, name: "Tommy Shopper", street: "123 Busy Way", city: "Denver", state: "CO", zip: "80222", email: "tommy@gmail.com", password_digest: "abcd1234")
-@user_02 = User.create(role: 0, enabled: false, name: "Lance Looker", street: "52 S Street", city: "Denver", state: "CO", zip: "80222", email: "lance@gmail.com", password_digest: "zxywvut21")
+@user_01 = User.create(role: 0, enabled: false, name: "Tommy Shopper", street: "123 Busy Way", city: "Denver", state: "CO", zip: "80222", email: "tommy@gmail.com", password: "abcd1234")
+@user_02 = User.create(role: 0, enabled: false, name: "Lance Looker", street: "52 S Street", city: "Denver", state: "CO", zip: "80222", email: "lance@gmail.com", password: "zxywvut21")
 
 #six users(shoppers)
-@user_11 = User.create(role: 1, enabled: false, name: "Sally Shopper", street: "123 Busy Way", city: "Denver", state: "CO", zip: "80222", email: "sally@gmail.com", password_digest: "12345678")
-@user_12 = User.create(role: 1, enabled: false, name: "Sam Spender", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "sam@gmail.com", password_digest: "password")
-@user_13 = User.create(role: 1, enabled: false, name: "Bill Jones", street: "2 Cole Ave", city: "Lakewood", state: "CO", zip: "80228", email: "bill@gmail.com", password_digest: "yolo1234")
-@user_14 = User.create(role: 1, enabled: false, name: "Bobby Buyer", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "bobby@gmail.com", password_digest: "yolo1234")
-@user_15 = User.create(role: 1, enabled: false, name: "Betty Buyer", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "betty@gmail.com", password_digest: "yolo1234")
-@user_16 = User.create(role: 1, enabled: false, name: "Paul Purchaser", street: "60 Stories Too Many", city: "Seattle", state: "WA", zip: "98315", email: "paul@gmail.com", password_digest: "password")
+@user_11 = User.create(role: 1, enabled: false, name: "Sally Shopper", street: "123 Busy Way", city: "Denver", state: "CO", zip: "80222", email: "sally@gmail.com", password: "12345678")
+@user_12 = User.create(role: 1, enabled: false, name: "Sam Spender", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "sam@gmail.com", password: "password")
+@user_13 = User.create(role: 1, enabled: false, name: "Bill Jones", street: "2 Cole Ave", city: "Lakewood", state: "CO", zip: "80228", email: "bill@gmail.com", password: "yolo1234")
+@user_14 = User.create(role: 1, enabled: false, name: "Bobby Buyer", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "bobby@gmail.com", password: "yolo1234")
+@user_15 = User.create(role: 1, enabled: false, name: "Betty Buyer", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "betty@gmail.com", password: "yolo1234")
+@user_16 = User.create(role: 1, enabled: false, name: "Paul Purchaser", street: "60 Stories Too Many", city: "Seattle", state: "WA", zip: "98315", email: "paul@gmail.com", password: "password")
 
 #five merchants
-@user_21 = User.create(role: 2, enabled: true, name: "Mike Merchant", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "mike@gmail.com", password_digest: "password")
-@user_22 = User.create(role: 2, enabled: true, name: "Pam Pusher", street: "2 Cole Ave", city: "Lakewood", state: "CO", zip: "80228", email: "pam@gmail.com", password_digest: "yolo1234")
-@user_23 = User.create(role: 2, enabled: true, name: "Dealing Doug", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "doug@gmail.com", password_digest: "yolo1234")
-@user_24 = User.create(role: 2, enabled: true, name: "Carl Carsalesman", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "carl@gmail.com", password_digest: "yolo1234")
-@user_25 = User.create(role: 2, enabled: true, name: "Steve Seller", street: "60 Stories Too Many", city: "Seattle", state: "WA", zip: "98315", email: "steve@gmail.com", password_digest: "password")
+@user_21 = User.create(role: 2, enabled: true, name: "Mike Merchant", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "mike@gmail.com", password: "password")
+@user_22 = User.create(role: 2, enabled: true, name: "Pam Pusher", street: "2 Cole Ave", city: "Lakewood", state: "CO", zip: "80228", email: "pam@gmail.com", password: "yolo1234")
+@user_23 = User.create(role: 2, enabled: true, name: "Dealing Doug", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "doug@gmail.com", password: "yolo1234")
+@user_24 = User.create(role: 2, enabled: true, name: "Carl Carsalesman", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "carl@gmail.com", password: "yolo1234")
+@user_25 = User.create(role: 2, enabled: true, name: "Steve Seller", street: "60 Stories Too Many", city: "Seattle", state: "WA", zip: "98315", email: "steve@gmail.com", password: "password")
 
 #two admins
-@user_31 = User.create(role: 3, enabled: true, name: "Aaron Admin", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "aaron@gmail.com", password_digest: "password")
-@user_32 = User.create(role: 3, enabled: true, name: "Otis Overseer", street: "2 Cole Ave", city: "Lakewood", state: "CO", zip: "80228", email: "otis@gmail.com", password_digest: "secure123")
+@user_31 = User.create(role: 3, enabled: true, name: "Aaron Admin", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "aaron@gmail.com", password: "password")
+@user_32 = User.create(role: 3, enabled: true, name: "Otis Overseer", street: "2 Cole Ave", city: "Lakewood", state: "CO", zip: "80228", email: "otis@gmail.com", password: "secure123")
 
-#beers
+#beers 
 @beer_1 = @user_21.items.create(name: "Heineken", description: "Pale lager, 5%", item_price: 4.00, stock: 56, enabled: true, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Heineken.jpg/156px-Heineken.jpg")
 @beer_2 = @user_22.items.create(name: "Guiness", description: "Dry stout, 4.2%", item_price: 6.50, stock: 68, enabled: true, image: "https://upload.wikimedia.org/wikipedia/en/thumb/f/fe/Guinness-original-logo.svg/440px-Guinness-original-logo.svg.png")
 @beer_3 = @user_23.items.create(name: "Samuel Adams", description: "Lager, 4.9%", item_price: 4.25, stock: 38, enabled: true, image: "https://media3.webcollage.net/ba5aa7c6e5fdf1a927cf12d2cc841b1face3d275?response-content-type=image%2Fpng&AWSAccessKeyId=AKIAIIE5CHZ4PRWSLYKQ&Expires=1893538567&Signature=gw9LNzoG4tgto7t%2FmRRJKpKB0PY%3D")

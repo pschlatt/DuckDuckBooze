@@ -9,7 +9,6 @@ class User < ApplicationRecord
   validates_presence_of :role
   validates_inclusion_of :enabled, in: [true, false]
 
-
   validates :email, uniqueness: true
   # validates_numericality_of :role
   # validates_inclusion_of :role, :in => 0..3
@@ -19,4 +18,6 @@ class User < ApplicationRecord
   has_secure_password 
 
   enum role: ['visitor', 'registered_user', 'merchant', 'admin']
+
+  has_secure_password
 end

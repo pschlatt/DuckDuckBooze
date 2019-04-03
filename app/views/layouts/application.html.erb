@@ -7,9 +7,11 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-
   <body class='home'>
-
+  <br>
+  <br>
+  <br>
+  <br>
     <section id='nav-bar'>
       <ul id='nav-links'>
         <li class='nav-link', id='shop-link'><%= link_to "Home", root_path%></li>
@@ -38,8 +40,8 @@
       </ul>
     </section>
 
-    <%= flash.each do |type, message| %>
-      <% content_tag :div, message, class: type %>
+    <% flash.each do |type, message| %>
+      <%= content_tag :div, message, class: type %>
     <% end %>
 
     <%= yield %>

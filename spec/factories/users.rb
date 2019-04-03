@@ -1,9 +1,9 @@
 FactoryBot.define do
-  factory :reg_user, class: User do
+  factory :registered_user, class: User do
     sequence(:email) { |n| "user_#{n}@gmail.com" }
     password { "password" }
     sequence(:name) { |n| "Register User Name #{n}" }
-    sequence(:address) { |n| "Address #{n}" }
+    sequence(:street) { |n| "Address #{n}" }
     sequence(:city) { |n| "City #{n}" }
     sequence(:state) { |n| "State #{n}" }
     sequence(:zip) { |n| "Zip #{n}" }

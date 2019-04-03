@@ -43,7 +43,7 @@ RSpec.describe 'Item Show Page', type: :feature do
       visit item_path(@beer_1)
 
       within '#item-show-merchant-info' do
-        expect(page).to have_content("Average Fulfillment Time: #{@merchant_1.avg_fill_time(@beer_1)}")
+        expect(page).to have_content("Average Fulfillment Time: #{@merchant_1.avg_fill_time(@beer_1)} hours")
       end
     end
   end

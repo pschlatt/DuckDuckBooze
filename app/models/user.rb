@@ -18,12 +18,16 @@ class User < ApplicationRecord
   enum role: ['visitor', 'registered_user', 'merchant', 'admin']
 
   def avg_fill_time(item)
-    order_items = OrderItem.joins(item: :user).where("users.id = ? and items.id = ?", id, item.id)
+    order_items = OrderItem
+      .joins(item: :user)
+      .where("users.id = ? and items.id = ?", id, item.id)
+      .where(fulfilled: true)
 
-    fulfillment_times = order_items.map do |order_item|
-      (order_item.updated_at - order_item.created_at).to_i / 1.hours
+    if order_items.present?
+      fulfillment_times = order_items.map do |order_item|
+        (order_item.updated_at - order_item.created_at).to_i / 1.hours
+      end
+      fulfillment_times.sum / fulfillment_times.count
     end
-
-    fulfillment_times.sum / fulfillment_times.count
   end
 end

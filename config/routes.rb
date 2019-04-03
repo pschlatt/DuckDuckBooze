@@ -7,6 +7,12 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
   end
 
+  namespace :admins do
+    resources :users, only: [:index]
+
+    get '/dashboard', to: 'dashboard#show'
+  end
+
   namespace :dashboard do
     get '/', to: 'merchants#show'
   end

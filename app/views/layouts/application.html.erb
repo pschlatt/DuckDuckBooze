@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>DuckDuckBooze</title>
-    <%= csrf_meta_tags %>
+ <head>
+   <title>DuckDuckBooze</title>
+   <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+   <%= stylesheet_link_tag    'application', media: 'all' %>
+   <%= javascript_include_tag 'application' %>
+ </head>
 
-  <body class='home'>
+ <body class='home'>
 
-    <%= flash.notice %>
-    <section id='nav-bar'>
-      <ul id='nav'>
-        <li id='shop-link'><%= link_to "Home", root_path %></li>
-        <li id='shop-link'><%= link_to "Shop Beers", items_path %></li>
-        <li id='merchants-link'><%= link_to "Merchants", merchants_users_path %></li>
-        <li id='login-link'><%= link_to "Login", login_path %></li>
-        <li id='register-link'><%= link_to "Register", new_user_path %></li> 
-        <li id='cart-link' style='float:right'><%= link_to "Cart", cart_path %></li> 
-      </ul> 
-        <li id='register-link'><%= link_to "Register", new_user_path %></li>
-        <li id='cart-nav' style='float:right'><%= link_to "Cart", cart_path %></li>
+   <%= flash.notice %>
+  
+   <section id='nav-bar'>
+     <ul id='nav-links'>
+       <li class='nav-link', id='shop-link'><%= link_to "Home", root_path%></li>
+       <li class='nav-link', id='shop-link'><%= link_to "Shop Beers", items_path %></li>
+       <li class='nav-link', id='merchants-link'><%= link_to "Merchants", merchants_users_path %></li>
 
-    </section>
-    <%= yield %>
-  </body>
+       <% if current_user.nil? %>
+       <li class='nav-link', id='login-link' style='float:right'><%= link_to "Login", login_path %></li>
+       <li class='nav-link', id='register-link' style='float:right'><%= link_to "Register", new_user_path %></li>
+       <li class='nav-link', id='cart-nav' style='float:right'><%= link_to "Cart", cart_path %></li>
+      
+       <% elsif registered_user? %>
+       <li class='nav-link', id='logout-link'><%= link_to "Log Out", logout_path %></li>
+       <li class='nav-link', id='profile-link'><%= link_to "Profile", profile_path %></li>
+       <li class='nav-link', id='cart-nav' style='float:right'><%= link_to "Cart", cart_path %></li>
+
+       <% elsif current_merchant? %>
+       <li class='nav-link', id='logout-link'><%= link_to "Log Out", logout_path %></li>
+       <li class='nav-link', id='dashboard-link'><%= link_to "Dashboard", dashboard_path %></li>
+       <% end %>
+     </ul>
+   </section>
+ 
+   <%= yield %>
+ </body>
+
 </html>
+

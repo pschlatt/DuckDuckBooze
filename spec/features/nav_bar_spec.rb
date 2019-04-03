@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe 'navigation bar' do 
-  context 'as a visitor' do 
-    it 'should see a navigation bar' do
+RSpec.describe 'navigation bar' do
+  context 'as a visitor' do
+    it 'should see a navigation bar with links' do
       visit root_path
 
-      within '#nav-bar' do 
+      within '#nav-bar' do
         expect(page).to have_link('Shop Beers')
         expect(page).to have_link('Merchants')
         expect(page).to have_link('Cart')
@@ -13,62 +13,67 @@ RSpec.describe 'navigation bar' do
         expect(page).to have_link('Login')
         expect(page).to have_link('Register')
         click_on 'Shop Beers'
-      end 
+      end
 
       expect(current_path).to eq(items_path)
 
-      within '#nav-bar' do 
+      within '#nav-bar' do
         click_on 'Merchants'
-      end  
+      end 
 
       expect(current_path).to eq(merchants_users_path)
 
-      within '#nav-bar' do 
+      within '#nav-bar' do
         click_on 'Cart'
-      end  
+      end 
       
       expect(current_path).to eq(cart_path)
 
-      within '#nav-bar' do 
-        click_on 'Register'
-      end  
-
-      expect(current_path).to eq(new_user_path)
-
-       within '#nav-bar' do 
-        click_on 'Cart'
-      end  
-
-      expect(current_path).to eq(cart_path)
-    end
-  end 
-
-  context 'as a registered user' do 
-    it 'should see a navigation bar' do
-      visit root_path
-
-      within '#nav-bar' do 
-        expect(page).to have_link('Shop Beers')
-        expect(page).to have_link('Merchants')
-        expect(page).to have_link('Cart')
-        #Next to the shopping cart link I see a count of the items in my cart
-        expect(page).to have_link('Login')
-        expect(page).to have_link('Register')
+      within '#nav-bar' do
         click_on 'Register'
       end 
 
-      user = create(:user, role: 1)
-      visit login_path
+      expect(current_path).to eq(new_user_path)
 
-      expect(current_path).to eq(profile_path)
+        within '#nav-bar' do
+        click_on 'Cart'
+      end 
 
-      within '#nav-bar' do 
+      expect(current_path).to eq(cart_path)
+    end
+  end
+
+  context 'as a registered user' do
+    it 'should see a navigation bar with links' do
+      reg_user = create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(reg_user)
+
+      visit profile_path
+
+      within '#nav-bar' do
         expect(page).to_not have_link('Login')
         expect(page).to_not have_link('Register')
-        expect(page).to have_content('Logged in as user')
         expect(page).to have_link('Log Out')
-        click_on 'Log Out'
-      end  
+        expect(page).to have_link('Profile')
+        #expect(page).to have_content("Logged in as '#{reg_user.name}'")
+      end 
+    end
+  end 
+
+  context 'as a merchant' do
+    it 'should see a navigation bar with links' do
+      merchant = create(:merchant)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+
+      visit merchants_users_path
+
+      within '#nav-bar' do
+        expect(page).to_not have_link('Login')
+        expect(page).to_not have_link('Register')
+        expect(page).to_not have_link('Cart')
+        expect(page).to have_link('Log Out')
+        expect(page).to have_link('Dashboard')
+      end 
     end
   end 
 end 

@@ -14,8 +14,6 @@ RSpec.describe User, type: :model do
 
     it { should validate_uniqueness_of :email}
     it { should validate_inclusion_of(:enabled).in_array([true, false])}
-    # it { should validate_numericality_of :role}
-    # it { should validate_inclusion_of(:role).in_array([0,1,2,3])}
   end
 
   describe 'Relationships' do
@@ -40,7 +38,7 @@ RSpec.describe User, type: :model do
       expect(@user.merchant?).to be_truthy
     end
 
-    it "can be created as an admin" do 
+    it "can be created as an registered_user" do 
       @user = create(:user)
       @user.update(role: 1)
 
@@ -48,5 +46,4 @@ RSpec.describe User, type: :model do
       expect(@user.registered_user?).to be_truthy
     end
   end
-
 end

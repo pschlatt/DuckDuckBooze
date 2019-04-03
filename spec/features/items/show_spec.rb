@@ -34,6 +34,7 @@ RSpec.describe 'Item Show Page', type: :feature do
       within '#item-show-merchant-info' do
         expect(page).to have_content("Merchant: #{@merchant_1.name}")
         expect(page).to have_content("Stock: #{@beer_1.stock}")
+        expect(page).to have_content("Price: #{@beer_1.item_price}")
       end
     end
 

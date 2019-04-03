@@ -1,0 +1,34 @@
+<br>
+<br>
+<br>
+<br>
+<h1>CREATE AN ACCOUNT</h1><br>
+
+<%= form_for @user do |f| %>
+
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br>
+
+  <%= f.label :email %><br>
+  <%= f.text_field :email %><br>
+
+  <%= f.label :password %><br>
+  <%= f.password_field :password %><br>
+
+   <%= f.label :password_confirmation, "Confirm Password" %><br>
+  <%= f.password_field :password_confirmation %><br>
+
+  <%= f.label :street %><br>
+  <%= f.text_field :street %><br>
+
+  <%= f.label :city %><br>
+  <%= f.text_field :city %><br>
+
+  <%= f.label :state %><br>
+  <%= f.text_field :state %><br>
+
+  <%= f.label :zip %><br>
+  <%= f.text_field :zip %><br>
+
+  <%= f.submit %>
+<% end %>

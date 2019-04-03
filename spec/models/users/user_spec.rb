@@ -37,10 +37,10 @@ RSpec.describe User, type: :model do
        @order_3 = @user_11.orders.create(status: 0)
 
        @order_item_1 = OrderItem.create(item_id: @beer_1.id, order_id: @order_1.id, fulfilled: true, quantity: 3, order_price: 5.22, created_at: 2.days.ago, updated_at: 1.day.ago)
-       @order_item_2 = OrderItem.create(item_id: @beer_1.id, order_id: @order_1.id, fulfilled: true, quantity: 12, order_price: 15.62, created_at: 2.days.ago, updated_at: 1.day.ago)
-       @order_item_3 = OrderItem.create(item_id: @beer_1.id, order_id: @order_1.id, fulfilled: true, quantity: 24, order_price: 29.05, created_at: 2.days.ago, updated_at: 1.day.ago)
-       binding.pry
-       expect(@merchant_1.avg_fill_time(@beer_1)).to eq(dfas)
+       @order_item_2 = OrderItem.create(item_id: @beer_1.id, order_id: @order_1.id, fulfilled: true, quantity: 12, order_price: 15.62, created_at: 3.days.ago, updated_at: 1.day.ago)
+       @order_item_3 = OrderItem.create(item_id: @beer_1.id, order_id: @order_1.id, fulfilled: true, quantity: 24, order_price: 29.05, created_at: 4.days.ago, updated_at: 1.day.ago)
+
+       expect(@merchant_1.avg_fill_time(@beer_1)).to eq(48)
      end
     end
   end

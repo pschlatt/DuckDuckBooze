@@ -12,7 +12,9 @@ RSpec.describe 'Item Show Page', type: :feature do
     @order_1 = @user_11.orders.create(status: 0)
     @order_2 = @user_12.orders.create(status: 0)
 
-    @order_item = OrderItem.create(item_id: @beer_1.id, order_id: @order_1.id, fulfilled: true, quantity: 12, order_price: 15.62, created_at: 2.days.ago, updated_at: 1.day.ago)
+    @order_item_1 = OrderItem.create(item_id: @beer_1.id, order_id: @order_1.id, fulfilled: true, quantity: 12, order_price: 15.62, created_at: 2.days.ago, updated_at: 1.day.ago)
+    @order_item_2 = OrderItem.create(item_id: @beer_1.id, order_id: @order_1.id, fulfilled: true, quantity: 12, order_price: 15.62, created_at: 2.days.ago, updated_at: 1.day.ago)
+    @order_item_3 = OrderItem.create(item_id: @beer_1.id, order_id: @order_1.id, fulfilled: true, quantity: 12, order_price: 15.62, created_at: 2.days.ago, updated_at: 1.day.ago)
     #class method - avg time where name = hein
   end
 
@@ -40,7 +42,7 @@ RSpec.describe 'Item Show Page', type: :feature do
       visit item_path(@beer_1)
 
       within '#item-show-merchant-info' do
-        expect(page).to have_content("Average Fulfillment Time: #{@merchant_1.name}")
+        expect(page).to have_content("Average Fulfillment Time: #{@merchant_1.avg_fill_time(@beer_1)}")
       end
     end
   end
@@ -49,7 +51,7 @@ RSpec.describe 'Item Show Page', type: :feature do
     it 'shows a button to add this item to my cart' do
 
       visit item_path(@beer_1)
-      save_and_open_page
+
       expect(page).to have_button('Add to Cart')
     end
   end

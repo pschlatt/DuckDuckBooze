@@ -14,7 +14,6 @@ RSpec.describe 'Item Show Page', type: :feature do
       @order_2 = @user_12.orders.create(status: 0)
 
       @order_item = OrderItem.create(item_id: @beer_1.id, order_id: @order_1.id, fulfilled: true, quantity: 12, order_price: 15.62, created_at: 2.days.ago, updated_at: 1.day.ago)
-      #need to clear test data
       #class method - avg time where name = hein
     end
 
@@ -27,6 +26,13 @@ RSpec.describe 'Item Show Page', type: :feature do
     end
 
     it 'shows the name of the merchant, their stock of the item, and the current item price' do
+
+      visit item_path(@beer_1)
+
+      within '#item-show-merchant-info' do
+        expect(page).to have_content("Merchant: #{@merchant_1.name}")
+        expect(page).to have_content("Stock: #{@beer_1.stock}")
+      end
     end
 
     it 'shows the average amount of time for the merchant to fulfill this item' do

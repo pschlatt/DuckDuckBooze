@@ -3,9 +3,15 @@
 <br/>
 
 <% @item %>
+<% @merchant = @item.user %>
 
 <section id="item-header">
   <h1><%= @item.name %></h1>
 </section>
 
 <img id="item-show-pic" src="<%= @item.image %>" alt= "item pic" width="400">
+
+<section id= "item-show-merchant-info">
+  <p>Merchant: <%= @merchant.name %></p>
+  <p>Stock: <%= @item.stock %></p>
+</section>

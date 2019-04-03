@@ -7,8 +7,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
   end
 
-  namespace :admins do
-    resources :users, only: [:index]
+  namespace :admin do
+    resources :merchants, only: [:show]
+    resources :users, only: [:show]
 
     get '/dashboard', to: 'dashboard#show'
   end
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  get '/logout', to: 'session#destroy'
+  get '/logout', to: 'sessions#destroy'
   
   get '/cart', to: 'cart#show'
 

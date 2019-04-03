@@ -1,8 +1,9 @@
 FactoryBot.define do
+
   factory :user, class: User do
     sequence(:email) { |n| "user_#{n}@gmail.com" }
     password { "password" }
-    sequence(:name) { |n| "Register User Name #{n}" }
+    sequence(:name) { |n| "User Name #{n}" }
     sequence(:street) { |n| "Address #{n}" }
     sequence(:city) { |n| "City #{n}" }
     sequence(:state) { |n| "State #{n}" }
@@ -11,9 +12,8 @@ FactoryBot.define do
     enabled { true }
   end
   factory :disabled_user, parent: :user do
-    sequence(:name) { |n| "Visitor User Name #{n}" }
-    sequence(:email) { |n| "visitor_user_#{n}@gmail.com" }
-    role { 0 }
+    sequence(:name) { |n| "Disabled User Name #{n}" }
+    sequence(:email) { |n| "disabled_user_#{n}@gmail.com" }
     enabled { false }
   end
 
@@ -23,7 +23,7 @@ FactoryBot.define do
     role { 2 }
     enabled { true }
   end
-  factory :inactive_merchant, parent: :user do
+  factory :disabled_merchant, parent: :user do
     sequence(:email) { |n| "disabled_merchant_#{n}@gmail.com" }
     sequence(:name) { |n| "Disabled Merchant Name #{n}" }
     role { 2 }

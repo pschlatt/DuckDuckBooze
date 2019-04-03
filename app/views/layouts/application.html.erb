@@ -27,6 +27,7 @@
        <li class='nav-link', id='logout-link'><%= link_to "Log Out", logout_path %></li>
        <li class='nav-link', id='profile-link'><%= link_to "Profile", profile_path %></li>
        <li class='nav-link', id='cart-nav' style='float:right'><%= link_to "Cart", cart_path %></li>
+       <p>Logged in as <%= current_user.name %></p>
 
        <% elsif current_merchant? %>
        <li class='nav-link', id='logout-link'><%= link_to "Log Out", logout_path %></li>

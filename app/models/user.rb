@@ -10,8 +10,6 @@ class User < ApplicationRecord
   validates_inclusion_of :enabled, in: [true, false]
 
   validates :email, uniqueness: true
-  # validates_numericality_of :role
-  # validates_inclusion_of :role, :in => 0..3
 
   has_many :items
   has_many :orders

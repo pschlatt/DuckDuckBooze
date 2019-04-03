@@ -55,7 +55,7 @@ RSpec.describe 'navigation bar' do
         expect(page).to_not have_link('Register')
         expect(page).to have_link('Log Out')
         expect(page).to have_link('Profile')
-        #expect(page).to have_content("Logged in as '#{reg_user.name}'")
+        expect(page).to have_content("Logged in as '#{reg_user.name}'")
       end 
     end
   end 

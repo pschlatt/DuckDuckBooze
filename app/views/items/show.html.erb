@@ -1,0 +1,23 @@
+<br/>
+<br/>
+<br/>
+
+
+<section id="item-header">
+  <h1><%= @item.name %></h1>
+</section>
+
+<img id="item-show-pic" src="<%= @item.image %>" alt= "item pic" width="400">
+
+<section id= "item-show-merchant-info">
+  <p>Merchant: <%= @item.user.name %></p>
+  <p>Stock: <%= @item.stock %></p>
+  <p>Price: <%= @item.item_price %></p>
+  <p>Average Fulfillment Time: <%= @item.user.avg_fill_time(@item)%> hours</p>
+</section>
+
+<% if current_user.nil? || registered_user? %>
+  <section id="add-to-cart-button">
+    <%= button_to "Add to Cart" %>
+  </section>
+<% end %>

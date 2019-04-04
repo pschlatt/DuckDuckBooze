@@ -13,9 +13,21 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :orders
-  has_secure_password 
+  has_secure_password
 
   enum role: ['visitor', 'registered_user', 'merchant', 'admin']
 
-  has_secure_password
+  def avg_fill_time(item)
+    order_items = OrderItem
+      .joins(item: :user)
+      .where("users.id = ? and items.id = ?", id, item.id)
+      .where(fulfilled: true)
+
+    if order_items.present?
+      fulfillment_times = order_items.map do |order_item|
+        (order_item.updated_at - order_item.created_at).to_i / 1.hours
+      end
+      fulfillment_times.sum / fulfillment_times.count
+    end
+  end
 end

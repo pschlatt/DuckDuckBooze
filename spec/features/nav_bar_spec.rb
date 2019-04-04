@@ -55,7 +55,7 @@ RSpec.describe 'navigation bar' do
         expect(page).to_not have_link('Register')
         expect(page).to have_link('Log Out')
         expect(page).to have_link('Profile')
-        expect(page).to have_content("Logged in as '#{reg_user.name}'")
+        expect(page).to have_content("Logged in as #{reg_user.name}")
       end 
     end
   end 
@@ -82,7 +82,7 @@ RSpec.describe 'navigation bar' do
       admin = create(:admin)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-      visit admin_user_path
+      visit admin_user_path(admin)
 
       within '#nav-bar' do
         expect(page).to_not have_link('Login')

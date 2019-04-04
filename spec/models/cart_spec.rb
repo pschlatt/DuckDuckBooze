@@ -17,4 +17,12 @@ RSpec.describe 'Cart' do
       expect(cart.total_count).to eq(5)
     end
   end
+
+  describe '.count_of()' do
+    it 'can calculate count of specific item' do
+      cart = Cart.new({})
+
+      expect(cart.count_of(5)).to eq(0)
+    end
+  end
 end

@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates_presence_of :state
   validates_presence_of :zip
   validates_presence_of :email
-  validates_presence_of :password, if: :password
+  validates_presence_of :password
   validates_presence_of :role
   validates_inclusion_of :enabled, in: [true, false]
 

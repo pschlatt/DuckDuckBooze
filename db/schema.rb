@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190401222810) do
+ActiveRecord::Schema.define(version: 20190404154802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20190401222810) do
   create_table "items", force: :cascade do |t|
     t.boolean "enabled", default: true
     t.string "name"
-    t.string "image"
+    t.string "image", default: "https://cdn.shopify.com/s/files/1/1143/3886/products/beer-stout_bca770f6-881f-4a8f-99b7-dc2f607edf84_1024x1024.jpg?v=1522432087"
     t.text "description"
     t.integer "stock"
     t.float "item_price"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20190401222810) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "role", default: 0
+    t.integer "role", default: 1
     t.boolean "enabled", default: false
     t.string "name"
     t.string "street"

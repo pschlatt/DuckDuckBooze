@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = enabled_items
-    @cart = Cart.new(session[:cart])
   end
 
   def show

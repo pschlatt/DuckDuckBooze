@@ -3,7 +3,7 @@ class Cart
 
   def initialize(contents)
     @contents = contents || Hash.new(0)
-    #@contents.default = 0
+    @contents.default = 0
   end
 
   def total_count

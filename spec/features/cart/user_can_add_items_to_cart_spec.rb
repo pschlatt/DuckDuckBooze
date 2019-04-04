@@ -26,10 +26,9 @@ RSpec.describe 'a visitor or registered user' do
         expect(page).to have_content("Cart: 1")
 
         visit item_path(@item)
-
         click_on("Add to Cart")
 
-        expect(page).to have_content("You have added #{@item.name} item to your cart")
+        expect(page).to have_content("You have added #{@item.name} to your cart")
         expect(page).to have_content("Cart: 2")
       end
 

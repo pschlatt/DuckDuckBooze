@@ -6,7 +6,9 @@
 <section class="popular_items_stats">
   <h1>Top 5 Most Popular Items:</h1>
   <ul>
-    <li>
+    <% @top_five_stats.each do |stat| %>
+    <li><%= stat %></li>
+    <% end %>
   </ul>
 </section>
 

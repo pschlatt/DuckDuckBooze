@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         redirect_to dashboard_path
       elsif registered_user?
         flash[:notice] = "You are already logged in."
-        redirect_to profile_path(session[:user_id])
+        redirect_to profile_path
       end
     end
   end

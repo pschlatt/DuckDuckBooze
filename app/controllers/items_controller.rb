@@ -2,8 +2,8 @@ class ItemsController < ApplicationController
 
   def index
     @items = enabled_items
-    # binding.pry
-    @top_five_stats = Item.top_five_stats
+    @top_five_stats = Item.five_stats(:desc)
+    @bottom_five_stats = Item.five_stats(:asc)
   end
 
   def show

@@ -68,16 +68,7 @@ RSpec.describe 'Item Index Page', type: :feature do
       expect(current_path).to eq(item_path(@beer_1))
     end
 
-#     As any kind of user on the system
-# When I visit the items index page ("/items")
-# I see an area with statistics:
-# - the top 5 most popular items by quantity purchased,
-# plus the quantity bought
-# - the bottom 5 least popular items, plus the quantity bought
-#
-# "Popularity" is determined by total quantity of that item fulfilled
-    it 'shows top 5 most popular items' do
-      # merchant = create(:merchant)
+    it 'shows top 5 items' do
       item_1 = create(:item)
       item_2 = create(:item)
       item_3 = create(:item)
@@ -104,11 +95,18 @@ RSpec.describe 'Item Index Page', type: :feature do
 
       within ".popular_items_stats" do
         expect(page).to have_content("Top 5 Most Popular Items:")
-        expect(page.all(".high_stats")[0]).to have_content(item_7.name)
-        expect(page.all(".high_stats")[1]).to have_content(item_6.name)
-        expect(page.all(".high_stats")[2]).to have_content(item_5.name)
-        expect(page.all(".high_stats")[3]).to have_content(item_4.name)
-        expect(page.all(".high_stats")[4]).to have_content(item_3.name)
+        expect(page.all(".high_stats")[0]).to have_content("Name: #{item_7.name}, Total Quantity Purchased: #{order_item_7.quantity}")
+        expect(page.all(".high_stats")[1]).to have_content("Name: #{item_6.name}, Total Quantity Purchased: #{order_item_6.quantity}")
+        expect(page.all(".high_stats")[2]).to have_content("Name: #{item_5.name}, Total Quantity Purchased: #{order_item_5.quantity}")
+        expect(page.all(".high_stats")[3]).to have_content("Name: #{item_4.name}, Total Quantity Purchased: #{order_item_4.quantity}")
+        expect(page.all(".high_stats")[4]).to have_content("Name: #{item_3.name}, Total Quantity Purchased: #{order_item_3.quantity}")
+
+        expect(page).to have_content("Bottom 5 Most Popular Items:")
+        expect(page.all(".low_stats")[0]).to have_content("Name: #{item_1.name}, Total Quantity Purchased: #{order_item_1.quantity}")
+        expect(page.all(".low_stats")[1]).to have_content("Name: #{item_2.name}, Total Quantity Purchased: #{order_item_2.quantity}")
+        expect(page.all(".low_stats")[2]).to have_content("Name: #{item_3.name}, Total Quantity Purchased: #{order_item_3.quantity}")
+        expect(page.all(".low_stats")[3]).to have_content("Name: #{item_4.name}, Total Quantity Purchased: #{order_item_4.quantity}")
+        expect(page.all(".low_stats")[4]).to have_content("Name: #{item_5.name}, Total Quantity Purchased: #{order_item_5.quantity}")
       end
     end
   end

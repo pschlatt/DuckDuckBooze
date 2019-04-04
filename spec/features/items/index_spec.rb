@@ -67,5 +67,47 @@ RSpec.describe 'Item Index Page', type: :feature do
       end
       expect(current_path).to eq(item_path(@beer_1))
     end
+
+    it 'shows top 5 items' do
+      item_1 = create(:item)
+      item_2 = create(:item)
+      item_3 = create(:item)
+      item_4 = create(:item)
+      item_5 = create(:item)
+      item_6 = create(:item)
+      item_7 = create(:item)
+      order_1 = create(:shipped_order)
+      order_2 = create(:shipped_order)
+      order_3 = create(:shipped_order)
+      order_4 = create(:shipped_order)
+      order_5 = create(:shipped_order)
+      order_6 = create(:shipped_order)
+      order_7 = create(:shipped_order)
+      order_item_1 = OrderItem.create(fulfilled: true, quantity: 3, order_price: 2.0, order_id: order_1.id, item_id: item_1.id)
+      order_item_2 = OrderItem.create(fulfilled: true, quantity: 4, order_price: 2.0, order_id: order_2.id, item_id: item_2.id)
+      order_item_3 = OrderItem.create(fulfilled: true, quantity: 5, order_price: 2.0, order_id: order_3.id, item_id: item_3.id)
+      order_item_4 = OrderItem.create(fulfilled: true, quantity: 6, order_price: 2.0, order_id: order_4.id, item_id: item_4.id)
+      order_item_5 = OrderItem.create(fulfilled: true, quantity: 7, order_price: 2.0, order_id: order_5.id, item_id: item_5.id)
+      order_item_6 = OrderItem.create(fulfilled: true, quantity: 8, order_price: 2.0, order_id: order_6.id, item_id: item_6.id)
+      order_item_7 = OrderItem.create(fulfilled: true, quantity: 9, order_price: 2.0, order_id: order_7.id, item_id: item_7.id)
+
+      visit items_path
+
+      within ".popular_items_stats" do
+        expect(page).to have_content("Top 5 Most Popular Items:")
+        expect(page.all(".high_stats")[0]).to have_content("Name: #{item_7.name}, Total Quantity Purchased: #{order_item_7.quantity}")
+        expect(page.all(".high_stats")[1]).to have_content("Name: #{item_6.name}, Total Quantity Purchased: #{order_item_6.quantity}")
+        expect(page.all(".high_stats")[2]).to have_content("Name: #{item_5.name}, Total Quantity Purchased: #{order_item_5.quantity}")
+        expect(page.all(".high_stats")[3]).to have_content("Name: #{item_4.name}, Total Quantity Purchased: #{order_item_4.quantity}")
+        expect(page.all(".high_stats")[4]).to have_content("Name: #{item_3.name}, Total Quantity Purchased: #{order_item_3.quantity}")
+
+        expect(page).to have_content("Bottom 5 Most Popular Items:")
+        expect(page.all(".low_stats")[0]).to have_content("Name: #{item_1.name}, Total Quantity Purchased: #{order_item_1.quantity}")
+        expect(page.all(".low_stats")[1]).to have_content("Name: #{item_2.name}, Total Quantity Purchased: #{order_item_2.quantity}")
+        expect(page.all(".low_stats")[2]).to have_content("Name: #{item_3.name}, Total Quantity Purchased: #{order_item_3.quantity}")
+        expect(page.all(".low_stats")[3]).to have_content("Name: #{item_4.name}, Total Quantity Purchased: #{order_item_4.quantity}")
+        expect(page.all(".low_stats")[4]).to have_content("Name: #{item_5.name}, Total Quantity Purchased: #{order_item_5.quantity}")
+      end
+    end
   end
 end

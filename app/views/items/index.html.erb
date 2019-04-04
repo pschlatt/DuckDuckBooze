@@ -3,6 +3,34 @@
 <br/>
 <h1>Beer Index</h1>
 
+<section class="popular_items_stats">
+  <h1>Top 5 Most Popular Items:</h1>
+  <ul>
+    <% if @top_five_stats == [] %>
+      <%= "No statistics available" %>
+    <% else %>
+      <% @top_five_stats.each do |stat| %>
+        <section class="high_stats">
+          <li>Name: <%= stat.name %>, Total Quantity Purchased: <%= stat.quantity %></li>
+        </section>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <h1>Bottom 5 Most Popular Items:</h1>
+  <ul>
+    <% if @bottom_five_stats == [] %>
+      <%= "No statistics available" %>
+    <% else %>
+      <% @bottom_five_stats.each do |stat| %>
+        <section class="low_stats">
+          <li>Name: <%= stat.name %>, Total Quantity Purchased: <%= stat.quantity %></li>
+        </section>
+      <% end %>
+    <% end %>
+  </ul>
+</section>
+
 <% @items.each do |beer| %>
 <section id='item-<%= beer.id %>'>
   <a class="thumbnail" href="<%= item_path(beer) %>">

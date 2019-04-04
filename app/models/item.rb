@@ -13,4 +13,10 @@ class Item < ApplicationRecord
   has_many :order_items
   has_many :orders, through: :order_items
 
+  def self.five_stats(updown)
+    list = OrderItem.joins(:item)
+                    .select("items.*, order_items.quantity")
+                    .order(quantity: updown)
+    list.limit(5)
+  end
 end

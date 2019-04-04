@@ -18,12 +18,12 @@ Rails.application.routes.draw do
     get '/', to: 'merchants#show'
   end
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit]
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
-  
+
   get '/cart', to: 'cart#show'
 
   get '/profile', to: 'users#show'

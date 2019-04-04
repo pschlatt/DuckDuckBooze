@@ -3,6 +3,13 @@
 <br/>
 <h1>Beer Index</h1>
 
+<section class="popular_items_stats">
+  <h1>Top 5 Most Popular Items:</h1>
+  <ul>
+    <li>
+  </ul>
+</section>
+
 <% @items.each do |beer| %>
 <section id='item-<%= beer.id %>'>
   <a class="thumbnail" href="<%= item_path(beer) %>">

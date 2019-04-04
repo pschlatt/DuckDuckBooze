@@ -6,8 +6,14 @@
 <section class="popular_items_stats">
   <h1>Top 5 Most Popular Items:</h1>
   <ul>
-    <% @top_five_stats.each do |stat| %>
-    <li><%= stat %></li>
+    <% if @top_five_stats == [] %>
+      <%= "No statistics available" %>
+    <% else %>
+      <% @top_five_stats.each do |stat| %>
+        <section class="high_stats">
+        <li><%= stat.name %></li>
+        </section>
+      <% end %>
     <% end %>
   </ul>
 </section>

@@ -2,10 +2,12 @@ class ItemsController < ApplicationController
 
   def index
     @items = enabled_items
+    # binding.pry
+    @top_five_stats = Item.top_five_stats
   end
 
   def show
-    
+
   end
 
 end

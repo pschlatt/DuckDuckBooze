@@ -13,4 +13,10 @@ class Item < ApplicationRecord
   has_many :order_items
   has_many :orders, through: :order_items
 
+  def self.top_five_stats
+    Item.joins(:order_items)
+              .where(order_items: {fulfilled: true})
+              .order("order_items.quantity desc")
+              .limit(5)
+  end
 end

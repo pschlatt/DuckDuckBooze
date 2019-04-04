@@ -105,10 +105,10 @@ RSpec.describe 'Item Index Page', type: :feature do
       within ".popular_items_stats" do
         expect(page).to have_content("Top 5 Most Popular Items:")
         expect(page.all(".high_stats")[0]).to have_content(item_7.name)
-        expect(page.all(".high_stats")[0]).to have_content(item_6.name)
-        expect(page.all(".high_stats")[0]).to have_content(item_5.name)
-        expect(page.all(".high_stats")[0]).to have_content(item_4.name)
-        expect(page.all(".high_stats")[0]).to have_content(item_3.name)
+        expect(page.all(".high_stats")[1]).to have_content(item_6.name)
+        expect(page.all(".high_stats")[2]).to have_content(item_5.name)
+        expect(page.all(".high_stats")[3]).to have_content(item_4.name)
+        expect(page.all(".high_stats")[4]).to have_content(item_3.name)
       end
     end
   end

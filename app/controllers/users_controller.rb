@@ -10,6 +10,7 @@ class UsersController < ApplicationController
       flash[:success] = 'You are now registered and logged in.'
       redirect_to profile_path
     else
+      flash[:notice] = 'Missing required field(s). Please try again.'
       render :new
     end
   end

@@ -2,33 +2,36 @@
 <br>
 <br>
 <br>
+<section class='new-user-form'>
 <h1>CREATE AN ACCOUNT</h1><br>
-
 <%= form_for @user do |f| %>
 
-  <%= f.label :name %><br>
-  <%= f.text_field :name %><br>
+  <%= f.label :name, :required => true %>
+  <%= f.text_field :name, :required => true %><br><br>
 
-  <%= f.label :email %><br>
-  <%= f.text_field :email %><br>
+  <%= f.label :email, :required => true %>
+  <%= f.text_field :email, :required => true %><br><br>
 
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
+  <%= f.label :password, :required => true %>
+  <%= f.password_field :password, :required => true %><br><br>
 
-   <%= f.label :password_confirmation, "Confirm Password" %><br>
-  <%= f.password_field :password_confirmation %><br>
+  <%= f.label :password_confirmation, "Confirm Password", :required => true %>
+  <%= f.password_field :password_confirmation, :required => true %><br><br>
 
-  <%= f.label :street %><br>
-  <%= f.text_field :street %><br>
+  <%= f.label :street, :required => true %>
+  <%= f.text_field :street, :required => true %><br><br>
 
-  <%= f.label :city %><br>
-  <%= f.text_field :city %><br>
+  <%= f.label :city, :required => true %>
+  <%= f.text_field :city, :required => true %><br><br>
 
-  <%= f.label :state %><br>
-  <%= f.text_field :state %><br>
+  <%= f.label :state, :required => true %>
+  <%= f.text_field :state, :required => true %><br><br>
 
-  <%= f.label :zip %><br>
-  <%= f.text_field :zip %><br>
+  <%= f.label :zip, :required => true %>
+  <%= f.text_field :zip, :required => true %><br><br>
 
+  <div class='submit-button'>
   <%= f.submit %>
+  </div>
 <% end %>
+</section>

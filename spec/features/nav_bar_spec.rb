@@ -19,25 +19,25 @@ RSpec.describe 'navigation bar' do
 
       within '#nav-bar' do
         click_on 'Merchants'
-      end 
+      end
 
-      expect(current_path).to eq(merchants_users_path)
+      expect(current_path).to eq(merchants_path)
 
       within '#nav-bar' do
         click_on 'Cart'
-      end 
-      
+      end
+
       expect(current_path).to eq(cart_path)
 
       within '#nav-bar' do
         click_on 'Register'
-      end 
+      end
 
       expect(current_path).to eq(new_user_path)
 
         within '#nav-bar' do
         click_on 'Cart'
-      end 
+      end
 
       expect(current_path).to eq(cart_path)
     end
@@ -56,16 +56,16 @@ RSpec.describe 'navigation bar' do
         expect(page).to have_link('Log Out')
         expect(page).to have_link('Profile')
         expect(page).to have_content("Logged in as #{reg_user.name}")
-      end 
+      end
     end
-  end 
+  end
 
   context 'as a merchant' do
     it 'should see a navigation bar with links' do
       merchant = create(:merchant)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
 
-      visit merchants_users_path
+      visit merchants_path
 
       within '#nav-bar' do
         expect(page).to_not have_link('Login')
@@ -76,7 +76,7 @@ RSpec.describe 'navigation bar' do
         expect(page).to have_content("Logged in as Merchant")
       end 
     end
-  end 
+  end
 
   context 'as an admin' do
     it 'should see a navigation bar with links' do
@@ -94,5 +94,5 @@ RSpec.describe 'navigation bar' do
         expect(page).to have_content("Logged in as Admin")
       end 
     end
-  end 
-end 
+  end
+end

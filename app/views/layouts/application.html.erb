@@ -14,28 +14,28 @@
   <br>
     <section id='nav-bar'>
       <ul id='nav-links'>
-        <li class='nav-link', id='shop-link'><%= link_to "Home", root_path%></li>
-        <li class='nav-link', id='shop-link'><%= link_to "Shop Beers", items_path %></li>
-        <li class='nav-link', id='merchants-link'><%= link_to "Merchants", merchants_users_path %></li>
+        <li class='nav-link'><%= link_to "Home", root_path%></li>
+        <li class='nav-link'><%= link_to "Shop Beers", items_path %></li>
+        <li class='nav-link'><%= link_to "Merchants", merchants_users_path %></li>
 
         <% if current_user.nil? %>
-        <li class='nav-link', id='login-link' style='float:right'><%= link_to "Login", login_path %></li>
-        <li class='nav-link', id='register-link' style='float:right'><%= link_to "Register", new_user_path %></li>
-        <li class='nav-link', id='cart-nav' style='float:right'><%= link_to "Cart", cart_path %></li>
+        <li class='nav-link' style='float:right'><%= link_to "Login", login_path %></li>
+        <li class='nav-link' style='float:right'><%= link_to "Register", new_user_path %></li>
+        <li class='nav-link' style='float:right'><%= link_to "Cart", cart_path %></li>
 
         <% elsif registered_user? %>
-        <li class='nav-link', id='logout-link'><%= link_to "Log Out", logout_path %></li>
-        <li class='nav-link', id='profile-link'><%= link_to "Profile", profile_path %></li>
-        <li class='nav-link', id='cart-nav' style='float:right'><%= link_to "Cart", cart_path %></li>
+        <li class='nav-link' style='float:right'><%= link_to "Log Out", logout_path %></li>
+        <li class='nav-link' style='float:right'><%= link_to "Profile", profile_path %></li>
+        <li class='nav-link' style='float:right'><%= link_to "Cart", cart_path %></li>
         <li class='nav-link'>Logged in as <%= current_user.name %></li>
 
         <% elsif current_merchant? %>
-        <li class='nav-link', id='logout-link'><%= link_to "Log Out", logout_path %></li>
-        <li class='nav-link', id='dashboard-link'><%= link_to "Dashboard", dashboard_path %></li>
+        <li class='nav-link' style='float:right'><%= link_to "Log Out", logout_path %></li>
+        <li class='nav-link' style='float:right'><%= link_to "Dashboard", dashboard_path %></li>
 
         <% elsif current_admin? %>
-        <li class='nav-link', id='logout-link'><%= link_to "Log Out", logout_path %></li>
-        <li class='nav-link', id='dashboard-link'><%= link_to "Dashboard", admin_dashboard_path %></li>
+        <li class='nav-link' style='float:right'><%= link_to "Log Out", logout_path %></li>
+        <li class='nav-link' style='float:right'><%= link_to "Dashboard", admin_dashboard_path %></li>
         <% end %>
       </ul>
     </section>

@@ -1,4 +1,4 @@
-class MerchantsContoller < ApplicationController
+class MerchantsController < ApplicationController
 
   def index
 

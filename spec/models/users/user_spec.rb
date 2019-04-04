@@ -20,6 +20,32 @@ RSpec.describe User, type: :model do
     it { should have_many :items} #merchants
     it { should have_many :orders}
   end
+  
+  describe "roles" do
+    it "can be created as an admin" do 
+      @user = create(:user)
+      @user.update(role: 3)
+      
+      expect(@user.role).to eq("admin")
+      expect(@user.admin?).to be_truthy
+    end
+
+    it "can be created as an merchant" do 
+      @user = create(:user)
+      @user.update(role: 2)
+
+      expect(@user.role).to eq("merchant")
+      expect(@user.merchant?).to be_truthy
+    end
+
+    it "can be created as an registered_user" do 
+      @user = create(:user)
+      @user.update(role: 1)
+
+      expect(@user.role).to eq("registered_user")
+      expect(@user.registered_user?).to be_truthy
+    end
+  end
 
   describe 'As a Merchant' do
     context '.avg_fill_time' do
@@ -42,7 +68,7 @@ RSpec.describe User, type: :model do
        @order_item_4 = OrderItem.create(item_id: @beer_2.id, order_id: @order_2.id, fulfilled: true, quantity: 24, order_price: 29.05, created_at: 30.days.ago, updated_at: 1.day.ago)
 
        expect(@merchant_1.avg_fill_time(@beer_1)).to eq(48)
-     end
+      end
     end
   end
 end

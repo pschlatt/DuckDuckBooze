@@ -5,10 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-OrderItem.destroy_all
-Order.destroy_all
-Item.destroy_all
-User.destroy_all
+# OrderItem.destroy_all
+# Order.destroy_all
+# Item.destroy_all
+# User.destroy_all
 #two visitors
 @user_01 = User.create(role: 0, enabled: false, name: "Tommy Shopper", street: "123 Busy Way", city: "Denver", state: "CO", zip: "80222", email: "tommy@gmail.com", password: "abcd1234")
 @user_02 = User.create(role: 0, enabled: false, name: "Lance Looker", street: "52 S Street", city: "Denver", state: "CO", zip: "80222", email: "lance@gmail.com", password: "zxywvut21")
@@ -32,7 +32,7 @@ User.destroy_all
 @user_31 = User.create(role: 3, enabled: true, name: "Aaron Admin", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "aaron@gmail.com", password: "password")
 @user_32 = User.create(role: 3, enabled: true, name: "Otis Overseer", street: "2 Cole Ave", city: "Lakewood", state: "CO", zip: "80228", email: "otis@gmail.com", password: "secure123")
 
-#beers 
+#beers
 @beer_1 = @user_21.items.create(name: "Heineken", description: "Pale lager, 5%", item_price: 4.00, stock: 56, enabled: true, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Heineken.jpg/156px-Heineken.jpg")
 @beer_2 = @user_22.items.create(name: "Guiness", description: "Dry stout, 4.2%", item_price: 6.50, stock: 68, enabled: true, image: "https://upload.wikimedia.org/wikipedia/en/thumb/f/fe/Guinness-original-logo.svg/440px-Guinness-original-logo.svg.png")
 @beer_3 = @user_23.items.create(name: "Samuel Adams", description: "Lager, 4.9%", item_price: 4.25, stock: 38, enabled: true, image: "https://media3.webcollage.net/ba5aa7c6e5fdf1a927cf12d2cc841b1face3d275?response-content-type=image%2Fpng&AWSAccessKeyId=AKIAIIE5CHZ4PRWSLYKQ&Expires=1893538567&Signature=gw9LNzoG4tgto7t%2FmRRJKpKB0PY%3D")

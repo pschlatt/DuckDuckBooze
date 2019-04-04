@@ -16,7 +16,7 @@ RSpec.describe "a user who has already logged in", type: :feature do
     click_on "Submit"
     visit login_path
 
-    expect(current_path).to eq(profile_path(@user_11))
+    expect(current_path).to eq(profile_path)
     expect(page).to have_content("You are already logged in.")
   end
 

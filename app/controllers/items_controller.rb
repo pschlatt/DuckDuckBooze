@@ -12,10 +12,9 @@ class ItemsController < ApplicationController
 
   end
 
-end
-
 private
 
   def enabled_items
     Item.where(enabled: true)
   end
+end

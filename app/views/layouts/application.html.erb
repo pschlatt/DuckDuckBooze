@@ -22,12 +22,12 @@
         <% if current_user.nil? %>
         <li class='nav-link' style='float:right'><%= link_to "Login", login_path %></li>
         <li class='nav-link' style='float:right'><%= link_to "Register", new_user_path %></li>
-        <li class='nav-link' style='float:right'><%= link_to "Cart", cart_path %></li>
+        <li class='nav-link' style='float:right'><%= link_to "Cart", cart_path %>: <%= @cart.total_count %></li>
 
         <% elsif registered_user? %>
         <li class='nav-link' style='float:right'><%= link_to "Log Out", logout_path %></li>
         <li class='nav-link' style='float:right'><%= link_to "Profile", profile_path %></li>
-        <li class='nav-link' style='float:right'><%= link_to "Cart", cart_path %></li>
+        <li class='nav-link' style='float:right'><%= link_to "Cart", cart_path %>: <%= @cart.total_count %></li>
         <li class='nav-link'>Logged in as <%= current_user.name %></li>
 
         <% elsif current_merchant? %>

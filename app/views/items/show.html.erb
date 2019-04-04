@@ -16,6 +16,8 @@
   <p>Average Fulfillment Time: <%= @item.user.avg_fill_time(@item)%> hours</p>
 </section>
 
-<section id="add-to-cart-button">
-  <%= button_to "Add to Cart" %>
-</section>
+<% if current_user.nil? || registered_user? %>
+  <section id="add-to-cart-button">
+    <%= button_to "Add to Cart" %>
+  </section>
+<% end %>

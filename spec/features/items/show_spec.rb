@@ -6,6 +6,7 @@ RSpec.describe 'Item Show Page', type: :feature do
     @user_12 = User.create(role: 1, enabled: false, name: "Sam Spender", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "sam@gmail.com", password: "password")
 
     @merchant_1 = User.create(role: 2, enabled: true, name: "Mike Merchant", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "mike@gmail.com", password: "password")
+    @admin_1 = User.create(role: 3, enabled: true, name: "Alex Admin", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "mike@gmail.com", password: "password")
 
     @beer_1 = @merchant_1.items.create(name: "Heineken", description: "Pale lager, 5%", item_price: 4.00, stock: 56, enabled: true, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Heineken.jpg/156px-Heineken.jpg")
 
@@ -52,8 +53,27 @@ RSpec.describe 'Item Show Page', type: :feature do
     it 'shows a button to add this item to my cart' do
 
       visit item_path(@beer_1)
-
       expect(page).to have_button('Add to Cart')
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@users_11)
+
+      visit item_path(@beer_1)
+      expect(page).to have_button('Add to Cart')
+    end
+  end
+
+  describe 'as an admin or merchant' do
+    it 'does not show a button to add this item to my cart' do
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_1)
+
+      visit item_path(@beer_1)
+      expect(page).not_to have_button('Add to Cart')
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin_1)
+
+      visit item_path(@beer_1)
+      expect(page).not_to have_button('Add to Cart')
     end
   end
 end

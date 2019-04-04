@@ -43,6 +43,7 @@ RSpec.describe 'User Profile Page' do
   it 'a user can access their orders' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      
       visit profile_path
 
       click_on "My Orders"

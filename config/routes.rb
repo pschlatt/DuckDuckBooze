@@ -3,9 +3,6 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show]
 
-  # namespace :merchants do
-  #   resources :users, only:[:index]
-  # end
 
   namespace :admin do
     resources :merchants, only: [:show]
@@ -29,5 +26,6 @@ Rails.application.routes.draw do
 
   get '/profile', to: 'users#show'
   get '/profile/orders', to: 'users/orders#show'
+
   get '/merchants', to: 'merchants#index'
 end

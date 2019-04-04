@@ -16,23 +16,39 @@ RSpec.describe 'a visitor or registered user' do
         expect(current_path).to eq(items_path)
       end
 
+      it 'as a visitor - it shows a flash confirmation message, and my cart in the nav bar increments' do
+
+        visit item_path(@item)
+
+        click_on("Add to Cart")
+
+        expect(page).to have_content("You have added #{@item.name} to your cart")
+        expect(page).to have_content("Cart: 1")
+
+        visit item_path(@item)
+
+        click_on("Add to Cart")
+
+        expect(page).to have_content("You have added #{@item.name} item to your cart")
+        expect(page).to have_content("Cart: 2")
+      end
+
+
+
+
+
+
+
+
       xit 'as a registered user this item is added to my cart, I am redirected to the items catalogue' do
 
-        @user = create(:user)
+        user = create(:user)
 
         visit item_path(@item)
 
         click_on("Add to Cart")
 
         expect(current_path).to eq(items_path)
-      end
-
-
-
-      xit 'shows a flash confirmation message, and my cart in the nav bar increments' do
-
-        visit item_path(@item)
-
       end
     end
   end

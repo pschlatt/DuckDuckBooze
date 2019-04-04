@@ -18,6 +18,6 @@
 
 <% if current_user.nil? || registered_user? %>
   <section id="add-to-cart-button">
-    <%= button_to "Add to Cart" %>
+    <%= button_to "Add to Cart", carts_path(item_id: @item.id) %>
   </section>
 <% end %>

@@ -16,13 +16,15 @@ Rails.application.routes.draw do
     get '/', to: 'merchants#show'
   end
 
+  resources :carts, only: [:create]
+
   resources :users, only: [:new, :create, :edit]
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
-  get '/cart', to: 'cart#show'
+  get '/cart', to: 'carts#show'
 
   get '/profile', to: 'users#show'
   get '/profile/orders', to: 'users/orders#show'

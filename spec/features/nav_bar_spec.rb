@@ -74,7 +74,7 @@ RSpec.describe 'navigation bar' do
         expect(page).to have_link('Log Out')
         expect(page).to have_link('Dashboard')
         expect(page).to have_content("Logged in as Merchant")
-      end 
+      end
     end
   end
 
@@ -92,7 +92,7 @@ RSpec.describe 'navigation bar' do
         expect(page).to have_link('Log Out')
         expect(page).to have_link('Dashboard')
         expect(page).to have_content("Logged in as Admin")
-      end 
+      end
     end
   end
 end

@@ -16,7 +16,7 @@
       <ul id='nav-links'>
         <li class='nav-link', id='shop-link'><%= link_to "Home", root_path%></li>
         <li class='nav-link', id='shop-link'><%= link_to "Shop Beers", items_path %></li>
-        <li class='nav-link', id='merchants-link'><%= link_to "Merchants", merchants_users_path %></li>
+        <li class='nav-link', id='merchants-link'><%= link_to "Merchants", merchants_path %></li>
 
         <% if current_user.nil? %>
         <li class='nav-link', id='login-link' style='float:right'><%= link_to "Login", login_path %></li>

@@ -32,6 +32,6 @@ class UsersController < ApplicationController
   end
 
   def check_user_status
-    render file: "/public/404", status: 404 unless registered_user?
+    render file: "/public/404", status: 404 unless current_user
   end
 end

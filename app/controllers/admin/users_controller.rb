@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
 
-  def index  
+  def index
+    @users = User.where(role: 1)
   end
 
   def show

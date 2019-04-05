@@ -1,3 +1,7 @@
 <% @users.each do |user| %>
-<%= link_to "#{user.name}", admin_user_path(user.id) %>
-<%= link_to "Upgrade to Merchant",  %>
+  <section class="user-<%= user.id %>-section">
+    <%= link_to "#{user.name}", admin_user_path(user.id) %>
+      <p>User registered on: <%= user.created_at.to_s(:long) %><p>
+    <%= link_to "Upgrade to Merchant", admin_user_path(user.id), method: :update %>
+  </section>
+<% end %>

@@ -17,19 +17,25 @@ describe "as an admin" do
       merchant = create(:merchant)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit admin_users_path
-
-      expect(page).to have_content(user_1.name)
-      expect(page).to have_content(user_1.created_at)
-      expect(page).to have_link("#{user_1.name}")
-      expect(page).to have_link("Upgrade to Merchant")
-      expect(page).to have_content(user_2.name)
-      expect(page).to have_content(user_2.created_at)
-      expect(page).to have_link("#{user_2.name}")
-      expect(page).to have_link("Upgrade to Merchant")
-      expect(page).to have_content(user_3.name)
-      expect(page).to have_content(user_3.created_at)
-      expect(page).to have_link("#{user_3.name}")
-      expect(page).to have_link("Upgrade to Merchant")
+save_and_open_page
+      within ".user-#{user_1.id}-section" do
+        expect(page).to have_content(user_1.name)
+        expect(page).to have_content(user_1.created_at.to_s(:long))
+        expect(page).to have_link("#{user_1.name}")
+        expect(page).to have_link("Upgrade to Merchant")
+      end
+      within ".user-#{user_2.id}-section" do
+        expect(page).to have_content(user_2.name)
+        expect(page).to have_content(user_2.created_at.to_s(:long))
+        expect(page).to have_link("#{user_2.name}")
+        expect(page).to have_link("Upgrade to Merchant")
+      end
+      within ".user-#{user_3.id}-section" do
+        expect(page).to have_content(user_3.name)
+        expect(page).to have_content(user_3.created_at.to_s(:long))
+        expect(page).to have_link("#{user_3.name}")
+        expect(page).to have_link("Upgrade to Merchant")
+      end
       expect(page).to_not have_content(merchant.name)
     end
   end

@@ -30,6 +30,7 @@ RSpec.describe 'a logged in user can log out' do
 
       click_on "Log Out"
 
+      expect(current_path).to eq(root_path)
       expect(page).to have_content("Successfully logged out")
       expect(page).to have_content("Cart: 0")
     end
@@ -47,15 +48,16 @@ RSpec.describe 'a logged in user can log out' do
 
       click_on "Submit"
 
-      expect(page).not_to have_content("Cart: 0")
+      expect(page).to_not have_content("Cart: 0")
 
       click_on "Log Out"
 
+      expect(current_path).to eq(root_path)
       expect(page).to have_content("Successfully logged out")
     end
   end
 
-  context 'as a logged in merchant - when I click on log out' do
+  context 'as a logged in admin - when I click on log out' do
     it 'redirects me to the home page, displays a confirmation message that I am logged out' do
 
       visit root_path
@@ -67,10 +69,11 @@ RSpec.describe 'a logged in user can log out' do
 
       click_on "Submit"
 
-      expect(page).not_to have_content("Cart: 0")
+      expect(page).to_not have_content("Cart: 0")
 
       click_on "Log Out"
 
+      expect(current_path).to eq(root_path)
       expect(page).to have_content("Successfully logged out")
     end
   end

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :check_user_status
+
   def new
     @user = User.new
   end
@@ -22,6 +24,12 @@ class UsersController < ApplicationController
   def edit
 
   end 
+
+
+  def check_user_status
+    render file: "/public/404", status: 404 unless current_user
+  end
+
 
   private
 

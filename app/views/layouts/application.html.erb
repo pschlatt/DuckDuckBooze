@@ -38,6 +38,7 @@
         <% elsif current_admin? %>
         <li class='nav-link' style='float:right'><%= link_to "Log Out", logout_path %></li>
         <li class='nav-link' style='float:right'><%= link_to "Dashboard", admin_dashboard_path %></li>
+        <li class='nav-link' sytle='float:right'><%= link_to "Users", admin_users_path %></li>
          <li class='nav-link'>Logged in as Admin</li>
         <% end %>
       </ul>

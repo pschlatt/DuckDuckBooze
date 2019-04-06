@@ -14,8 +14,23 @@ RSpec.describe '404 errors' do
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
     end 
 
-    xit 'to any /profile path' do 
-      visit '/profile'
+    it 'to any /admin' do 
+      visit '/admin/users'
+
+      expect(page.status_code).to eq(404)
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+
+      visit '/admin/users/1'
+
+      expect(page.status_code).to eq(404)
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+
+      visit '/admin/merchants/:id'
+
+      expect(page.status_code).to eq(404)
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+
+      visit '/admin/dashboard'
 
       expect(page.status_code).to eq(404)
       expect(page).to have_content("The page you were looking for doesn't exist (404)")

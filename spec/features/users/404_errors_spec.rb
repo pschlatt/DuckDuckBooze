@@ -25,7 +25,7 @@ RSpec.describe '404 errors' do
       expect(page.status_code).to eq(404)
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
 
-      visit '/admin/merchants/:id'
+      visit '/admin/merchants/1'
 
       expect(page.status_code).to eq(404)
       expect(page).to have_content("The page you were looking for doesn't exist (404)")

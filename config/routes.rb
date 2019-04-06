@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get '/cart/empty', to: 'carts#destroy'
 
   get '/profile', to: 'users#show'
-  get '/profile/orders', to: 'users/orders#show'
+  get '/profile/orders', to: 'users/orders#index'
 
   get '/merchants', to: 'merchants#index'
 end

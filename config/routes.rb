@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   get '/cart', to: 'carts#show'
+  get '/cart/empty', to: 'carts#destroy'
 
   get '/profile', to: 'users#show'
   get '/profile/orders', to: 'users/orders#show'

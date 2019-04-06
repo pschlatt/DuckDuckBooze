@@ -1,0 +1,9 @@
+<% @orders.each do |order| %>
+<% binding.pry %>
+  <section class="info-<% order.id %>">
+    <p>Order ID: <%= order.id %></p>
+    <p>Created at: <%= order.created_at.to_s(:long) %></p>
+    <p>Last updated: <%= order.updated_at.to_s(:long) %></p>
+    <p>Order status: <%= order.status %></p>
+  </section>
+<% end %>

@@ -13,7 +13,7 @@ RSpec.describe 'as an admin user' do
       visit merchants_path
 
       click_on "#{merchant_1.name}"
-
+    
       expect(current_path).to eq(admin_merchant_path(merchant_1))
       expect(page).to have_content("Name: #{merchant_1.name}")
       expect(page).to have_content("Address: #{merchant_1.street}")

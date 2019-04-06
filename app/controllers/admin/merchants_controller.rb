@@ -9,4 +9,14 @@ class Admin::MerchantsController < ApplicationController
       redirect_to admin_user_path(current_user)
     end
   end
+
+  def update
+    user = User.find(params[:id])
+    user.role = 'registered_user'
+    binding.pry
+    # user.save
+    # user.items.update(enabled: false)
+    flash[:notice] = "Merchant has been downgraded"
+    redirect_to admin_user_path(user)
+  end
 end

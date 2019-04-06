@@ -1,4 +1,5 @@
 class Dashboard::ItemsController < ApplicationController
+
   before_action :check_merchant_status
 
   def index
@@ -12,4 +13,6 @@ class Dashboard::ItemsController < ApplicationController
   def check_merchant_status
     render file: "/public/404", status: 404 unless current_merchant?
   end
+  
 end 
+

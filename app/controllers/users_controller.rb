@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       flash[:success] = 'You are now registered and logged in.'
       redirect_to profile_path
     else
-      flash[:notice] = 'Missing required field(s). Please try again.'
+      flash[:notice] = @user.errors.full_messages.join
       render :new
     end
   end
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def edit
 
-  end 
+  end
 
   private
 

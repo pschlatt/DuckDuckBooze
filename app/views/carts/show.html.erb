@@ -1,0 +1,6 @@
+<% if session[:cart] == nil %>
+<p>My cart is empty</p>
+<% end %>
+<% unless session[:cart] == nil %>
+<%= link_to "Empty Cart", cart_empty_path %>
+<% end %>

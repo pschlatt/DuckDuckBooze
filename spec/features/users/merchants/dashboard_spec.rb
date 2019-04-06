@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'a merchant visiting my dashboard' do
+RSpec.describe 'a merchant visiting my merchant dashboard' do
   before :each do
     @merchant = User.create(role: 2, enabled: true, name: "Mike Merchant", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "mike@gmail.com", password: "password")
 

@@ -17,6 +17,12 @@ RSpec.describe 'merchant index page' do
         expect(page).to have_content("Location: #{merchant_1.city}, #{merchant_1.state}")
         expect(page).to have_content("Registered: #{merchant_1.created_at.strftime("%b %d, %Y")}")
       end
+
+      within "#merchant-#{merchant_2.id}" do
+        expect(page).to have_content("Name: #{merchant_2.name}")
+        expect(page).to have_content("Location: #{merchant_2.city}, #{merchant_2.state}")
+        expect(page).to have_content("Registered: #{merchant_2.created_at.strftime("%b %d, %Y")}")
+      end
     end
   end
 end

@@ -16,6 +16,6 @@ class CartsController < ApplicationController
   private
 
   def check_user_status
-    render file: "/public/404", status: 404 unless registered_user?
+    render file: "/public/404", status: 404 unless registered_user? || current_user.nil?
   end
 end

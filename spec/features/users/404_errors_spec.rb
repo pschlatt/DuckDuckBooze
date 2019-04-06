@@ -35,6 +35,23 @@ RSpec.describe '404 errors' do
       expect(page.status_code).to eq(404)
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
     end 
+
+    it 'to any /dashboard path' do 
+      visit '/dashboard'
+
+      expect(page.status_code).to eq(404)
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+
+      visit '/dashboard/items'
+
+      expect(page.status_code).to eq(404)
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+
+      visit '/dashboard/items/1'
+
+      expect(page.status_code).to eq(404)
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end 
   end 
 
   describe 'when a registered user tries to navigate' do

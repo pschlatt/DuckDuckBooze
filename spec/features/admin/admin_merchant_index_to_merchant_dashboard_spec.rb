@@ -22,9 +22,3 @@ RSpec.describe 'as an admin user' do
     end
   end
 end
-
-# As an admin user
-# When I visit the merchant index page ("/merchants")
-# And I click on a merchant's name,
-# Then my URI route should be ("/admin/merchants/6")
-# Then I see everything that merchant would see

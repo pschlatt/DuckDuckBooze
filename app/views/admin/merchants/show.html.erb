@@ -6,3 +6,5 @@
 <h3>Address: <%= @merchant.street %></h3>
 <h3>        <%= @merchant.city %>, <%= @merchant.state  %> <%= @merchant.zip %></h3>
 <h3>Email: <%= @merchant.email %></h3>
+
+<%= link_to "Downgrade", admin_merchant_path(@merchant), method: :patch %>

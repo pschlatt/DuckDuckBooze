@@ -68,4 +68,38 @@ RSpec.describe Order, type: :model do
       expect(@order_2.order_grand_total(@order_2)).to eq(697.20)
     end
   end
+
+  describe 'merchant orders totals' do
+    before :each do
+      @merch = create(:merchant)
+      @other_merch = create(:merchant)
+      @item_1 = create(:item, user_id: @merch.id, stock: 75)
+      @item_2 = create(:item, user_id: @merch.id, stock: 85)
+      @item_3 = create(:item, user_id: @merch.id, stock: 95)
+      @item_4 = create(:item, user_id: @other_merch.id)
+      @user_1 = create(:user)
+      @user_2 = create(:user)
+      @order_1 = create(:order, user_id: @user_1.id, created_at: 1.day.ago)
+      @order_2 = create(:order, user_id: @user_1.id)
+      @order_3 = create(:order, user_id: @user_2.id)
+      @order_4 = create(:shipped_order, user_id: @user_2.id)
+      @order_item_1 = OrderItem.create(quantity: 16, order_price: 12.0, order_id: @order_1.id, item_id: @item_1.id)
+      @order_item_2 = OrderItem.create(quantity: 24, order_price: 23.0, order_id: @order_1.id, item_id: @item_2.id)
+      @order_item_3 = OrderItem.create(quantity: 33, order_price: 34.0, order_id: @order_2.id, item_id: @item_3.id)
+      @order_item_4 = OrderItem.create(quantity: 45, order_price: 42.0, order_id: @order_3.id, item_id: @item_3.id)
+      @order_item_5 = OrderItem.create(quantity: 57, order_price: 53.0, order_id: @order_4.id, item_id: @item_4.id)
+    end
+
+    it '#merchant_order_total' do
+      expect(@order_1.merchant_order_total(@order_1)).to eq(40)
+      expect(@order_2.merchant_order_total(@order_2)).to eq(33)
+      expect(@order_3.merchant_order_total(@order_3)).to eq(45)
+    end
+
+    it '#merchant_order_total_price' do
+      expect(@order_1.merchant_order_total_price(@order_1)).to eq(744.0)
+      expect(@order_2.merchant_order_total_price(@order_2)).to eq(1122.0)
+      expect(@order_3.merchant_order_total_price(@order_3)).to eq(1890.0)
+    end
+  end
 end

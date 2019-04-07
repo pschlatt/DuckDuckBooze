@@ -1,13 +1,5 @@
 require "rails_helper"
-# As a registered user
-# When I visit my Profile Orders page, "/profile/orders"
-# I see every order I've made, which includes the following information:
-# - the ID of the order, which is a link to the order show page
-# - the date the order was made
-# - the date the order was last updated
-# - the current status of the order
-# - the total quantity of items in the order
-# - the grand total of all items for that order
+
 describe 'the user profile orders page' do
   it 'shows order information' do
     user = create(:user)
@@ -17,22 +9,28 @@ describe 'the user profile orders page' do
     beer_3 = Item.create!(name: "4 Noses", description: "yummy beer", stock: 18, item_price: 3.5, user_id: merchant.id )
     order_1 = user.orders.create!(created_at: 3.days.ago, updated_at: 1.day.ago)
     order_2 = user.orders.create!(created_at: 2.days.ago, updated_at: 1.day.ago)
-    # order_3 = user.orders.create!(created_at: 4.days.ago)
     oi_1 = OrderItem.create!(fulfilled: false, quantity: 3, order_price: 3, order_id: order_1.id, item_id: beer_1.id, updated_at: 1.day.ago)
     oi_2 = OrderItem.create!(fulfilled: false, quantity: 6, order_price: 2, order_id: order_2.id, item_id: beer_2.id, updated_at: 1.day.ago)
     oi_3 = OrderItem.create!(fulfilled: false, quantity: 9, order_price: 4, order_id: order_2.id, item_id: beer_3.id, updated_at: 1.day.ago)
-# binding.pry
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit profile_orders_path
-binding.pry
-    within ".info-#{order_1.id}" do
-      expect(page).to have_link("Order ID: #{order_1.id}")
+
+    within "#info-#{order_1.id}" do
+      expect(page).to have_link("#{order_1.id}")
       expect(page).to have_content("Created at: #{order_1.created_at.to_s(:long)}")
       expect(page).to have_content("Last updated: #{order_1.updated_at.to_s(:long)}")
       expect(page).to have_content("Order status: #{order_1.status}")
-      # expect(page).to have_content("#{oi_1.quan}")
-      # expect(page).to have_content("#{oi_1.status}")
+      expect(page).to have_content("Order quantity: #{order_1.order_quantity(order_1.id)}")
+      expect(page).to have_content("Grand total: #{order_1.order_grand_total(order_1.id)}")
+    end
+    within "#info-#{order_2.id}" do
+      expect(page).to have_link("#{order_2.id}")
+      expect(page).to have_content("Created at: #{order_2.created_at.to_s(:long)}")
+      expect(page).to have_content("Last updated: #{order_2.updated_at.to_s(:long)}")
+      expect(page).to have_content("Order status: #{order_2.status}")
+      expect(page).to have_content("Order quantity: #{order_2.order_quantity(order_2.id)}")
+      expect(page).to have_content("Grand total: #{order_2.order_grand_total(order_2.id)}")
     end
   end
 end

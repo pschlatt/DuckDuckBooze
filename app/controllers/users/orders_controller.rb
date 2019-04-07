@@ -2,10 +2,11 @@ class Users::OrdersController < ApplicationController
 
   def index
     # binding.pry
-    if current_user
+    if registered_user?
       @orders = current_user.orders
     end
   end
+
 
   def show
   end

@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :edit]
 
+  namespace :users do
+    resources :orders, only: [:show]
+  end
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

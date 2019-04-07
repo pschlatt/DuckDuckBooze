@@ -16,8 +16,29 @@ RSpec.describe 'registered user' do
 
     it 'sees a form to edit on /profile/edit' do
       visit 'profile/edit'
+      
+      within '#edit-user-form' do
+        expect(page).to have_content('Name')
+        expect(page).to have_content('Email')
+        expect(page).to have_content('Password')
+        expect(page).to have_content('Confirm Password')
+        expect(page).to have_content('Street')
+        expect(page).to have_content('City')
+        expect(page).to have_content('State')
+        expect(page).to have_content('Zip')
+      end 
+    end 
 
-      expect(page).to have_content
+    it 'sees a form to edit on /profile/edit' do
+      visit '/profile/edit'
+      
+      within '#edit-user-form' do
+        fill_in 'Name', with: "Blah"
+        click_on('Save User')
+      end 
+      
+      expect(@user.name).to eq("Blah")
+      expect(page).to have_content('You have updated your profile')
     end 
   end 
 end 

@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#show'
   get '/profile/orders', to: 'users/orders#show'
   get '/profile/edit', to: 'users#edit'
-
+  post '/profile/edit', to: 'users#update'
+  
   get '/merchants', to: 'merchants#index'
 end

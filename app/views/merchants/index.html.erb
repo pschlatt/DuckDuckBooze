@@ -2,12 +2,20 @@
 
 <% @merchants.each do |merchant| %>
 <div id="merchant-<%= merchant.id %>">
+
   <% if current_admin? %>
     <h2>Name: <%= link_to merchant.name, admin_merchant_path(merchant) %></h2>
   <% else %>
     <h2>Name: <%= merchant.name %></h2>
   <% end %>
-    <h3>Location: <%= merchant.city %>, <%= merchant.state %></h3>
-    <h4>Registered: <%= merchant.created_at.strftime("%b %d, %Y") %></h4>
+
+  <h3>Location: <%= merchant.city %>, <%= merchant.state %></h3>
+  <h4>Registered: <%= merchant.created_at.strftime("%b %d, %Y") %></h4>
+
+  <% if merchant.enabled == true %>
+    <%= button_to "Disable", admin_merchant_path(merchant), method: :patch %>
+  <% else %>
+    <%= button_to "Enable", admin_merchant_path(merchant), method: :patch %>
+  <% end %>
 </div>
 <% end %>

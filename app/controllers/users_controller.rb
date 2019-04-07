@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :check_user_status, except: [:new, :create]
+
   def new
     @user = User.new
   end
@@ -27,5 +29,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :password, :street, :city, :state, :zip, :email)
+  end
+
+  def check_user_status
+    render file: "/public/404", status: 404 unless registered_user?
   end
 end

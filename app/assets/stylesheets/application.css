@@ -24,6 +24,10 @@ html.home {
   background-size: cover;	
 }
 
+body {
+  background-color: grey;
+}
+
 h2 {
   color: white;
   text-align: center;

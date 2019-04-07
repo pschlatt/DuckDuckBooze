@@ -30,6 +30,8 @@ class UsersController < ApplicationController
       redirect_to profile_path
       flash[:success] = 'You have updated your profile'
     else
+      @errors = current_user.errors.full_messages
+      @user = current_user
       render :edit
     end 
   end 

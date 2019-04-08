@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :check_admin_status, except: [:update]
+  before_action :check_admin_status
 
   def index
     @users = User.where(role: 1)
@@ -10,7 +10,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    # binding.pry
     user = User.find(params[:id])
     user.update!(role: 2)
     new_merch = user

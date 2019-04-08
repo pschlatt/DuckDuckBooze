@@ -54,5 +54,17 @@ RSpec.describe 'registered user' do
       expect(current_path).to eq('/profile/edit')
       expect(page).to have_content('Email has already been taken')
     end
+
+    xit 'cannot edit with new password without confirming password' do
+      visit '/profile/edit'
+
+      within '#edit-user-form' do
+        fill_in 'Password', with: "password"
+        click_on('Save User')
+      end
+
+      expect(current_path).to eq('/profile/edit')
+      expect(page).to have_content("Password confirmation doesn't match Password")
+    end
   end
 end

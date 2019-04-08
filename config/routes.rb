@@ -13,12 +13,12 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :items #new
     resources :orders, only: [:show]
-    get '/', to: 'merchants#index'
+    get '/', to: 'merchants#show'
   end
 
   resources :carts, only: [:create]
 
-  resources :users, only: [:new, :create, :edit]
+  resources :users, only: [:new, :create]
 
   namespace :users do
     resources :orders, only: [:show]
@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   get '/cart/empty', to: 'carts#destroy'
 
   get '/profile', to: 'users#show'
+
+  get '/profile/edit', to: 'users#edit'
+  post '/profile/edit', to: 'users#update'
   get '/profile/orders', to: 'users/orders#index'
 
   get '/merchants', to: 'merchants#index'

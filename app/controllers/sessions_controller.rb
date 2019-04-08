@@ -30,7 +30,8 @@ class SessionsController < ApplicationController
       end
 
     else
-      render :new
+      flash[:notice] = 'Invalid Credentials'
+      redirect_to login_path
     end
   end
 

@@ -9,7 +9,7 @@ RSpec.describe 'navigation bar' do
         expect(page).to have_link('Shop Beers')
         expect(page).to have_link('Merchants')
         expect(page).to have_link('Cart')
-        #Next to the shopping cart link I see a count of the items in my cart
+        expect(page).to have_content('Cart: 0')
         expect(page).to have_link('Login')
         expect(page).to have_link('Register')
         click_on 'Shop Beers'

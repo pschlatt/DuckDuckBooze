@@ -1,0 +1,17 @@
+<h1>Merchant Dashboard</h1>
+
+<%= link_to "My Items", dashboard_items_path %>
+
+<h2>Name: <%= @merchant.name %></h2>
+<h3>Address: <%= @merchant.street %></h3>
+<h3>        <%= @merchant.city %>, <%= @merchant.state  %> <%= @merchant.zip %></h3>
+<h3>Email: <%= @merchant.email %></h3>
+
+<% @orders.each do |order| %>
+  <section id="order-info-<%= order.id %>">
+    <p><%= link_to "Order: #{order.id}", dashboard_order_path(order) %></p>
+    <p>Order placed on: <%= order.created_at.to_s(:long) %></p>
+    <p>Quantity of items in the order: <%= order.merchant_order_total(order) %></p>
+    <p>Total value of items for the order: <%= number_to_currency(order.merchant_order_total_price(order)) %></p>
+  </section>
+<% end %>

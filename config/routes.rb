@@ -6,8 +6,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :merchants, only: [:show, :update]
-    resources :users, only: [:show, :index, :update]
-
+    resources :users, only: [:show, :index, :update, :new]
     get '/dashboard', to: 'dashboard#show'
   end
 

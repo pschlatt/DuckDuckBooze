@@ -20,10 +20,13 @@ describe 'when admin visits users profile page' do
 
     visit admin_user_path(user)
 
-    click_button "Upgrade"
-
-    expect(current_path).to eq(admin_merchant_path(user))
+    click_link "Upgrade"
+    user.update(role: 2)
+    new_merch = user
+    # save_and_open_page
+    expect(current_path).to eq(admin_merchant_path(new_merch))
     expect(page).to have_content("User has been upgraded to a merchant")
+    # save_and_open_page
 
   end
 end

@@ -9,9 +9,6 @@
 # Order.destroy_all
 # Item.destroy_all
 # User.destroy_all
-#two visitors
-@user_01 = User.create(role: 0, enabled: false, name: "Tommy Shopper", street: "123 Busy Way", city: "Denver", state: "CO", zip: "80222", email: "tommy@gmail.com", password: "abcd1234")
-@user_02 = User.create(role: 0, enabled: false, name: "Lance Looker", street: "52 S Street", city: "Denver", state: "CO", zip: "80222", email: "lance@gmail.com", password: "zxywvut21")
 
 #six users(shoppers)
 @user_11 = User.create(role: 1, enabled: false, name: "Sally Shopper", street: "123 Busy Way", city: "Denver", state: "CO", zip: "80222", email: "sally@gmail.com", password: "12345678")

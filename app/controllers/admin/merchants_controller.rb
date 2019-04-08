@@ -24,4 +24,5 @@ class Admin::MerchantsController < ApplicationController
   def check_user_status
     render file: "/public/404", status: 404 unless current_admin?
   end
+
 end

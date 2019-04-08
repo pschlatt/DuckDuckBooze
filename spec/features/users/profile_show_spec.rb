@@ -34,9 +34,9 @@ RSpec.describe 'User Profile Page' do
 
       visit profile_path
 
-      click_on "Edit Info"
+      click_on "Edit Profile"
 
-      expect(current_path).to eq(edit_user_path(@user))
+      expect(current_path).to eq(profile_edit_path)
 
     end
   end

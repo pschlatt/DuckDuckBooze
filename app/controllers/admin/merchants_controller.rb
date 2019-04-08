@@ -2,10 +2,11 @@ class Admin::MerchantsController < ApplicationController
   before_action :check_user_status
 
   def show
-    if current_admin?
-      @user = User.find(params[:id])
-    elsif current_merchant? == false
-      redirect_to admin_user_path(current_user)
+    @user = User.find(params[:id])
+    if @user.role == 'merchant' && @user.enabled == true 
+      redirect_to admin_merchant_path(@user)
+    elsif  
+      redirect_to admin_user_path(@user)
     end
   end
 

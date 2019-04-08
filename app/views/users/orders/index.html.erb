@@ -1,0 +1,11 @@
+<% @orders.each do |order| %>
+
+  <section id="info-<%= order.id %>">
+    <p>Order ID: <%= link_to order.id, users_order_path(order) %></p>
+    <p>Created at: <%= order.created_at.to_s(:long) %></p>
+    <p>Last updated: <%= order.updated_at.to_s(:long) %></p>
+    <p>Order status: <%= order.status %></p>
+    <p>Order quantity: <%= order.order_quantity(order.id) %></p>
+    <p>Grand total: <%= order.order_grand_total(order.id) %></p>
+  </section>
+<% end %>

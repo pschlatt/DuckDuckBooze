@@ -1,6 +1,12 @@
 class Users::OrdersController < ApplicationController
   before_action :check_user_status
 
+  def index
+    if registered_user?
+      @orders = current_user.orders
+    end
+  end
+
   def show
   end
 

@@ -6,6 +6,15 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+  end
+
+  def update
+    user = User.find(params[:id])
+    user.update!(role: 2)
+    new_merch = user
+    flash[:notice] = "User has been upgraded to a merchant"
+    redirect_to admin_merchant_path(new_merch)
   end
 
   private

@@ -16,4 +16,17 @@ class Order < ApplicationRecord
     OrderItem.where(order_id: order_id)
          .sum("quantity * order_price")
   end
+
+  def merchant_order_total(order)
+    Order.joins(:order_items)
+         .where(id: order.id)
+         .sum("order_items.quantity")
+  end
+
+  def merchant_order_total_price(order)
+    Order.joins(:order_items)
+         .where(id: order.id)
+         .sum("order_items.quantity * order_items.order_price")
+  end
+
 end

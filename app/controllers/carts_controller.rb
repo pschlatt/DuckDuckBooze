@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
+  before_action :check_user_status, only: [:show]
 
   def show
   end
@@ -10,5 +11,11 @@ class CartsController < ApplicationController
     session[:cart] = @cart.contents
     flash[:notice] = "You have added #{item.name} to your cart"
     redirect_to items_path
+  end
+
+  private
+
+  def check_user_status
+    render file: "/public/404", status: 404 unless registered_user? || current_user.nil?
   end
 end

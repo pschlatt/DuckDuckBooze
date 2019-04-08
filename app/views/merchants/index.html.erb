@@ -2,7 +2,6 @@
 
 <% @merchants.each do |merchant| %>
 <div id="merchant-<%= merchant.id %>">
-
   <% if current_admin? %>
     <h2>Name: <%= link_to merchant.name, admin_merchant_path(merchant) %></h2>
   <% else %>

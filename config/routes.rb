@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :items #new
     resources :orders, only: [:show]
-    get '/', to: 'merchants#index'
+    get '/', to: 'merchants#show'
   end
 
   resources :carts, only: [:create]

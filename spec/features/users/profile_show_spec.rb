@@ -7,8 +7,8 @@ RSpec.describe 'User Profile Page' do
     @order_2 = create(:order)
     @order_3 = create(:order)
   end
-  describe 'a user has basic info available, no password ofcourse' do
-    it 'has idenfication fields' do
+  describe 'a user has basic info available, no password of course' do
+    it 'has identification fields' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
         visit profile_path
 
@@ -16,7 +16,7 @@ RSpec.describe 'User Profile Page' do
 
         expect(page).to have_content(@user.name)
         expect(page).to have_content(@user.email)
-        end
+    end
 
     it 'has the user address' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
@@ -27,8 +27,8 @@ RSpec.describe 'User Profile Page' do
       expect(page).to have_content(@user.city)
       expect(page).to have_content(@user.state)
       expect(page).to have_content(@user.zip)
-
     end
+
     it 'has a link to edit info' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
@@ -37,11 +37,10 @@ RSpec.describe 'User Profile Page' do
       click_on "Edit Profile"
 
       expect(current_path).to eq(profile_edit_path)
-
     end
   end
-  it 'a user can access their orders' do
 
+  it 'a user can access their orders' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
       visit profile_path
@@ -49,9 +48,6 @@ RSpec.describe 'User Profile Page' do
       click_on "My Orders"
 
       expect(current_path).to eq(profile_orders_path)
-
   end
-
 end
 
-#carrying params through path helpers

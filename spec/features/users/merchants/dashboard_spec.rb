@@ -17,7 +17,6 @@ RSpec.describe 'a merchant visiting my merchant dashboard' do
   it 'shows my profile data, but I cannot edit the info' do
 
     expect(current_path).to eq(dashboard_path)
-
     expect(page).to have_content("Name: #{@merchant.name}")
     expect(page).to have_content("Address: #{@merchant.street}")
     expect(page).to have_content("#{@merchant.city}, #{@merchant.state} #{@merchant.zip}")

@@ -1,5 +1,25 @@
 <h1>Merchants Index</h1>
 
+<section class="statistics">
+  <div id="top-three-rev">
+    <ol>
+      <% @merchants_top_rev.each do |merchant| %>
+      <li> <%= merchant.name %> - <%= number_to_currency(merchant.total_revenue) %></li>
+      <% end %>
+    </ol>
+  </div>
+
+  <div id="top-three-fastest">
+    <ol>
+      <% @merchants_fastest.each do |merchant| %>
+      <li> <%= merchant.name %> </li>
+      <% end %>
+    </ol>
+  </div>
+</section>
+
+
+
 <% @merchants.each do |merchant| %>
 <div id="merchant-<%= merchant.id %>">
   <% if current_admin? %>

@@ -28,44 +28,97 @@ RSpec.describe 'merchant index page' do
 
   context 'merchant index page shows statistics' do
     before :each do
-      @user = create(:user)
+      @user_1 = create(:user, state: "CO", city: "Denver")
+      @user_2 = create(:user, state: "WA", city: "Seattle")
+      @user_3 = create(:user, state: "HI", city: "Honolulu")
+      @user_4 = create(:user, state: "CO", city: "Boulder")
+      @user_5 = create(:user, state: "WA", city: "Seattle")
 
-      @merch_1 = create(:merchant)
-      @merch_2 = create(:merchant)
-      @merch_3 = create(:merchant)
-      @merch_4 = create(:merchant)
+      @merch_1 = create(:merchant, name: "Mike")
+      @merch_2 = create(:merchant, name: "Tom")
+      @merch_3 = create(:merchant, name: "Joe")
+      @merch_4 = create(:merchant, name: "Bob")
 
-      @beer_1 = Item.create!(name: "MGD", description: "good beer", stock: 12, item_price: 1.5, user_id: @merch_1.id )
-      @beer_2 = Item.create!(name: "Mich Ultra", description: "better beer", stock: 15, item_price: 2.5, user_id: @merch_2.id )
-      @beer_3 = Item.create!(name: "4 Noses", description: "yummy beer", stock: 18, item_price: 3.5, user_id: @merch_3.id )
-      @beer_4 = Item.create!(name: "Guiness", description: "the best", stock: 18, item_price: 3.5, user_id: @merch_4.id )
+      @beer_1 = Item.create!(name: "MGD", description: "good beer", stock: 120, item_price: 1.5, user_id: @merch_1.id )
+      @beer_2 = Item.create!(name: "Mich Ultra", description: "better beer", stock: 150, item_price: 2.5, user_id: @merch_2.id )
+      @beer_3 = Item.create!(name: "4 Noses", description: "yummy beer", stock: 180, item_price: 3.5, user_id: @merch_3.id )
+      @beer_4 = Item.create!(name: "Guiness", description: "the best", stock: 180, item_price: 3.5, user_id: @merch_4.id )
 
-      order_1 = user.orders.create!(created_at: 3.days.ago, updated_at: 1.day.ago)
-      order_2 = user.orders.create!(created_at: 2.days.ago, updated_at: 1.day.ago)
-
-
-
-
-
-      oi_1 = OrderItem.create!(fulfilled: false, quantity: 3, order_price: 3, order_id: order_1.id, item_id: beer_1.id, updated_at: 1.day.ago)
-      oi_2 = OrderItem.create!(fulfilled: false, quantity: 6, order_price: 2, order_id: order_2.id, item_id: beer_2.id, updated_at: 1.day.ago)
-      oi_3 = OrderItem.create!(fulfilled: false, quantity: 9, order_price: 4, order_id: order_2.id, item_id: beer_3.id, updated_at: 1.day.ago)
-
-
+      @order_1 = @user_1.orders.create!(status: 'shipped', created_at: 5.days.ago, updated_at: 1.day.ago)
+      @order_2 = @user_2.orders.create!(status: 'shipped', created_at: 6.days.ago, updated_at: 1.day.ago)
+      @order_3 = @user_3.orders.create!(status: 'shipped', created_at: 4.days.ago, updated_at: 1.day.ago)
+      @order_4 = @user_4.orders.create!(status: 'shipped', created_at: 3.days.ago, updated_at: 1.day.ago)
+      @order_5 = @user_5.orders.create!(status: 'shipped', created_at: 2.days.ago, updated_at: 1.day.ago)
+      @order_6 = @user_1.orders.create!(status: 'shipped', created_at: 10.days.ago, updated_at: 1.day.ago)
 
 
-
-
+      @oi_1 = OrderItem.create!(fulfilled: true, quantity: 3, order_price: 3, order_id: @order_1.id, item_id: @beer_1.id, created_at: 5.days.ago, updated_at: 1.day.ago)
+      # $9 - merch_1
+      @oi_2 = OrderItem.create!(fulfilled: true, quantity: 6, order_price: 2, order_id: @order_1.id, item_id: @beer_2.id, created_at: 5.days.ago, updated_at: 1.day.ago)
+      # $12 - merch_2
+      @oi_3 = OrderItem.create!(fulfilled: true, quantity: 9, order_price: 4, order_id: @order_2.id, item_id: @beer_3.id, created_at: 6.days.ago, updated_at: 1.day.ago)
+      # $36 - merch_3
+      @oi_4 = OrderItem.create!(fulfilled: true, quantity: 11, order_price: 5, order_id: @order_2.id, item_id: @beer_4.id, created_at: 6.days.ago, updated_at: 1.day.ago)
+      # $55 - merch_4
+      @oi_5 = OrderItem.create!(fulfilled: true, quantity: 4, order_price: 4, order_id: @order_3.id, item_id: @beer_1.id, created_at: 4.days.ago, updated_at: 1.day.ago)
+      # $16 - merch_1
+      @oi_6 = OrderItem.create!(fulfilled: true, quantity: 10, order_price: 8, order_id: @order_4.id, item_id: @beer_2.id, created_at: 3.days.ago, updated_at: 1.day.ago)
+      # $80 - merch_2
+      @oi_7 = OrderItem.create!(fulfilled: true, quantity: 25, order_price: 10, order_id: @order_5.id, item_id: @beer_3.id, created_at: 2.days.ago, updated_at: 1.day.ago)
+      # $250 - merch_3
+      @oi_8 = OrderItem.create!(fulfilled: true, quantity: 1, order_price: 4, order_id: @order_6.id, item_id: @beer_4.id, created_at: 10.days.ago, updated_at: 1.day.ago)
+      # $4 - merch_4
+      visit merchants_path
     end
 
+    it 'shows top three merchants by revenue' do
+      within "#top-three-rev" do
 
+        expect(page.all('li')[0]).to have_content("#{@merch_3.name} - $286.00")
+        expect(page.all('li')[1]).to have_content("#{@merch_2.name} - $92.00")
+        expect(page.all('li')[2]).to have_content("#{@merch_4.name} - $59.00")
+      end
+    end
 
+    xit 'shows top three fastest merchants on fulfillment time' do
+      within "#top-three-fastest" do
 
+        expect(page.all('li')[0]).to have_content("#{merch_3.name}")
+        expect(page.all('li')[1]).to have_content("#{merch_2.name}")
+        expect(page.all('li')[2]).to have_content("#{merch_1.name}")
+      end
+    end
 
+    xit 'shows bottom three fastest merchants on fulfillment time' do
+      within "#bot-three-fastest" do
+        # expect(page.all('li')[]).to have_content("1. #{merch_3.name}")
+        # expect(page.all('li')[]).to have_content("2. #{merch_2.name}")
+        # expect(page.all('li')[]).to have_content("3. #{merch_4.name}")
+      end
+    end
 
+    xit 'shows top three states by number of orders' do
+      within "#top-three-states" do
+        # expect(page.all('li')[]).to have_content("1. #{merch_3.name}")
+        # expect(page.all('li')[]).to have_content("2. #{merch_2.name}")
+        # expect(page.all('li')[]).to have_content("3. #{merch_4.name}")
+      end
+    end
 
+    xit 'shows top three cities by number of orders' do
+      within "#top-three-cities" do
+        # expect(page.all('li')[]).to have_content("1. #{merch_3.name}")
+        # expect(page.all('li')[]).to have_content("2. #{merch_2.name}")
+        # expect(page.all('li')[]).to have_content("3. #{merch_4.name}")
+      end
+    end
 
-
-
+    xit 'shows three largest orders by quantity' do
+      within "#top-three-order-quantity" do
+        # expect(page.all('li')[]).to have_content("1. #{merch_3.name}")
+        # expect(page.all('li')[]).to have_content("2. #{merch_2.name}")
+        # expect(page.all('li')[]).to have_content("3. #{merch_4.name}")
+      end
+    end
   end
 end

@@ -1,1 +1,14 @@
 <h1>Merchant Item Index</h1>
+
+<%= link_to "Add New Item", new_dashboard_item_path %>
+
+<h3>My Items</h3>
+  <% @items.each do |item| %>
+<div id="item-<%= item.id %>">
+  <p>ID: <%= item.id %> - <%= item.name %></p>
+  <p>Price: <%= item.item_price %></p>
+  <p>Stock: <%= item.stock %></p>
+  <p><%= item.image %></p>
+  <p><%= link_to "Edit", dashboard_item_path(item), method: :patch %></p></br>
+</div>
+  <% end %>

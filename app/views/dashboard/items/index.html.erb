@@ -14,8 +14,16 @@
   <p>Price: <%= item.item_price %></p>
   <p>Stock: <%= item.stock %></p>
   <p><%= link_to "Edit", dashboard_item_path(item), method: :patch %></p>
+
   <% if item.never_ordered? %>
-    <p><%= link_to "Delete", dashboard_item_path(item), method: :delete %></p></br>
+    <p><%= link_to "Delete", dashboard_item_path(item), method: :delete %></p>
   <% end %>
+
+  <% if item.enabled? %>
+    <p><%= link_to "Disable", dashboard_item_path(item), method: :put %></p></br>
+    <% else %>
+    <p><%= link_to "Enable", dashboard_item_path(item), method: :put %></p></br>
+  <% end %>
+
 </div>
   <% end %>

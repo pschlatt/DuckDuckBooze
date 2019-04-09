@@ -9,8 +9,7 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
 
       @item_1 = create(:item, user_id: @merch.id, stock: 75)
       @item_2 = create(:item, user_id: @merch.id, stock: 85)
-      @item_3 = create(:item, user_id: @merch.id, stock: 95)
-      @item_4 = create(:item, user_id: @merch.id, stock: 105)
+      @item_3 = create(:item, user_id: @merch.id, stock: 105, enabled: false)
 
       @order_1 = create(:order, user_id: @user.id)
       # @order_2 = create(:order, user_id: @user_2.id)
@@ -60,13 +59,25 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
     end
 
     it 'shows a link to delete the item if no user has ever ordered this item' do
-      # save_and_open_page
       within "#item-#{@item_1.id}" do
         expect(page).to_not have_link("Delete")
       end
 
       within "#item-#{@item_2.id}" do
         expect(page).to have_link("Delete")
+      end
+    end
+
+    it 'shows an enable link for a disabled item and a disable link for an enabled item' do
+
+      within "#item-#{@item_1.id}" do
+        expect(page).to_not have_link("Enable")
+        expect(page).to have_link("Disable")
+      end
+      save_and_open_page
+      within "#item-#{@item_3.id}" do
+        expect(page).to have_link("Enable")
+        expect(page).to_not have_link("Disable")
       end
     end
 

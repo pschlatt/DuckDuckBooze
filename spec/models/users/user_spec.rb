@@ -165,7 +165,12 @@ RSpec.describe User, type: :model do
       oi_7 = OrderItem.create!(fulfilled: true, quantity: 25, order_price: 10, order_id: order_5.id, item_id: beer_3.id, created_at: 2.days.ago, updated_at: 1.day.ago)
       oi_8 = OrderItem.create!(fulfilled: true, quantity: 1, order_price: 4, order_id: order_6.id, item_id: beer_4.id, created_at: 10.days.ago, updated_at: 1.day.ago)
 
-      expect(User.top_three_cities).to eq([user_1])
+      expect(User.top_three_cities[0].city).to eq("Denver")
+      expect(User.top_three_cities[0].total_count).to eq(3)
+      expect(User.top_three_cities[1].city).to eq("Seattle")
+      expect(User.top_three_cities[1].total_count).to eq(2)
+      expect(User.top_three_cities[2].city).to eq("Boulder")
+      expect(User.top_three_cities[2].total_count).to eq(1)
     end
   end
 end

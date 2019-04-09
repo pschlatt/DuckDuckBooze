@@ -105,7 +105,7 @@ RSpec.describe 'merchant index page' do
       end
     end
 
-    xit 'shows top three cities by number of orders' do
+    it 'shows top three cities by number of orders' do
       user_1 = create(:user, state: "CO", city: "Denver")
       user_2 = create(:user, state: "WA", city: "Seattle")
       user_3 = create(:user, state: "CO", city: "Denver")
@@ -139,10 +139,11 @@ RSpec.describe 'merchant index page' do
       oi_7 = OrderItem.create!(fulfilled: true, quantity: 25, order_price: 10, order_id: order_5.id, item_id: beer_3.id, created_at: 2.days.ago, updated_at: 1.day.ago)
       oi_8 = OrderItem.create!(fulfilled: true, quantity: 1, order_price: 4, order_id: order_6.id, item_id: beer_4.id, created_at: 10.days.ago, updated_at: 1.day.ago)
 
+      save_and_open_page
       within "#top-three-cities" do
-        # expect(page.all('li')[]).to have_content("1. #{merch_3.name}")
-        # expect(page.all('li')[]).to have_content("2. #{merch_2.name}")
-        # expect(page.all('li')[]).to have_content("3. #{merch_4.name}")
+        expect(page.all('li')[0]).to have_content("Denver - 3")
+        expect(page.all('li')[1]).to have_content("Seattle - 2")
+        expect(page.all('li')[2]).to have_content("Boulder - 1")
       end
     end
 

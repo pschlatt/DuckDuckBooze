@@ -44,13 +44,12 @@
   end
 
   def self.top_three_cities
-    city = User.joins(orders: :order_items).distinct
+    User.joins(orders: :order_items).distinct
         .where(order_items: {fulfilled: true})
-        .select("users.city, count(order_items.order_id) as total_count")
+        .select("users.city, count(distinct order_items.order_id) as total_count")
         .group(:city)
-        .order("total_count asc")
+        .order("total_count desc")
         .limit(3)
-        binding.pry
   end
 
   def avg_fill_time(item)

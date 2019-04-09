@@ -28,6 +28,15 @@
     </ol>
   </div>
 
+  <div id="top-three-cities">
+    <h2>Top 3 ordering cities</h2>
+    <ol>
+      <% @top_cities.each do |city| %>
+      <li> <%= city.city %> - <%= city.total_count %></li>
+      <% end %>
+    </ol>
+  </div>
+
   <div id="top-three-order-quantity">
     <h2>Largest Orders</h2>
     <ol>

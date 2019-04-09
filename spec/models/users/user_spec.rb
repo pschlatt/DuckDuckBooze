@@ -69,6 +69,24 @@ RSpec.describe User, type: :model do
        expect(@merchant_1.avg_fill_time(@beer_1)).to eq(48)
       end
     end
+
+    context '#disable_items' do
+     it 'disables all of the merchants items' do
+
+       @merchant_1 = User.create(role: 2, enabled: true, name: "Mike Merchant", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "mike@gmail.com", password: "password")
+
+       @beer_1 = @merchant_1.items.create(name: "Heineken", description: "Pale lager, 5%", item_price: 4.00, stock: 56, enabled: true, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Heineken.jpg/156px-Heineken.jpg")
+       @beer_2 = @merchant_1.items.create(name: "Guiness", description: "Pale lager, 5%", item_price: 4.00, stock: 56, enabled: true, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Heineken.jpg/156px-Heineken.jpg")
+
+       @merchant_1.disable_items(@merchant_1)
+
+       @beer_1.reload
+       @beer_2.reload
+
+       expect(@beer_1.enabled).to eq(false)
+       expect(@beer_2.enabled).to eq(false)
+      end
+    end
   end
 
   describe 'merchant index page stats' do

@@ -74,4 +74,8 @@
       fulfillment_times.sum / fulfillment_times.count
     end
   end
+
+  def disable_items(user_id)
+    Item.where(user_id: user_id).update_all(enabled: false)
+  end
 end

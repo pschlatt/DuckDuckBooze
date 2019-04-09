@@ -8,6 +8,8 @@ class MerchantsController < ApplicationController
     end
     @merchants_top_rev = User.top_three_rev
     @merchants_fastest = User.top_three_fast
+    @merchants_slowest = User.bot_three_fast
+    @big_orders = Order.largest_3_orders
   end
 
 end

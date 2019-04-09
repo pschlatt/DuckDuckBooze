@@ -29,4 +29,11 @@ class Order < ApplicationRecord
          .sum("order_items.quantity * order_items.order_price")
   end
 
+  def self.largest_3_orders
+    Order.joins(:order_items)
+         .select("orders.*, sum(order_items.quantity) as total_quantity")
+         .group(:id)
+         .order("total_quantity DESC")
+         .limit(3)
+  end
 end

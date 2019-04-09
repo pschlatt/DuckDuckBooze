@@ -26,13 +26,31 @@
   end
 
   def self.top_three_fast
-    # binding.pry
     User.joins(items: :order_items)
-        .select("users.*, avg(order_items.updated_at - order_items.created_at) AS avg_fill_time, count(DISTINCT order_items.order_id) AS order_count")
+        .select("users.*, avg(order_items.updated_at - order_items.created_at) AS avg_fulfill_time, count(DISTINCT order_items.order_id) AS order_count")
         .where(role: :merchant, enabled: true, order_items: {fulfilled: true})
         .group(:id)
-        .order("avg_fill_time ASC")
+        .order("avg_fulfill_time ASC")
         .limit(3)
+  end
+
+  def self.bot_three_fast
+    User.joins(items: :order_items)
+        .select("users.*, avg(order_items.updated_at - order_items.created_at) AS avg_fulfill_time, count(DISTINCT order_items.order_id) AS order_count")
+        .where(role: :merchant, enabled: true, order_items: {fulfilled: true})
+        .group(:id)
+        .order("avg_fulfill_time DESC")
+        .limit(3)
+  end
+
+  def self.top_three_cities
+    city = User.joins(orders: :order_items).distinct
+        .where(order_items: {fulfilled: true})
+        .select("users.city, count(order_items.order_id) as total_count")
+        .group(:city)
+        .order("total_count asc")
+        .limit(3)
+        binding.pry
   end
 
   def avg_fill_time(item)
@@ -52,10 +70,5 @@ end
 
 
 # sorting
- #User.where(role: 'merchant').joins(items: :order_items).select("users.*,sum(order_items.quantity) as total_quantity").group(:id).order("total_quantity desc")
 
-
-# User.where(role: 'merchant').joins(items: :order_items).select("users.*,sum(order_items.quantity * order_items.order_price) as total_revenue").group(:id).order("total_revenue desc")
-# test=_
-# test.first.name
-# test.first.total_revenue
+# User.joins(orders: :order_items).where(order_items: {fulfilled: true}).select("users.city, count(orders.id) as total_count").group(:city).order("total_count asc")

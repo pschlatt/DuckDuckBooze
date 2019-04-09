@@ -70,74 +70,102 @@ RSpec.describe User, type: :model do
       end
     end
   end
-  #
-  # describe 'merchant index page stats' do
-  #   before :each do
-  #     @user_1 = create(:user, state: "CO", city: "Denver")
-  #     @user_2 = create(:user, state: "WA", city: "Seattle")
-  #     @user_3 = create(:user, state: "HI", city: "Honolulu")
-  #     @user_4 = create(:user, state: "CO", city: "Boulder")
-  #     @user_5 = create(:user, state: "WA", city: "Seattle")
-  #
-  #     @merch_1 = create(:merchant, name: "Mike")
-  #     @merch_2 = create(:merchant, name: "Tom")
-  #     @merch_3 = create(:merchant, name: "Joe")
-  #     @merch_4 = create(:merchant, name: "Bob")
-  #
-  #     @beer_1 = Item.create!(name: "MGD", description: "good beer", stock: 120, item_price: 1.5, user_id: @merch_1.id )
-  #     @beer_2 = Item.create!(name: "Mich Ultra", description: "better beer", stock: 150, item_price: 2.5, user_id: @merch_2.id )
-  #     @beer_3 = Item.create!(name: "4 Noses", description: "yummy beer", stock: 180, item_price: 3.5, user_id: @merch_3.id )
-  #     @beer_4 = Item.create!(name: "Guiness", description: "the best", stock: 180, item_price: 3.5, user_id: @merch_4.id )
-  #
-  #     @order_1 = @user_1.orders.create!(status: 'shipped', created_at: 5.days.ago, updated_at: 1.day.ago)
-  #     @order_2 = @user_2.orders.create!(status: 'shipped', created_at: 6.days.ago, updated_at: 1.day.ago)
-  #     @order_3 = @user_3.orders.create!(status: 'shipped', created_at: 4.days.ago, updated_at: 1.day.ago)
-  #     @order_4 = @user_4.orders.create!(status: 'shipped', created_at: 3.days.ago, updated_at: 1.day.ago)
-  #     @order_5 = @user_5.orders.create!(status: 'shipped', created_at: 2.days.ago, updated_at: 1.day.ago)
-  #     @order_6 = @user_1.orders.create!(status: 'shipped', created_at: 10.days.ago, updated_at: 1.day.ago)
-  #
-  #     @oi_1 = OrderItem.create!(fulfilled: true, quantity: 3, order_price: 3, order_id: @order_1.id, item_id: @beer_1.id, created_at: 5.days.ago, updated_at: 1.day.ago)
-  #     # $9 - merch_1
-  #     @oi_2 = OrderItem.create!(fulfilled: true, quantity: 6, order_price: 2, order_id: @order_1.id, item_id: @beer_2.id, created_at: 5.days.ago, updated_at: 1.day.ago)
-  #     # $12 - merch_2
-  #     @oi_3 = OrderItem.create!(fulfilled: true, quantity: 9, order_price: 4, order_id: @order_2.id, item_id: @beer_3.id, created_at: 6.days.ago, updated_at: 1.day.ago)
-  #     # $36 - merch_3
-  #     @oi_4 = OrderItem.create!(fulfilled: true, quantity: 11, order_price: 5, order_id: @order_2.id, item_id: @beer_4.id, created_at: 6.days.ago, updated_at: 1.day.ago)
-  #     # $55 - merch_4
-  #     @oi_5 = OrderItem.create!(fulfilled: true, quantity: 4, order_price: 4, order_id: @order_3.id, item_id: @beer_1.id, created_at: 4.days.ago, updated_at: 1.day.ago)
-  #     # $16 - merch_1
-  #     @oi_6 = OrderItem.create!(fulfilled: true, quantity: 10, order_price: 8, order_id: @order_4.id, item_id: @beer_2.id, created_at: 3.days.ago, updated_at: 1.day.ago)
-  #     # $80 - merch_2
-  #     @oi_7 = OrderItem.create!(fulfilled: true, quantity: 25, order_price: 10, order_id: @order_5.id, item_id: @beer_3.id, created_at: 2.days.ago, updated_at: 1.day.ago)
-  #     # $250 - merch_3
-  #     @oi_8 = OrderItem.create!(fulfilled: true, quantity: 1, order_price: 4, order_id: @order_6.id, item_id: @beer_4.id, created_at: 10.days.ago, updated_at: 1.day.ago)
-  #
-  #     # @oi_1 = OrderItem.create!(fulfilled: true, quantity: 3, order_price: 3, order_id: @order_1.id, item_id: @beer_1.id, updated_at: 1.day.ago)
-  #     # # $9 - merch_1
-  #     # @oi_2 = OrderItem.create!(fulfilled: true, quantity: 6, order_price: 2, order_id: @order_1.id, item_id: @beer_2.id, updated_at: 1.day.ago)
-  #     # # $12 - merch_2
-  #     # @oi_3 = OrderItem.create!(fulfilled: true, quantity: 9, order_price: 4, order_id: @order_2.id, item_id: @beer_3.id, updated_at: 1.day.ago)
-  #     # # $36 - merch_3
-  #     # @oi_4 = OrderItem.create!(fulfilled: true, quantity: 11, order_price: 5, order_id: @order_2.id, item_id: @beer_4.id, updated_at: 1.day.ago)
-  #     # # $55 - merch_4
-  #     # @oi_5 = OrderItem.create!(fulfilled: true, quantity: 4, order_price: 4, order_id: @order_3.id, item_id: @beer_1.id, updated_at: 1.day.ago)
-  #     # # $16 - merch_1
-  #     # @oi_6 = OrderItem.create!(fulfilled: true, quantity: 10, order_price: 8, order_id: @order_4.id, item_id: @beer_2.id, updated_at: 1.day.ago)
-  #     # # $80 - merch_2
-  #     # @oi_7 = OrderItem.create!(fulfilled: true, quantity: 25, order_price: 10, order_id: @order_5.id, item_id: @beer_3.id, updated_at: 1.day.ago)
-  #     # # $250 - merch_3
-  #     # @oi_8 = OrderItem.create!(fulfilled: true, quantity: 1, order_price: 4, order_id: @order_6.id, item_id: @beer_4.id, updated_at: 1.day.ago)
-  #     # # $4 - merch_4
-  #   end
-  #
-  #   it '.top_three_rev' do
-  #
-  #     expect(User.top_three_rev).to eq([@merch_3, @merch_2, @merch_4])
-  #   end
-  #
-  #   it '.top_three_fast' do
-  #
-  #     expect(User.top_three_fast).to eq([@merch_3, @merch_2, @merch_1])
-  #   end
-  # end
+
+  describe 'merchant index page stats' do
+    before :each do
+      @user_1 = create(:user, state: "CO", city: "Denver")
+      @user_2 = create(:user, state: "WA", city: "Seattle")
+      @user_3 = create(:user, state: "HI", city: "Honolulu")
+      @user_4 = create(:user, state: "CO", city: "Boulder")
+      @user_5 = create(:user, state: "WA", city: "Seattle")
+
+      @merch_1 = create(:merchant, name: "Mike")
+      @merch_2 = create(:merchant, name: "Tom")
+      @merch_3 = create(:merchant, name: "Joe")
+      @merch_4 = create(:merchant, name: "Bob")
+
+      @beer_1 = Item.create!(name: "MGD", description: "good beer", stock: 120, item_price: 1.5, user_id: @merch_1.id )
+      @beer_2 = Item.create!(name: "Mich Ultra", description: "better beer", stock: 150, item_price: 2.5, user_id: @merch_2.id )
+      @beer_3 = Item.create!(name: "4 Noses", description: "yummy beer", stock: 180, item_price: 3.5, user_id: @merch_3.id )
+      @beer_4 = Item.create!(name: "Guiness", description: "the best", stock: 180, item_price: 3.5, user_id: @merch_4.id )
+
+      @order_1 = @user_1.orders.create!(status: 'shipped', created_at: 5.days.ago, updated_at: 1.day.ago)
+      @order_2 = @user_2.orders.create!(status: 'shipped', created_at: 6.days.ago, updated_at: 1.day.ago)
+      @order_3 = @user_3.orders.create!(status: 'shipped', created_at: 4.days.ago, updated_at: 1.day.ago)
+      @order_4 = @user_4.orders.create!(status: 'shipped', created_at: 3.days.ago, updated_at: 1.day.ago)
+      @order_5 = @user_5.orders.create!(status: 'shipped', created_at: 2.days.ago, updated_at: 1.day.ago)
+      @order_6 = @user_1.orders.create!(status: 'shipped', created_at: 10.days.ago, updated_at: 1.day.ago)
+
+      @oi_1 = OrderItem.create!(fulfilled: true, quantity: 3, order_price: 3, order_id: @order_1.id, item_id: @beer_1.id, created_at: 5.days.ago, updated_at: 1.day.ago)
+      # $9 - merch_1
+      @oi_2 = OrderItem.create!(fulfilled: true, quantity: 6, order_price: 2, order_id: @order_1.id, item_id: @beer_2.id, created_at: 5.days.ago, updated_at: 1.day.ago)
+      # $12 - merch_2
+      @oi_3 = OrderItem.create!(fulfilled: true, quantity: 9, order_price: 4, order_id: @order_2.id, item_id: @beer_3.id, created_at: 8.days.ago, updated_at: 1.day.ago)
+      # $36 - merch_3
+      @oi_4 = OrderItem.create!(fulfilled: true, quantity: 11, order_price: 5, order_id: @order_2.id, item_id: @beer_4.id, created_at: 6.days.ago, updated_at: 1.day.ago)
+      # $55 - merch_4
+      @oi_5 = OrderItem.create!(fulfilled: true, quantity: 4, order_price: 4, order_id: @order_3.id, item_id: @beer_1.id, created_at: 4.days.ago, updated_at: 1.day.ago)
+      # $16 - merch_1
+      @oi_6 = OrderItem.create!(fulfilled: true, quantity: 10, order_price: 8, order_id: @order_4.id, item_id: @beer_2.id, created_at: 3.days.ago, updated_at: 1.day.ago)
+      # $80 - merch_2
+      @oi_7 = OrderItem.create!(fulfilled: true, quantity: 25, order_price: 10, order_id: @order_5.id, item_id: @beer_3.id, created_at: 2.days.ago, updated_at: 1.day.ago)
+      # $250 - merch_3
+      @oi_8 = OrderItem.create!(fulfilled: true, quantity: 1, order_price: 4, order_id: @order_6.id, item_id: @beer_4.id, created_at: 10.days.ago, updated_at: 1.day.ago)
+    end
+
+    it '.top_three_rev' do
+
+      expect(User.top_three_rev).to eq([@merch_3, @merch_2, @merch_4])
+    end
+
+    it '.top_three_fast' do
+
+      expect(User.top_three_fast).to eq([@merch_2, @merch_1, @merch_3])
+      # binding.pry
+    end
+
+    it '.bot_three_fast' do
+
+      expect(User.bot_three_fast).to eq([@merch_4, @merch_3, @merch_1])
+    end
+  end
+
+  describe 'city test data' do
+    it '.top_three_cities' do
+      user_1 = create(:user, state: "CO", city: "Denver")
+      user_2 = create(:user, state: "WA", city: "Seattle")
+      user_3 = create(:user, state: "CO", city: "Denver")
+      user_4 = create(:user, state: "CO", city: "Boulder")
+      user_5 = create(:user, state: "WA", city: "Seattle")
+
+      merch_1 = create(:merchant, name: "Mike")
+      merch_2 = create(:merchant, name: "Tom")
+      merch_3 = create(:merchant, name: "Joe")
+      merch_4 = create(:merchant, name: "Bob")
+
+      beer_1 = Item.create!(name: "MGD", description: "good beer", stock: 120, item_price: 1.5, user_id: merch_1.id )
+      beer_2 = Item.create!(name: "Mich Ultra", description: "better beer", stock: 150, item_price: 2.5, user_id: merch_2.id )
+      beer_3 = Item.create!(name: "4 Noses", description: "yummy beer", stock: 180, item_price: 3.5, user_id: merch_3.id )
+      beer_4 = Item.create!(name: "Guiness", description: "the best", stock: 180, item_price: 3.5, user_id: merch_4.id )
+
+      order_1 = user_1.orders.create!(status: 'shipped', created_at: 5.days.ago, updated_at: 1.day.ago)
+      order_2 = user_2.orders.create!(status: 'shipped', created_at: 6.days.ago, updated_at: 1.day.ago)
+      order_3 = user_3.orders.create!(status: 'shipped', created_at: 4.days.ago, updated_at: 1.day.ago)
+      order_4 = user_4.orders.create!(status: 'shipped', created_at: 3.days.ago, updated_at: 1.day.ago)
+      order_5 = user_5.orders.create!(status: 'shipped', created_at: 2.days.ago, updated_at: 1.day.ago)
+      order_6 = user_1.orders.create!(status: 'shipped', created_at: 10.days.ago, updated_at: 1.day.ago)
+
+
+      oi_1 = OrderItem.create!(fulfilled: true, quantity: 3, order_price: 3, order_id: order_1.id, item_id: beer_1.id, created_at: 5.days.ago, updated_at: 1.day.ago)
+      oi_2 = OrderItem.create!(fulfilled: true, quantity: 6, order_price: 2, order_id: order_1.id, item_id: beer_2.id, created_at: 5.days.ago, updated_at: 1.day.ago)
+      oi_3 = OrderItem.create!(fulfilled: true, quantity: 9, order_price: 4, order_id: order_2.id, item_id: beer_3.id, created_at: 8.days.ago, updated_at: 1.day.ago)
+      oi_4 = OrderItem.create!(fulfilled: true, quantity: 11, order_price: 5, order_id: order_2.id, item_id: beer_4.id, created_at: 6.days.ago, updated_at: 1.day.ago)
+      oi_5 = OrderItem.create!(fulfilled: true, quantity: 4, order_price: 4, order_id: order_3.id, item_id: beer_1.id, created_at: 4.days.ago, updated_at: 1.day.ago)
+      oi_6 = OrderItem.create!(fulfilled: true, quantity: 10, order_price: 8, order_id: order_4.id, item_id: beer_2.id, created_at: 3.days.ago, updated_at: 1.day.ago)
+      oi_7 = OrderItem.create!(fulfilled: true, quantity: 25, order_price: 10, order_id: order_5.id, item_id: beer_3.id, created_at: 2.days.ago, updated_at: 1.day.ago)
+      oi_8 = OrderItem.create!(fulfilled: true, quantity: 1, order_price: 4, order_id: order_6.id, item_id: beer_4.id, created_at: 10.days.ago, updated_at: 1.day.ago)
+
+      expect(User.top_three_cities).to eq([user_1])
+    end
+  end
 end

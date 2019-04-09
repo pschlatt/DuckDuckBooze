@@ -1,1 +1,9 @@
+<p>Name: <%= @user.name %></p>
+<p>Email: <%= @user.email %></p>
+<p>Street: <%= @user.street %></p>
+<p>City: <%= @user.city %></p>
+<p>State: <%= @user.state %></p>
+<p>Zip: <%= @user.zip %></p>
+
+
 <%= link_to "Upgrade", admin_user_path(@user), :method => :patch %>

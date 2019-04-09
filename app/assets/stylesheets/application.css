@@ -96,6 +96,10 @@ a:active {
   cursor: pointer;
 }
 
+#admin-merchants-index {
+  text-align: center;
+}
+
 @media screen and (max-width: 500px) {
   body > header {
     width: 100%;

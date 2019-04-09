@@ -5,10 +5,17 @@
 <h3>My Items</h3>
   <% @items.each do |item| %>
 <div id="item-<%= item.id %>">
+
+  <a class="thumbnail">
+    <img src="<%= item.image %>" alt=" beer pic " width="50">
+  </a>
+
   <p>ID: <%= item.id %> - <%= item.name %></p>
   <p>Price: <%= item.item_price %></p>
   <p>Stock: <%= item.stock %></p>
-  <p><%= item.image %></p>
-  <p><%= link_to "Edit", dashboard_item_path(item), method: :patch %></p></br>
+  <p><%= link_to "Edit", dashboard_item_path(item), method: :patch %></p>
+  <% if item.never_ordered? %>
+    <p><%= link_to "Delete", dashboard_item_path(item), method: :delete %></p></br>
+  <% end %>
 </div>
   <% end %>

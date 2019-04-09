@@ -71,4 +71,22 @@ RSpec.describe Item, type: :model do
       end
     end
   end
+
+  describe 'Instance methods' do
+    describe '.never_ordered' do
+      it 'returns a boolean to determine if an item has never been ordered' do
+        @merch = create(:merchant)
+        @user = create(:user)
+
+        @item_1 = create(:item, user_id: @merch.id, stock: 75)
+        @item_2 = create(:item, user_id: @merch.id, stock: 85)
+
+        @order_1 = create(:order, user_id: @user.id)
+        @order_item_1 = OrderItem.create(quantity: 6, order_price: 2.0, order_id: @order_1.id, item_id: @item_1.id)
+
+        expect(@item_1.never_ordered?).to eq(false)
+        expect(@item_2.never_ordered?).to eq(true)
+      end
+    end
+  end
 end

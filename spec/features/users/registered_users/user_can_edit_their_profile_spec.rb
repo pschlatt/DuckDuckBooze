@@ -46,6 +46,7 @@ RSpec.describe 'registered user' do
       expect(page).to have_content('You have updated your profile')
     end
 
+
     it 'cannot edit without unique email' do
 
       visit '/profile/edit'

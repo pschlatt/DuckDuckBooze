@@ -70,10 +70,10 @@
   <h3>Location: <%= merchant.city %>, <%= merchant.state %></h3>
   <h4>Registered: <%= merchant.created_at.strftime("%b %d, %Y") %></h4>
 
-  <% if merchant.enabled == true %>
-    <%= button_to "Disable", admin_merchant_path(merchant), method: :patch %>
-  <% else %>
-    <%= button_to "Enable", admin_merchant_path(merchant), method: :patch %>
+  <% if merchant.enabled == true && current_admin? %>
+    <%= button_to "Disable", admin_merchant_path(merchant, enabled: false), method: :patch %>
+  <% elsif current_admin? && merchant.enabled == false %>
+    <%= button_to "Enable", admin_merchant_path(merchant, enabled: true), method: :patch %>
   <% end %>
 </div>
 <% end %>

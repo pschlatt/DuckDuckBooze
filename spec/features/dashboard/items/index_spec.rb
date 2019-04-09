@@ -118,3 +118,4 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
     end
   end
 end
+

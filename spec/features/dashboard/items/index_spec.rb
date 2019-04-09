@@ -124,15 +124,3 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
     end
   end
 end
-
-# "Item Name 3 now available for sale!"
-# "Item Name 3 now avaialable for sale!"
-
-
-#
-# As a merchant
-# When I visit my items page
-# And I click on an "enable" button or link for an item
-# I am returned to my items page
-# I see a flash message indicating this item is now available for sale
-# I see the item is now enabled

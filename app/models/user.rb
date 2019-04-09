@@ -75,8 +75,3 @@
     end
   end
 end
-
-
-# sorting
-
-# User.joins(orders: :order_items).where(order_items: {fulfilled: true}).select("users.city, count(orders.id) as total_count").group(:city).order("total_count asc")

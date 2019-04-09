@@ -12,15 +12,9 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
       @item_3 = create(:item, user_id: @merch.id, stock: 105, enabled: false)
 
       @order_1 = create(:order, user_id: @user.id)
-      # @order_2 = create(:order, user_id: @user_2.id)
-      # @order_3 = create(:order, status: 'shipped', user_id: @user_2.id)
-      # @order_4 = create(:shipped_order, user_id: @user_2.id)
+     
       @order_item_1 = OrderItem.create(quantity: 6, order_price: 2.0, order_id: @order_1.id, item_id: @item_1.id)
-      # @order_item_2 = OrderItem.create(quantity: 4, order_price: 3.0, order_id: @order_1.id, item_id: @item_2.id)
-      # @order_item_3 = OrderItem.create(quantity: 3, order_price: 4.0, order_id: @order_2.id, item_id: @item_3.id)
-      # @order_item_4 = OrderItem.create(quantity: 5, order_price: 2.0, order_id: @order_3.id, item_id: @item_3.id)
-      # @order_item_5 = OrderItem.create(quantity: 7, order_price: 3.0, order_id: @order_3.id, item_id: @item_4.id)
-
+      
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merch)
 
       visit dashboard_items_path

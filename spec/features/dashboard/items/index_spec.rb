@@ -74,7 +74,7 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
         expect(page).to_not have_link("Enable")
         expect(page).to have_link("Disable")
       end
-      save_and_open_page
+   
       within "#item-#{@item_3.id}" do
         expect(page).to have_link("Enable")
         expect(page).to_not have_link("Disable")
@@ -90,10 +90,4 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
   end
 end
 
-#
-# As a merchant
-# When I visit my items page
-# And I click on an "enable" button or link for an item
-# I am returned to my items page
-# I see a flash message indicating this item is now available for sale
-# I see the item is now enabled
+

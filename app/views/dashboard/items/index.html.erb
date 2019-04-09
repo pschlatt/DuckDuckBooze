@@ -20,9 +20,9 @@
   <% end %>
 
   <% if item.enabled? %>
-    <p><%= link_to "Disable", dashboard_item_path(item), method: :put %></p></br>
+    <p><%= link_to "Disable", dashboard_item_path(item), method: :patch %></p></br>
     <% else %>
-    <p><%= link_to "Enable", dashboard_item_path(item), method: :put %></p></br>
+    <p><%= link_to "Enable", dashboard_item_path(item), method: :patch %></p></br>
   <% end %>
 
 </div>

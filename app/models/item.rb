@@ -19,4 +19,8 @@ class Item < ApplicationRecord
                     .order(quantity: updown)
     list.limit(5)
   end
+
+  def never_ordered?
+    !OrderItem.exists?(item_id: id)
+  end
 end

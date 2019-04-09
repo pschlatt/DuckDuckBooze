@@ -20,9 +20,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
-  # namespace :users do
-  #   resources :orders, only: [:show]
-  # end
   get '/profile/orders/:id', to: 'users/orders#show', as: :profile_order
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

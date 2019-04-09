@@ -26,20 +26,32 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.update(user_params)
+    # binding.pry
+    if current_user.update(update_params)
       redirect_to profile_path
       flash[:success] = 'You have updated your profile'
     else
       @errors = current_user.errors.full_messages
       @user = current_user
       render :edit
-    end 
-  end 
+    end
+  end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation, :street, :city, :state, :zip, :email)
+  end
+
+  def update_params
+    updated_params = user_params
+    if updated_params[:password] == ""
+      updated_params.delete(:password)
+    end
+    if updated_params[:password_confirmation] == ""
+      updated_params.delete(:password_confirmation)
+    end
+    updated_params
   end
 
   def check_user_status

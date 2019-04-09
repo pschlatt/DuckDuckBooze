@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :item do
+  factory :item, class: Item do
     association :user, factory: :merchant
     sequence(:name) { |n| "Item Name #{n}" }
     sequence(:description) { |n| "Description #{n}" }

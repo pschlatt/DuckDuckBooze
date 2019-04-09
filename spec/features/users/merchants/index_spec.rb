@@ -182,7 +182,7 @@ RSpec.describe 'merchant index page' do
     oi_8 = OrderItem.create!(fulfilled: true, quantity: 1, order_price: 4, order_id: order_6.id, item_id: beer_4.id, created_at: 10.days.ago, updated_at: 1.day.ago)
 
     visit merchants_path
-    save_and_open_page
+
     within "#top-three-states" do
       expect(page.all('li')[0]).to have_content("CO - 3")
       expect(page.all('li')[1]).to have_content("WA - 2")

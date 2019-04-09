@@ -52,6 +52,15 @@
         .limit(3)
   end
 
+  def self.top_three_states
+    User.joins(orders: :order_items).distinct
+        .where(order_items: {fulfilled: true})
+        .select("users.state, count(distinct order_items.order_id) as total_count")
+        .group(:state)
+        .order("total_count desc")
+        .limit(3)
+  end
+
   def avg_fill_time(item)
     order_items = OrderItem
       .joins(item: :user)

@@ -37,6 +37,15 @@
     </ol>
   </div>
 
+  <div id="top-three-states">
+    <h2>Top 3 ordering states</h2>
+    <ol>
+      <% @top_states.each do |state| %>
+      <li> <%= state.state %> - <%= state.total_count %></li>
+      <% end %>
+    </ol>
+  </div>
+
   <div id="top-three-order-quantity">
     <h2>Largest Orders</h2>
     <ol>

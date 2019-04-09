@@ -11,6 +11,7 @@ class MerchantsController < ApplicationController
     @merchants_slowest = User.bot_three_fast
     @big_orders = Order.largest_3_orders
     @top_cities = User.top_three_cities
+    @top_states = User.top_three_states
   end
 
 end

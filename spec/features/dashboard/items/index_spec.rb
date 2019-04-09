@@ -81,7 +81,7 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
       end
     end
 
-    context'when I click an enable button next to an item' do
+    context 'when I click an enable button next to an item' do
       it 'return me to my items page, I see a confirmation message, and I see that the item is now enabled for sale' do
 
         within "#item-#{@item_3.id}" do
@@ -98,6 +98,27 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
         within "#item-#{@item_3.id}" do
           expect(page).to_not have_link("Enable")
           expect(page).to have_link("Disable")
+        end
+      end
+    end
+
+    context 'when I click a disable button next to an item' do
+      it 'return me to my items page, I see a confirmation message, and I see that the item is now disabled' do
+
+        within "#item-#{@item_1.id}" do
+          click_on "Disable"
+        end
+
+        expect(current_path).to eq(dashboard_items_path)
+
+        expect(page).to have_content("#{@item_1.name} no longer available for sale")
+
+        @item_1.reload
+        expect(@item_1.enabled?).to eq(false)
+
+        within "#item-#{@item_1.id}" do
+          expect(page).to have_link("Enable")
+          expect(page).to_not have_link("Disable")
         end
       end
     end

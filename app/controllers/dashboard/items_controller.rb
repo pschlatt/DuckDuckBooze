@@ -14,8 +14,13 @@ class Dashboard::ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-    item.update(enabled: true)
-    flash[:notice] = "#{item.name} now available for sale!"
+    if item.enabled?
+      item.update(enabled: false)
+      flash[:notice] = "#{item.name} no longer available for sale"
+    else
+      item.update(enabled: true)
+      flash[:notice] = "#{item.name} now available for sale!"
+    end
     redirect_to dashboard_items_path
   end
 

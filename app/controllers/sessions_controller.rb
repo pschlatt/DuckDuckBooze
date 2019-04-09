@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
+    if user && user.authenticate(params[:password]) && user.role != "merchant" || active_merchant?(user)
       session[:user_id] = user.id
       flash[:notice] = "Login successful!"
 
@@ -40,4 +40,10 @@ class SessionsController < ApplicationController
     flash[:notice] = "Successfully logged out"
     redirect_to root_path
   end
+
+  private
+
+  def active_merchant?(user)
+    (user && user.role == 'merchant' && user.enabled == true && user.authenticate(params[:password]))
+  end 
 end

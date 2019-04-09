@@ -1,5 +1,7 @@
 class Admin::MerchantsController < ApplicationController
   before_action :check_user_status
+  def index
+  end 
 
   def show
     @merchant = User.find(params[:id])
@@ -10,10 +12,16 @@ class Admin::MerchantsController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user.update(role: 'registered_user')
-    user.items.update(enabled: false)
-    flash[:notice] = "Merchant has been downgraded"
-    redirect_to admin_user_path(user)
+    if params[:enabled] && params[:enabled] == "true"
+      user.update!(enabled: true)
+      flash[:notice] = "Merchant is now enabled"
+      redirect_to admin_merchants_path
+    else 
+      user.update!(enabled: false)
+
+     flash[:notice] = "Merchant is now disabled"
+     redirect_to admin_merchants_path
+   end 
   end
 
   private

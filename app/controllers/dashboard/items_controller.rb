@@ -25,12 +25,19 @@ class Dashboard::ItemsController < ApplicationController
     end
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
   def update
     item = Item.find(params[:id])
-    if item.enabled?
+    if params[:item].present?
+      item.update(item_params)
+      flash[:notice] = "#{item.name} has been updated!"
+    elsif item.enabled?
       item.update(enabled: false)
       flash[:notice] = "#{item.name} no longer available for sale"
-    else
+    elsif
       item.update(enabled: true)
       flash[:notice] = "#{item.name} now available for sale!"
     end

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   namespace :dashboard do
-    resources :items #new
+    resources :items
     resources :orders, only: [:show]
     get '/', to: 'merchants#show'
   end

@@ -20,7 +20,9 @@ class Item < ApplicationRecord
     list.limit(5)
   end
 
+
   def never_ordered?
     !OrderItem.exists?(item_id: id)
   end
+
 end

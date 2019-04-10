@@ -1,6 +1,24 @@
 <% if session[:cart] == nil %>
 <p>My cart is empty</p>
 <% end %>
+<% @grand_total = 0 %>
+
 <% unless session[:cart] == nil %>
+<% @cartstuff.each do |s| %>
+
+<img style="width: 10%" src="<%= Item.find(s[0]).image %>"> <br>
+Name: <%= Cart.item_name(s[0]) %><br>
+Amount: <%= s[1]%><br>
+Merchant: <%= Cart.merchant_name(s[0]) %><br>
+Price: <%= number_to_currency(Cart.price(s[0])) %><br>
+Subtotal: <%= number_to_currency(Cart.subtotal(s[0], s[1])) %><br> <br>
+<% @grand_total += Cart.grand_total(s[0], s[1]) %>
+
+<% end %>
+<br>
+Grand Total: <%= number_to_currency(@grand_total) %>
+<br><br>
+
+<%=  %>
 <%= link_to "Empty Cart", cart_empty_path %>
 <% end %>

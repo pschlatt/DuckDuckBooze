@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       flash[:success] = 'You are now registered and logged in.'
       redirect_to profile_path
     else
-      flash[:notice] = @user.errors.full_messages.join(", ")
+      flash[:notice] = 'Email has already been taken'
       render :new
     end
   end

@@ -32,6 +32,10 @@
 
   <div class='submit-button'>
   <%= f.submit %>
+
+  <% flash.each do |type, message| %>
+    <%= content_tag :div, message, class: type %>
+  <% end %>
   </div>
 <% end %>
 </section>

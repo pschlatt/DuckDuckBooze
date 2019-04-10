@@ -12,9 +12,9 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
       @item_3 = create(:item, user_id: @merch.id, stock: 105, enabled: false)
 
       @order_1 = create(:order, user_id: @user.id)
-     
+
       @order_item_1 = OrderItem.create(quantity: 6, order_price: 2.0, order_id: @order_1.id, item_id: @item_1.id)
-      
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merch)
 
       visit dashboard_items_path
@@ -62,7 +62,7 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
       end
     end
 
-    it 'shows an enable link for a disabled item and a disable link for an enabled item' do
+    it 'shows an enable link for a disabled item, and a disable link for an enabled item' do
 
       within "#item-#{@item_1.id}" do
         expect(page).to_not have_link("Enable")
@@ -83,7 +83,6 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
         end
 
         expect(current_path).to eq(dashboard_items_path)
-
         expect(page).to have_content("#{@item_3.name} now available for sale!")
 
         @item_3.reload
@@ -104,7 +103,6 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
         end
 
         expect(current_path).to eq(dashboard_items_path)
-
         expect(page).to have_content("#{@item_1.name} no longer available for sale")
 
         @item_1.reload
@@ -116,6 +114,29 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
         end
       end
     end
+
+    context 'when I click a delete button next to an item' do
+      it 'return me to my items page, I see a confirmation message, and I no longer see the item on my page' do
+
+        expect(@item_2.nil?).to eq(false)
+
+        within "#item-#{@item_2.id}" do
+          click_on "Delete"
+        end
+
+        expect(current_path).to eq(dashboard_items_path)
+        expect(page).to have_content("#{@item_2.name} has been deleted")
+
+        expect(page).to_not have_selector('div', id: "item-#{@item_2.id}")
+        expect(Item.exists?(id: @item_2)).to eq(false)
+      end
+    end
   end
 end
 
+# As a merchant
+# When I visit my items page
+# And I click on a "delete" button or link for an item
+# I am returned to my items page
+# I see a flash message indicating this item is now deleted
+# I no longer see this item on the page

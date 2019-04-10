@@ -24,6 +24,13 @@ class Dashboard::ItemsController < ApplicationController
     redirect_to dashboard_items_path
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    flash[:notice] = "#{item.name} has been deleted"
+    redirect_to dashboard_items_path
+  end
+
   private
 
   def check_merchant_status

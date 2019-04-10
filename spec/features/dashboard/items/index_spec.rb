@@ -131,12 +131,42 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
         expect(Item.exists?(id: @item_2)).to eq(false)
       end
     end
+
+    context 'when I click the Add New Item link' do
+      it 'shows a form which must be filled out with valid information' do
+
+        click_on "Add New Item"
+        expect(current_path).to eq(new_dashboard_item_path)
+
+        new_item = Item.new(name: "Mickeys", description: "Malt Liquor", item_price: 2.00, stock: 12)
+  
+        fill_in "Name", with: new_item.name
+        fill_in "Description", with:new_item.description
+        # fill_in :image, with: new_item.
+        fill_in "Item price", with: new_item.item_price
+        fill_in "Inventory", with: new_item.stock
+
+        click_on "Create Item"
+
+      end
+    end
   end
 end
 
+
 # As a merchant
 # When I visit my items page
-# And I click on a "delete" button or link for an item
-# I am returned to my items page
-# I see a flash message indicating this item is now deleted
-# I no longer see this item on the page
+# And I click on the link to add a new item
+# My URI route should be "/dashboard/items/new"
+# I see a form where I can add new information about an item, including:
+# - the name of the item, which cannot be blank
+# - a description for the item, which cannot be blank
+# - a thumbnail image URL string, which CAN be left blank
+# - a price which must be greater than $0.00
+# - my current inventory count of this item which is 0 or greater
+
+# When I submit valid information and save the form
+# I am taken back to my items page
+# I see a flash message indicating my new item is saved
+# I see the new item on the page, and it is enabled and available for sale
+# If I left the image field blank, I see a placeholder image for the thumbnail

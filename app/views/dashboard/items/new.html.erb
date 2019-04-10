@@ -1,0 +1,25 @@
+<h2>New Item Form</h2>
+
+<%= form_for @item do |f| %>
+<p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+</p>
+<p>
+  <%= f.label :image, "Image URL" %>
+  <%= f.text_area :image %>
+</p>
+<p>
+  <%= f.label :item_price %>
+  <%= f.number_field :item_price %>
+</p>
+<p>
+  <%= f.label :stock, "Inventory" %>
+  <%= f.number_field :stock %>
+</p>
+  <%= f.submit %>
+<% end %>

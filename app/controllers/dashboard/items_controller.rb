@@ -10,6 +10,19 @@ class Dashboard::ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
+  end
+
+  def create
+    merchant = current_user
+    new_item = merchant.items.new(item_params)
+    if new_item.save
+      flash[:notice] = "#{new_item.name} has been added!"
+      redirect_to dashboard_items_path
+    else
+      flash[:notice] = new_item.errors.full_messages.join(", ")
+      redirect_to new_dashboard_item_path
+    end
   end
 
   def update
@@ -35,5 +48,9 @@ class Dashboard::ItemsController < ApplicationController
 
   def check_merchant_status
     render file: "/public/404", status: 404 unless current_merchant?
+  end
+
+  def item_params
+    params.require(:item).permit(:name, :description, :image, :item_price, :stock)
   end
 end

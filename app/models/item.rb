@@ -6,8 +6,8 @@ class Item < ApplicationRecord
   validates_inclusion_of :enabled, in: [true, false]
   validates_presence_of :image
 
-  validates_numericality_of :stock
-  validates_numericality_of :item_price
+  validates_numericality_of :stock, greater_than: 0
+  validates_numericality_of :item_price, greater_than: 0.00
 
   belongs_to :user
   has_many :order_items

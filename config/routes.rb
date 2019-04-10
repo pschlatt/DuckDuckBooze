@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show, :create]
 
 
   namespace :admin do

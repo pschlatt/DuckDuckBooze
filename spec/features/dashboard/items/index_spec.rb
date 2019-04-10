@@ -131,5 +131,74 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
         expect(Item.all).to eq([@item_1, @item_3])
       end
     end
+
+    context 'when I click the Add New Item link' do
+      it 'shows a form which must be filled out with valid information' do
+
+        click_on "Add New Item"
+        expect(current_path).to eq(new_dashboard_item_path)
+
+        expect(page).to have_field("Name")
+        expect(page).to have_field("Description")
+        expect(page).to have_field("Image URL")
+        expect(page).to have_field("Item Price")
+        expect(page).to have_field("Inventory")
+
+        expect(page).to have_button "Create Item"
+      end
+
+      it 'when filled out with valid info, redirects to my items page where I see the item, and a confirmation message' do
+
+        click_on "Add New Item"
+        expect(current_path).to eq(new_dashboard_item_path)
+
+        new_item = Item.new(name: "Mickeys", description: "Malt Liquor", item_price: 2.00, stock: 12)
+
+        fill_in "Name", with: new_item.name
+        fill_in "Description", with:new_item.description
+        fill_in "Item Price", with: new_item.item_price
+        fill_in "Inventory", with: new_item.stock
+
+        click_on "Create Item"
+
+        expect(current_path).to eq(dashboard_items_path)
+        expect(page).to have_content("#{new_item.name} has been added!")
+        expect(new_item.enabled?).to eq(true)
+
+        expect(page).to have_content(" - #{new_item.name}")
+        expect(page).to have_content("Price: #{new_item.item_price}")
+        expect(page).to have_content("Stock: #{new_item.stock}")
+      end
+
+      it 'when filled out with invalid info, I am notified of what needs to be fixed, and I see the form again' do
+
+        click_on "Add New Item"
+        expect(current_path).to eq(new_dashboard_item_path)
+
+        new_item = Item.new(name: "Mickeys", description: "Malt Liquor", item_price: 2.00, stock: 12)
+
+        fill_in "Item Price", with: new_item.item_price
+        fill_in "Inventory", with: new_item.stock
+
+        click_on "Create Item"
+
+        expect(page).to have_content("Name can't be blank")
+        expect(page).to have_content("Description can't be blank")
+
+        expect(current_path).to eq(new_dashboard_item_path)
+
+        fill_in "Name", with: new_item.name
+        fill_in "Description", with:new_item.description
+        fill_in "Item Price", with: 0.00
+        fill_in "Inventory", with: -2
+
+        click_on "Create Item"
+
+        expect(page).to have_content("Stock must be greater than 0")
+        expect(page).to have_content("Item price must be greater than 0.0")
+
+        expect(current_path).to eq(new_dashboard_item_path)
+      end
+    end
   end
 end

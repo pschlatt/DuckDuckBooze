@@ -4,6 +4,9 @@
 <p>Order status: <%= @order.status %></p>
 <p>Order quantity: <%= @order.order_quantity(@order.id) %></p>
 <h2>Grand total: <%= number_to_currency(@order.order_grand_total(@order.id)) %></h2>
+<% if @order.status == 'pending' %>
+  <%= link_to "Cancel", users_order_path(@order), method: :patch  %>
+  <% end %>
 
 <% @order.order_items.each do |order_item| %>
   <section class="item<%= order_item.id %>">

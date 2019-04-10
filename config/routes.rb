@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show, :create]
 
 
   namespace :admin do
@@ -20,7 +20,13 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
+  namespace :users do
+    resources :orders, only: [:update]
+  end
+
   get '/profile/orders/:id', to: 'users/orders#show', as: :profile_order
+  get '/profile/orders', to: 'users/orders#index'
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
@@ -29,10 +35,8 @@ Rails.application.routes.draw do
   get '/cart/empty', to: 'carts#destroy'
 
   get '/profile', to: 'users#show'
-
   get '/profile/edit', to: 'users#edit'
   post '/profile/edit', to: 'users#update'
-  get '/profile/orders', to: 'users/orders#index'
 
   get '/merchants', to: 'merchants#index'
 end

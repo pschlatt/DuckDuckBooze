@@ -6,6 +6,26 @@ class Cart
     @contents.default = 0
   end
 
+  def self.item_name(id)
+    Item.find(id).name
+  end
+
+  def self.merchant_name(id)
+    User.find(Item.find(id).user_id).name
+  end
+
+  def self.price(id)
+    Item.find(id).item_price
+  end
+
+  def self.subtotal(id1, id2)
+    (Item.find(id1).item_price * id2)
+  end
+
+  def self.grand_total(id1, id2)
+    (Item.find(id1).item_price * id2)
+  end
+
   def total_count
     @contents.values.sum
   end
@@ -17,4 +37,7 @@ class Cart
   def count_of(id)
     @contents[id.to_s].to_i
   end
+
+
+
 end

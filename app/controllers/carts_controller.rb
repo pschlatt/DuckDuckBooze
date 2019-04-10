@@ -3,6 +3,8 @@ class CartsController < ApplicationController
   before_action :check_user_status, only: [:show]
 
   def show
+    @cartstuff = session[:cart]
+  
   end
 
   def create

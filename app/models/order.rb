@@ -36,4 +36,18 @@ class Order < ApplicationRecord
          .order("total_quantity DESC")
          .limit(3)
   end
+
+  def change_oi_status(order)
+    list_of_ois = Order.find(order.id).order_items
+    list_of_ois.each do |oi|
+      oi.update(fulfilled: false)
+    end
+  end
+
+  def restock_items(order)
+    list_of_ois = Order.find(order.id).order_items
+    list_of_ois.each do |oi|
+      oi.item.update(stock: (oi.item.stock += oi.quantity))
+    end
+  end
 end

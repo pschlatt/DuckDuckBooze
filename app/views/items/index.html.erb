@@ -41,8 +41,8 @@
     Description: <%= beer.description %><br/>
     Merchant: <%= beer.user.name %><br/>
     Stock: <%= beer.stock %><br/>
-    Price: <%= beer.item_price %>
-  </p><br>
+    Price: <%= number_to_currency(beer.item_price) %>
+  </p>
 </section>
 <% end %><br>
 </section>

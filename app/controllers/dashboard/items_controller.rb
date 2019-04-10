@@ -10,6 +10,19 @@ class Dashboard::ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
+  end
+
+  def create
+    merchant = current_user
+    @item = merchant.items.new(item_params)
+    if @item.save
+      flash[:notice] = "#{@item.name} has been added!"
+      redirect_to dashboard_items_path
+    else
+      flash[:notice] = @item.errors.full_messages.join(", ")
+      render :new
+    end
   end
 
   def update
@@ -24,9 +37,20 @@ class Dashboard::ItemsController < ApplicationController
     redirect_to dashboard_items_path
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    flash[:notice] = "#{item.name} has been deleted"
+    redirect_to dashboard_items_path
+  end
+
   private
 
   def check_merchant_status
     render file: "/public/404", status: 404 unless current_merchant?
+  end
+
+  def item_params
+    params.require(:item).permit(:name, :description, :image, :item_price, :stock)
   end
 end

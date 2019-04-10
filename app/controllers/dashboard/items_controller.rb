@@ -1,5 +1,4 @@
 class Dashboard::ItemsController < ApplicationController
-
   before_action :check_merchant_status
 
   def index

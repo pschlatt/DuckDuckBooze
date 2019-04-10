@@ -133,10 +133,3 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
     end
   end
 end
-
-# As a merchant
-# When I visit my items page
-# And I click on a "delete" button or link for an item
-# I am returned to my items page
-# I see a flash message indicating this item is now deleted
-# I no longer see this item on the page

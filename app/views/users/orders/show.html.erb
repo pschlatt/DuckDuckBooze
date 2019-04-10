@@ -1,1 +1,17 @@
+<h2>Order ID: <%= @order.id %></h2>
+<p>Created at: <%= @order.created_at.to_s(:long) %></p>
+<p>Last updated: <%= @order.updated_at.to_s(:long) %></p>
+<p>Order status: <%= @order.status %></p>
+<p>Order quantity: <%= @order.order_quantity(@order.id) %></p>
+<h2>Grand total: <%= number_to_currency(@order.order_grand_total(@order.id)) %></h2>
 
+<% @order.order_items.each do |order_item| %>
+  <section class="item<%= order_item.id %>">
+    <h2><%= order_item.item.name %></h2>
+    <p><%= order_item.item.description %></p>
+    <p>Quantity: <%= order_item.quantity %></p>
+    <p>Price: <%= order_item.order_price %></p>
+    <p>Subtotal: <%= number_to_currency((order_item.quantity) * (order_item.order_price)) %></p>
+    <%= order_item.item.image %>
+  </section>
+<% end %>

@@ -1,7 +1,7 @@
 <% @orders.each do |order| %>
 
   <section id="info-<%= order.id %>">
-    <p>Order ID: <%= link_to order.id, users_order_path(order) %></p>
+    <p>Order ID: <%= link_to order.id, profile_order_path(order) %></p>
     <p>Created at: <%= order.created_at.to_s(:long) %></p>
     <p>Last updated: <%= order.updated_at.to_s(:long) %></p>
     <p>Order status: <%= order.status %></p>

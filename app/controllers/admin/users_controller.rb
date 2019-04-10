@@ -7,7 +7,10 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-  end
+    if @user.role == 'merchant'
+      redirect_to admin_merchant_path(@user)
+    end
+  end 
 
   def update
     user = User.find(params[:id])

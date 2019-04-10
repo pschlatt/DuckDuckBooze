@@ -21,4 +21,8 @@ class Item < ApplicationRecord
   end
 
 
+  def never_ordered?
+    !OrderItem.exists?(item_id: id)
+  end
+
 end

@@ -118,7 +118,7 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
     context 'when I click a delete button next to an item' do
       it 'return me to my items page, I see a confirmation message, and I no longer see the item on my page' do
 
-        expect(@item_2.nil?).to eq(false)
+
 
         within "#item-#{@item_2.id}" do
           click_on "Delete"
@@ -128,7 +128,7 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
         expect(page).to have_content("#{@item_2.name} has been deleted")
 
         expect(page).to_not have_selector('div', id: "item-#{@item_2.id}")
-        expect(Item.exists?(id: @item_2)).to eq(false)
+        expect(Item.all).to eq([@item_1, @item_3])
       end
     end
   end

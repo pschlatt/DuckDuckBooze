@@ -1,11 +1,14 @@
+<section class='login-form'>
+
 <%= form_tag @user do %>
 
 <%= label_tag :email %>
-<%= text_field_tag :email %>
+<%= text_field_tag :email %><br><br>
 
 <%= label_tag :password %>
-<%= password_field_tag :password %>
+<%= password_field_tag :password %><br><br>
 
 <%= submit_tag "Submit" %>
 
 <% end %>
+</section>

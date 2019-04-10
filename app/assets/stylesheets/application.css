@@ -88,12 +88,36 @@ a:active {
   text-align: center;
 }
 
+.items-index {
+  display: flex;
+  
+}
+
+.login-form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: center;
+}
+
 .submit-button {
   color: blue;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+#admin-merchants-index {
+  text-align: center;
+}
+
+#admin-users-index {
+  text-align: center;
+}
+
+#admin-users-show {
+  text-align: center;
 }
 
 @media screen and (max-width: 500px) {

@@ -1,9 +1,12 @@
-<p>Name: <%= @user.name %></p>
+<section id="admin-users-show">
+
+<p>User Name: <%= @user.name %></p><br>
 <p>Email: <%= @user.email %></p>
 <p>Street: <%= @user.street %></p>
 <p>City: <%= @user.city %></p>
 <p>State: <%= @user.state %></p>
-<p>Zip: <%= @user.zip %></p>
+<p>Zip: <%= @user.zip %></p><br>
 
 
 <%= link_to "Upgrade", admin_user_path(@user), :method => :patch %>
+</section>

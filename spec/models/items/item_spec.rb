@@ -6,7 +6,6 @@ RSpec.describe Item, type: :model do
     it { should validate_presence_of :description}
     it { should validate_presence_of :stock}
     it { should validate_presence_of :item_price}
-    # it { should validate_presence_of :image}
 
     it { should validate_numericality_of :stock}
     it { should validate_numericality_of :item_price}
@@ -14,7 +13,7 @@ RSpec.describe Item, type: :model do
   end
 
   describe 'Relationships' do
-    it { should belong_to :user} #merchant
+    it { should belong_to :user} 
     it { should have_many :order_items}
     it { should have_many(:orders).through :order_items}
   end
@@ -46,7 +45,6 @@ RSpec.describe Item, type: :model do
 
     describe '.five_stats' do
       it 'shows top stats' do
-
         expect(Item.five_stats(:desc).first.name).to eq(@item_7.name)
         expect(Item.five_stats(:desc).first.quantity).to eq(@order_item_7.quantity)
         expect(Item.five_stats(:desc).second.name).to eq(@item_6.name)
@@ -55,11 +53,9 @@ RSpec.describe Item, type: :model do
         expect(Item.five_stats(:desc).third.quantity).to eq(@order_item_5.quantity)
         expect(Item.five_stats(:desc).fourth.name).to eq(@item_4.name)
         expect(Item.five_stats(:desc).fourth.quantity).to eq(@order_item_4.quantity)
-
       end
 
       it 'shows bottom stats' do
-
         expect(Item.five_stats(:asc).first.name).to eq(@item_1.name)
         expect(Item.five_stats(:asc).first.quantity).to eq(@order_item_1.quantity)
         expect(Item.five_stats(:asc).second.name).to eq(@item_2.name)

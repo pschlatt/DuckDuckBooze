@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       flash[:success] = 'You are now registered and logged in.'
       redirect_to profile_path
     else
-      flash[:notice] = @user.errors.full_messages.join
+      flash[:notice] = @user.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -26,7 +26,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    # binding.pry
     if current_user.update(update_params)
       redirect_to profile_path
       flash[:success] = 'You have updated your profile'

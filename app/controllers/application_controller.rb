@@ -6,8 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user,
                 :current_merchant?,
                 :registered_user?,
-                :current_admin?,
-
+                :current_admin?
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

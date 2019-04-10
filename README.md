@@ -13,7 +13,7 @@ The project is an Rails application that acts as an e-commerce platform where us
 
 The following is a screenshot of the root landing page: 
 
-![landing](Screen Shot 2019-04-10 at 5.05.21 PM.png)
+![landing](Screen%20Shot%202019-04-10%20at%205.05.21%20PM.png)
 
 * Ruby version
 

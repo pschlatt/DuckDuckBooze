@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Merchant Items Index Page', type: :feature do
   describe 'as a merchant visiting my items page' do
     before :each do
-
       @merch = create(:merchant)
       @user = create(:user)
 
@@ -21,12 +20,10 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
     end
 
     it 'shows a link to add new items to the system' do
-
       expect(page).to have_link("Add New Item")
     end
 
     it 'shows all items that I have added to the system including - id, name, image, price, inventory, and edit link' do
-
       within "#item-#{@item_1.id}" do
         expect(page).to have_content("ID: #{@item_1.id}")
         expect(page).to have_content(@item_1.name)
@@ -63,7 +60,6 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
     end
 
     it 'shows an enable link for a disabled item, and a disable link for an enabled item' do
-
       within "#item-#{@item_1.id}" do
         expect(page).to_not have_link("Enable")
         expect(page).to have_link("Disable")
@@ -115,27 +111,27 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
       end
     end
 
-    context 'when I click a delete button next to an item' do
-      it 'return me to my items page, I see a confirmation message, and I no longer see the item on my page' do
+  context 'when I click a delete button next to an item' do
+    it 'return me to my items page, I see a confirmation message, and I no longer see the item on my page' do
 
-        expect(Item.all).to eq([@item_1, @item_2, @item_3])
+      expect(Item.all).to eq([@item_1, @item_2, @item_3])
 
-        within "#item-#{@item_2.id}" do
-          click_on "Delete"
-        end
-
-        expect(current_path).to eq(dashboard_items_path)
-        expect(page).to have_content("#{@item_2.name} has been deleted")
-
-        expect(page).to_not have_selector('div', id: "item-#{@item_2.id}")
-        expect(Item.all).to eq([@item_1, @item_3])
+      within "#item-#{@item_2.id}" do
+        click_on "Delete"
       end
+
+      expect(current_path).to eq(dashboard_items_path)
+      expect(page).to have_content("#{@item_2.name} has been deleted")
+
+      expect(page).to_not have_selector('div', id: "item-#{@item_2.id}")
+      expect(Item.all).to eq([@item_1, @item_3])
     end
+  end
 
     context 'when I click the Add New Item link' do
       it 'shows a form which must be filled out with valid information' do
-
         click_on "Add New Item"
+
         expect(current_path).to eq(new_dashboard_item_path)
 
         expect(page).to have_field("Name")
@@ -148,8 +144,8 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
       end
 
       it 'when filled out with valid info, redirects to my items page where I see the item, and a confirmation message' do
-
         click_on "Add New Item"
+
         expect(current_path).to eq(new_dashboard_item_path)
 
         new_item = Item.new(name: "Mickeys", description: "Malt Liquor", item_price: 2.00, stock: 12)
@@ -171,8 +167,8 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
       end
 
       it 'when filled out with invalid info, I am notified of what needs to be fixed, and I see the form again' do
-
         click_on "Add New Item"
+
         expect(current_path).to eq(new_dashboard_item_path)
 
         new_item = Item.new(name: "Mickeys", description: "Malt Liquor", item_price: 2.00, stock: 12)
@@ -201,4 +197,4 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
       end
     end
   end
-end
+end 

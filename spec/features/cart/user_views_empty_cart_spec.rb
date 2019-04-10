@@ -12,7 +12,6 @@ describe 'on the cart page' do
   end
 
   it 'shows no items in the cart for visitor' do
-
     visit cart_path
 
     expect(page).to have_content("My cart is empty")

@@ -14,7 +14,6 @@ RSpec.describe 'Item Index Page', type: :feature do
     end
 
     it 'shows all items in the system except for disabled items' do
-  
       visit items_path
 
       expect(page).to have_content(@beer_1.name)
@@ -25,7 +24,6 @@ RSpec.describe 'Item Index Page', type: :feature do
     end
 
     it 'shows the following information for each item (name, thumbnail, merchant, merchants stock, current price)' do
-
       visit items_path
 
       within "#item-#{@beer_1.id}" do
@@ -52,7 +50,6 @@ RSpec.describe 'Item Index Page', type: :feature do
     end
 
     it 'the item name and item thumbnail are links to the show page of the item' do
-
       visit items_path
 
       within "#item-#{@beer_1.id}" do

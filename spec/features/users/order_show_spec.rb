@@ -24,6 +24,7 @@ describe 'the user profile orders page' do
       expect(page).to have_content("Order quantity: #{order_1.order_quantity(order_1.id)}")
       expect(page).to have_content("Grand total: #{order_1.order_grand_total(order_1.id)}")
     end
+
     within "#info-#{order_2.id}" do
       expect(page).to have_link("#{order_2.id}")
       expect(page).to have_content("Created at: #{order_2.created_at.to_s(:long)}")
@@ -45,11 +46,13 @@ describe 'the user profile orders page' do
     oi_1 = OrderItem.create!(fulfilled: true, quantity: 3, order_price: 3, order_id: order_1.id, item_id: beer_1.id, updated_at: 1.day.ago)
     oi_2 = OrderItem.create!(fulfilled: false, quantity: 6, order_price: 2, order_id: order_1.id, item_id: beer_2.id, updated_at: 1.day.ago)
     oi_3 = OrderItem.create!(fulfilled: false, quantity: 9, order_price: 4, order_id: order_2.id, item_id: beer_3.id, updated_at: 1.day.ago)
+
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit profile_order_path(order_1)
 
     expect(page).to have_link("Cancel")
+    
     click_link "Cancel"
 
     order_1.reload

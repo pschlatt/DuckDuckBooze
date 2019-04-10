@@ -46,6 +46,7 @@ RSpec.describe 'navigation bar' do
   context 'as a registered user' do
     it 'should see a navigation bar with links' do
       reg_user = create(:user)
+      
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(reg_user)
 
       visit profile_path

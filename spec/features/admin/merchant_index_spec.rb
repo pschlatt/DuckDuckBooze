@@ -18,18 +18,21 @@ describe 'when admin visits merchants index page' do
       expect(page).to have_content("#{merch1.state}")
       expect(page).to have_button("Disable")
     end
+
     within "#merchant-#{merch2.id}" do
       expect(page).to have_link("#{merch2.name}")
       expect(page).to have_content("#{merch2.city}")
       expect(page).to have_content("#{merch2.state}")
       expect(page).to have_button("Disable")
     end
+
     within "#merchant-#{merch3.id}" do
       expect(page).to have_link("#{merch3.name}")
       expect(page).to have_content("#{merch3.city}")
       expect(page).to have_content("#{merch3.state}")
       expect(page).to have_button("Disable")
     end
+    
     within "#merchant-#{dis_merch.id}" do
       expect(page).to have_link("#{dis_merch.name}")
       expect(page).to have_content("#{dis_merch.city}")

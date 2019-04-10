@@ -9,7 +9,6 @@ RSpec.describe 'a visitor logging in - login path' do
 
   context 'as a regular user logging in' do
     it 'shows fields for email address and password - after valid log in I am redirected to my profile page, and I see a confirmation message' do
-
       visit root_path
 
       click_on "Login"
@@ -43,7 +42,6 @@ RSpec.describe 'a visitor logging in - login path' do
 
   context 'as an admin logging in' do
     it 'shows fields for email address and password - after valid log in I am redirected to my profile page, and I see a confirmation message' do
-
       visit root_path
 
       click_on "Login"

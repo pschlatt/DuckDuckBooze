@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe 'merchant index page' do
   context 'as a visitor visiting the merchant index page' do
     it 'shows all active merchants in the system - with their city, state, and date they registered' do
-
       merchant_1 = create(:merchant)
       merchant_2 = create(:merchant)
       merchant_3 = create(:disabled_merchant)
@@ -51,29 +50,20 @@ RSpec.describe 'merchant index page' do
       @order_5 = @user_5.orders.create!(status: 'shipped', created_at: 2.days.ago, updated_at: 1.day.ago)
       @order_6 = @user_1.orders.create!(status: 'shipped', created_at: 10.days.ago, updated_at: 1.day.ago)
 
-
       @oi_1 = OrderItem.create!(fulfilled: true, quantity: 3, order_price: 3, order_id: @order_1.id, item_id: @beer_1.id, created_at: 5.days.ago, updated_at: 1.day.ago)
-      # $9 - merch_1
       @oi_2 = OrderItem.create!(fulfilled: true, quantity: 6, order_price: 2, order_id: @order_1.id, item_id: @beer_2.id, created_at: 5.days.ago, updated_at: 1.day.ago)
-      # $12 - merch_2
       @oi_3 = OrderItem.create!(fulfilled: true, quantity: 9, order_price: 4, order_id: @order_2.id, item_id: @beer_3.id, created_at: 8.days.ago, updated_at: 1.day.ago)
-      # $36 - merch_3
       @oi_4 = OrderItem.create!(fulfilled: true, quantity: 11, order_price: 5, order_id: @order_2.id, item_id: @beer_4.id, created_at: 6.days.ago, updated_at: 1.day.ago)
-      # $55 - merch_4
       @oi_5 = OrderItem.create!(fulfilled: true, quantity: 4, order_price: 4, order_id: @order_3.id, item_id: @beer_1.id, created_at: 4.days.ago, updated_at: 1.day.ago)
-      # $16 - merch_1
       @oi_6 = OrderItem.create!(fulfilled: true, quantity: 10, order_price: 8, order_id: @order_4.id, item_id: @beer_2.id, created_at: 3.days.ago, updated_at: 1.day.ago)
-      # $80 - merch_2
       @oi_7 = OrderItem.create!(fulfilled: true, quantity: 25, order_price: 10, order_id: @order_5.id, item_id: @beer_3.id, created_at: 2.days.ago, updated_at: 1.day.ago)
-      # $250 - merch_3
       @oi_8 = OrderItem.create!(fulfilled: true, quantity: 1, order_price: 4, order_id: @order_6.id, item_id: @beer_4.id, created_at: 10.days.ago, updated_at: 1.day.ago)
-      # $4 - merch_4
+      
       visit merchants_path
     end
 
     it 'shows top three merchants by revenue' do
       within "#top-three-rev" do
-
         expect(page.all('li')[0]).to have_content("#{@merch_3.name} - $286.00")
         expect(page.all('li')[1]).to have_content("#{@merch_2.name} - $92.00")
         expect(page.all('li')[2]).to have_content("#{@merch_4.name} - $59.00")
@@ -82,7 +72,6 @@ RSpec.describe 'merchant index page' do
 
     it 'shows top three fastest merchants on fulfillment time' do
       within "#top-three-fastest" do
-
         expect(page.all('li')[0]).to have_content("#{@merch_2.name} - 3 days")
         expect(page.all('li')[1]).to have_content("#{@merch_1.name} - 3 days")
         expect(page.all('li')[2]).to have_content("#{@merch_3.name} - 4 days")

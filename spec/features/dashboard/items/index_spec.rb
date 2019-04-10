@@ -118,7 +118,7 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
     context 'when I click a delete button next to an item' do
       it 'return me to my items page, I see a confirmation message, and I no longer see the item on my page' do
 
-
+        expect(Item.all).to eq([@item_1, @item_2, @item_3])
 
         within "#item-#{@item_2.id}" do
           click_on "Delete"

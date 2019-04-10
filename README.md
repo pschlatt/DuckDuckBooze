@@ -1,5 +1,7 @@
 # README
 
+### What is DuckDuckBooze?
+
 DuckDuckBooze is a four person group project that is part of the Turing School of Sofware and
 Design's Backend Engineering Module 2 curriculum.  The aim of the project is to hone the following skills:
 
@@ -15,20 +17,12 @@ The following is a screenshot of the root landing page:
 
 ![landing](Screen%20Shot%202019-04-10%20at%205.05.21%20PM.png)
 
-* Ruby version
+### How do I access use of this application?
+The program can be ran in development from the Rails server after cloning to a local repository and running `bundle install`.  In the command line, type `rails s`.  The terminal output will show the IP address to type into the browser in order to see the project (for example, localhost:3000).  The public/production version of this application is available at:
+http://serene-temple-51699.herokuapp.com
 
-* System dependencies
+### Ruby Version
+This project was written in Ruby on Rails, version 5.1.7.  
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Postgresql Version
+Postgresql version 11.2 is the database that is used for the project.

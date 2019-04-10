@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'User Registration Failure Message After Form' do
   describe 'a user can try to register' do
     before :each do
-      @user_duplicate_email = User.create(name: 'Chicken', password: 'Dinner',
+      @user_duplicate_email = User.create!(name: 'Chicken', password: 'Dinner',
         street: '123 Dead End', city: 'Denver', state: 'Colorado', zip: '88888', email: 'myemail@gmail.com')
     end
 
@@ -24,11 +24,8 @@ RSpec.describe 'User Registration Failure Message After Form' do
       fill_in 'Email', with: 'myemail@gmail.com'
 
       click_button 'Create User'
-
       expect(current_path).to eq(users_path)
-
-      expect(page).to have_content('Email has already been taken')
-      expect(page).to have_content("Password can't be blank")
+      expect(page).to have_content("Email has already been taken")
     end
   end
 end

@@ -26,7 +26,6 @@ Rails.application.routes.draw do
 
   get '/profile/orders/:id', to: 'users/orders#show', as: :profile_order
   get '/profile/orders', to: 'users/orders#index'
-  # get '/profile/order/:id', to: 'users/orders#update'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

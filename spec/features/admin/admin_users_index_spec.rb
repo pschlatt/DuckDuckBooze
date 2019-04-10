@@ -17,18 +17,21 @@ describe "as an admin" do
         expect(page).to have_link("#{user_1.name}")
         expect(page).to have_link("Upgrade to Merchant")
       end
+
       within ".user-#{user_2.id}-section" do
         expect(page).to have_content(user_2.name)
         expect(page).to have_content(user_2.created_at.to_s(:long))
         expect(page).to have_link("#{user_2.name}")
         expect(page).to have_link("Upgrade to Merchant")
       end
+
       within ".user-#{user_3.id}-section" do
         expect(page).to have_content(user_3.name)
         expect(page).to have_content(user_3.created_at.to_s(:long))
         expect(page).to have_link("#{user_3.name}")
         expect(page).to have_link("Upgrade to Merchant")
       end
+
       expect(page).to_not have_content(merchant.name)
     end
 
@@ -43,6 +46,7 @@ describe "as an admin" do
       expect(page.status_code).to eq(404)
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
     end
+
     it "won't let registered users see Users link" do
       user_1 = create(:user)
 
@@ -57,7 +61,6 @@ describe "as an admin" do
     end
 
     it "won't let visitors see Users link" do
-
       visit root_path
 
       expect(page).to_not have_link("Users")

@@ -12,7 +12,6 @@ RSpec.describe 'a logged in user can log out' do
 
   context 'as a logged in regular user - when I click on log out' do
     it 'redirects me to the home page, displays a confirmation message, and any items in my cart are gone' do
-
       visit root_path
 
       click_on "Login"
@@ -38,7 +37,6 @@ RSpec.describe 'a logged in user can log out' do
 
   context 'as a logged in merchant - when I click on log out' do
     it 'redirects me to the home page, displays a confirmation message that I am logged out' do
-
       visit root_path
 
       click_on "Login"
@@ -59,7 +57,6 @@ RSpec.describe 'a logged in user can log out' do
 
   context 'as a logged in admin - when I click on log out' do
     it 'redirects me to the home page, displays a confirmation message that I am logged out' do
-
       visit root_path
 
       click_on "Login"

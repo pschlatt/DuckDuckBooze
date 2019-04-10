@@ -8,7 +8,6 @@ RSpec.describe 'a visitor or registered user' do
       end
 
       it 'as a visitor - this item is added to my cart, I am redirected to the items catalogue' do
-
         visit item_path(@item)
 
         click_on("Add to Cart")
@@ -17,7 +16,6 @@ RSpec.describe 'a visitor or registered user' do
       end
 
       it 'as a visitor - it shows a flash confirmation message, and my cart in the nav bar increments' do
-
         visit item_path(@item)
 
         click_on("Add to Cart")
@@ -31,7 +29,6 @@ RSpec.describe 'a visitor or registered user' do
         expect(page).to have_content("You have added #{@item.name} to your cart")
         expect(page).to have_content("Cart: 2")
       end
-
 
       it 'as a registered user - this item is added to my cart, I am redirected to the items catalogue' do
         user = create(:user)

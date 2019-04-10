@@ -8,7 +8,6 @@ RSpec.describe "a user who has already logged in", type: :feature do
   end
 
   it "registered user goes to profile page" do
-
     visit login_path
 
     fill_in :email, with: @user_11.email
@@ -21,7 +20,6 @@ RSpec.describe "a user who has already logged in", type: :feature do
   end
 
   it "merchant goes to dashboard" do
-
     visit login_path
 
     fill_in :email, with: @user_21.email
@@ -35,7 +33,6 @@ RSpec.describe "a user who has already logged in", type: :feature do
   end
 
   it "admin goes to root_path" do
-
     visit login_path
 
     fill_in :email, with: @user_31.email

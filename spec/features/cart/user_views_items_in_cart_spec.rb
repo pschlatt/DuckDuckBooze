@@ -9,21 +9,20 @@ RSpec.describe 'As a visitor or registered user', type: :feature do
 
     visit root_path
 
-      within '#nav-bar' do
+    within '#nav-bar' do
       click_on "Shop Beers"
       expect(current_path).to eq(items_path)
-        end
+    end
 
-      click_link "Heineken"
-      expect(current_path).to eq(item_path(@beer_1))
-      click_on "Add to Cart"
-      click_on "Cart"
+    click_link "Heineken"
 
-      expect(current_path).to eq(cart_path)
+    expect(current_path).to eq(item_path(@beer_1))
 
+    click_on "Add to Cart"
+    click_on "Cart"
 
-      expect(page).to have_content("Name: Heineken")
-      expect(page).to have_content("Amount: 1")
-
+    expect(current_path).to eq(cart_path)
+    expect(page).to have_content("Name: Heineken")
+    expect(page).to have_content("Amount: 1")
   end
 end

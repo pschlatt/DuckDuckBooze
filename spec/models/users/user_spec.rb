@@ -8,7 +8,6 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of :state}
     it { should validate_presence_of :zip}
     it { should validate_presence_of :email}
-    # it { should validate_presence_of :password}
     it { should validate_presence_of :role}
 
     it { should validate_uniqueness_of :email}
@@ -16,7 +15,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Relationships' do
-    it { should have_many :items} #merchants
+    it { should have_many :items} 
     it { should have_many :orders}
   end
 
@@ -49,7 +48,6 @@ RSpec.describe User, type: :model do
   describe 'As a Merchant' do
     context '#avg_fill_time' do
      it 'calculates the average time to fulfill an order of a specific item' do
-
        @user_11 = User.create(role: 1, enabled: false, name: "Sally Shopper", street: "123 Busy Way", city: "Denver", state: "CO", zip: "80222", email: "sally@gmail.com", password: "12345678")
        @merchant_1 = User.create(role: 2, enabled: true, name: "Mike Merchant", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "mike@gmail.com", password: "password")
 
@@ -72,7 +70,6 @@ RSpec.describe User, type: :model do
 
     context '#disable_items' do
      it 'disables all of the merchants items' do
-
        @merchant_1 = User.create(role: 2, enabled: true, name: "Mike Merchant", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "mike@gmail.com", password: "password")
 
        @beer_1 = @merchant_1.items.create(name: "Heineken", description: "Pale lager, 5%", item_price: 4.00, stock: 56, enabled: true, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Heineken.jpg/156px-Heineken.jpg")
@@ -115,35 +112,24 @@ RSpec.describe User, type: :model do
       @order_6 = @user_1.orders.create!(status: 'shipped', created_at: 10.days.ago, updated_at: 1.day.ago)
 
       @oi_1 = OrderItem.create!(fulfilled: true, quantity: 3, order_price: 3, order_id: @order_1.id, item_id: @beer_1.id, created_at: 5.days.ago, updated_at: 1.day.ago)
-      # $9 - merch_1
       @oi_2 = OrderItem.create!(fulfilled: true, quantity: 6, order_price: 2, order_id: @order_1.id, item_id: @beer_2.id, created_at: 5.days.ago, updated_at: 1.day.ago)
-      # $12 - merch_2
       @oi_3 = OrderItem.create!(fulfilled: true, quantity: 9, order_price: 4, order_id: @order_2.id, item_id: @beer_3.id, created_at: 8.days.ago, updated_at: 1.day.ago)
-      # $36 - merch_3
       @oi_4 = OrderItem.create!(fulfilled: true, quantity: 11, order_price: 5, order_id: @order_2.id, item_id: @beer_4.id, created_at: 6.days.ago, updated_at: 1.day.ago)
-      # $55 - merch_4
       @oi_5 = OrderItem.create!(fulfilled: true, quantity: 4, order_price: 4, order_id: @order_3.id, item_id: @beer_1.id, created_at: 4.days.ago, updated_at: 1.day.ago)
-      # $16 - merch_1
       @oi_6 = OrderItem.create!(fulfilled: true, quantity: 10, order_price: 8, order_id: @order_4.id, item_id: @beer_2.id, created_at: 3.days.ago, updated_at: 1.day.ago)
-      # $80 - merch_2
       @oi_7 = OrderItem.create!(fulfilled: true, quantity: 25, order_price: 10, order_id: @order_5.id, item_id: @beer_3.id, created_at: 2.days.ago, updated_at: 1.day.ago)
-      # $250 - merch_3
       @oi_8 = OrderItem.create!(fulfilled: true, quantity: 1, order_price: 4, order_id: @order_6.id, item_id: @beer_4.id, created_at: 10.days.ago, updated_at: 1.day.ago)
     end
 
     it '.top_three_rev' do
-
       expect(User.top_three_rev).to eq([@merch_3, @merch_2, @merch_4])
     end
 
     it '.top_three_fast' do
-
       expect(User.top_three_fast).to eq([@merch_2, @merch_1, @merch_3])
-      # binding.pry
     end
 
     it '.bot_three_fast' do
-
       expect(User.bot_three_fast).to eq([@merch_4, @merch_3, @merch_1])
     end
   end

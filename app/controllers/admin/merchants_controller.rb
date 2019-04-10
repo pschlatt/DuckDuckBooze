@@ -1,5 +1,6 @@
 class Admin::MerchantsController < ApplicationController
   before_action :check_user_status
+  
   def index
     @merchants = User.where(role: 2)
   end

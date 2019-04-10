@@ -20,7 +20,6 @@ RSpec.describe 'Item Show Page', type: :feature do
 
   describe 'any visitor who visits an items show page' do
     it 'shows the name, description, and large image of the item' do
-
       visit item_path(@beer_1)
 
       expect(page).to have_content(@beer_1.name)
@@ -28,7 +27,6 @@ RSpec.describe 'Item Show Page', type: :feature do
     end
 
     it 'shows the name of the merchant, their stock of the item, and the current item price' do
-
       visit item_path(@beer_1)
 
       within '#item-show-merchant-info' do
@@ -39,7 +37,6 @@ RSpec.describe 'Item Show Page', type: :feature do
     end
 
     it 'shows the average amount of time for the merchant to fulfill this item' do
-
       visit item_path(@beer_1)
 
       within '#item-show-merchant-info' do
@@ -63,7 +60,6 @@ RSpec.describe 'Item Show Page', type: :feature do
 
   describe 'as an admin or merchant' do
     it 'does not show a button to add this item to my cart' do
-
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_1)
 
       visit item_path(@beer_1)

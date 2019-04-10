@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   def new
     if session[:user_id]
       if current_admin?

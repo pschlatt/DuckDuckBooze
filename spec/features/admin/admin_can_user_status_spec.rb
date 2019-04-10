@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe 'as an admin' do
   context 'on the merchant dashboard' do
     it 'can downgrade merchant to user - and all of that merchants items are disabled' do
-
       admin = create(:admin)
       merchant = create(:merchant)
       other_merchant = create(:merchant)

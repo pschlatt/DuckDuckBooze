@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe 'when merchant visits their dashboard' do
+RSpec.describe 'when merchant visits their dashboard' do
   before :each do
     @merch = create(:merchant)
     @other_merch = create(:merchant)
@@ -22,7 +22,7 @@ describe 'when merchant visits their dashboard' do
     @order_item_5 = OrderItem.create(quantity: 7, order_price: 3.0, order_id: @order_3.id, item_id: @item_4.id)
   end
 
-    it 'shows pending orders' do
+  it 'shows pending orders' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merch)
 
     visit dashboard_path
@@ -33,18 +33,21 @@ describe 'when merchant visits their dashboard' do
       expect(page).to have_content("Quantity of items in the order: 10")
       expect(page).to have_content("Total value of items for the order: $24.00")
     end
+
     within "#order-info-#{@order_2.id}" do
       expect(page).to have_link("Order: #{@order_2.id}")
       expect(page).to have_content("Order placed on: #{@order_2.created_at.to_s(:long)}")
       expect(page).to have_content("Quantity of items in the order: 3")
       expect(page).to have_content("Total value of items for the order: $12.00")
     end
+
     within "#order-info-#{@order_3.id}" do
       expect(page).to have_link("Order: #{@order_3.id}")
       expect(page).to have_content("Order placed on: #{@order_3.created_at.to_s(:long)}")
       expect(page).to have_content("Quantity of items in the order: 12")
       expect(page).to have_content("Total value of items for the order: $31.00")
     end
+    
     expect(page).to_not have_link("Order: #{@order_4.id}")
   end
 end

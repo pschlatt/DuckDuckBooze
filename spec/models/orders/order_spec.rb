@@ -36,6 +36,7 @@ RSpec.describe Order, type: :model do
       expect(order.cancelled?).to be_truthy
     end
   end
+
   describe 'order_stats' do
     before :each do
       @user_11 = User.create(role: 1, enabled: false, name: "Sally Shopper", street: "123 Busy Way", city: "Denver", state: "CO", zip: "80222", email: "sally@gmail.com", password: "12345678")
@@ -57,13 +58,11 @@ RSpec.describe Order, type: :model do
     end
 
     it '#order_quantity' do
-
       expect(@order_1.order_quantity(@order_1.id)).to eq(15)
       expect(@order_2.order_quantity(@order_2.id)).to eq(24)
     end
 
     it '#order_grand_total' do
-
       expect(@order_1.order_grand_total(@order_1)).to eq(203.10)
       expect(@order_2.order_grand_total(@order_2)).to eq(697.20)
     end
@@ -102,6 +101,7 @@ RSpec.describe Order, type: :model do
       expect(@order_3.merchant_order_total_price(@order_3)).to eq(1890.0)
     end
   end
+
   describe 'merchant index page stats' do
     before :each do
       @user_1 = create(:user, state: "CO", city: "Denver")
@@ -128,27 +128,20 @@ RSpec.describe Order, type: :model do
       @order_6 = @user_1.orders.create!(status: 'shipped', created_at: 10.days.ago, updated_at: 1.day.ago)
 
       @oi_1 = OrderItem.create!(fulfilled: true, quantity: 3, order_price: 3, order_id: @order_1.id, item_id: @beer_1.id, created_at: 5.days.ago, updated_at: 1.day.ago)
-      # $9 - merch_1
       @oi_2 = OrderItem.create!(fulfilled: true, quantity: 6, order_price: 2, order_id: @order_1.id, item_id: @beer_2.id, created_at: 5.days.ago, updated_at: 1.day.ago)
-      # $12 - merch_2
       @oi_3 = OrderItem.create!(fulfilled: true, quantity: 9, order_price: 4, order_id: @order_2.id, item_id: @beer_3.id, created_at: 8.days.ago, updated_at: 1.day.ago)
-      # $36 - merch_3
       @oi_4 = OrderItem.create!(fulfilled: true, quantity: 11, order_price: 5, order_id: @order_2.id, item_id: @beer_4.id, created_at: 6.days.ago, updated_at: 1.day.ago)
-      # $55 - merch_4
       @oi_5 = OrderItem.create!(fulfilled: true, quantity: 4, order_price: 4, order_id: @order_3.id, item_id: @beer_1.id, created_at: 4.days.ago, updated_at: 1.day.ago)
-      # $16 - merch_1
       @oi_6 = OrderItem.create!(fulfilled: true, quantity: 10, order_price: 8, order_id: @order_4.id, item_id: @beer_2.id, created_at: 3.days.ago, updated_at: 1.day.ago)
-      # $80 - merch_2
       @oi_7 = OrderItem.create!(fulfilled: true, quantity: 25, order_price: 10, order_id: @order_5.id, item_id: @beer_3.id, created_at: 2.days.ago, updated_at: 1.day.ago)
-      # $250 - merch_3
       @oi_8 = OrderItem.create!(fulfilled: true, quantity: 1, order_price: 4, order_id: @order_6.id, item_id: @beer_4.id, created_at: 10.days.ago, updated_at: 1.day.ago)
     end
 
     it '.largest_3_orders'do
-
       expect(Order.largest_3_orders).to eq([@order_5, @order_2, @order_4])
     end
   end
+
   describe 'cancel orders' do
     it '#change_oi_status'do
       user = create(:user)
@@ -161,15 +154,19 @@ RSpec.describe Order, type: :model do
       oi_1 = OrderItem.create!(fulfilled: true, quantity: 3, order_price: 3, order_id: order_1.id, item_id: beer_1.id, updated_at: 1.day.ago)
       oi_2 = OrderItem.create!(fulfilled: false, quantity: 6, order_price: 2, order_id: order_1.id, item_id: beer_2.id, updated_at: 1.day.ago)
       oi_3 = OrderItem.create!(fulfilled: false, quantity: 9, order_price: 4, order_id: order_2.id, item_id: beer_3.id, updated_at: 1.day.ago)
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       order_1.change_oi_status(order_1)
+
       order_1.reload
       oi_1.reload
       oi_2.reload
+
       expect(oi_1.fulfilled).to eq(false)
       expect(oi_2.fulfilled).to eq(false)
     end
+
     it '#restock_items' do
       user = create(:user)
       merchant = create(:merchant)
@@ -178,14 +175,17 @@ RSpec.describe Order, type: :model do
       order_1 = user.orders.create!(created_at: 3.days.ago, updated_at: 1.day.ago)
       oi_1 = OrderItem.create!(fulfilled: true, quantity: 3, order_price: 3, order_id: order_1.id, item_id: beer_1.id, updated_at: 1.day.ago)
       oi_2 = OrderItem.create!(fulfilled: false, quantity: 6, order_price: 2, order_id: order_1.id, item_id: beer_2.id, updated_at: 1.day.ago)
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       order_1.restock_items(order_1)
+
       order_1.reload
       oi_1.reload
       oi_2.reload
       beer_1.reload
       beer_2.reload
+      
       expect(beer_1.stock).to eq(15)
       expect(beer_2.stock).to eq(21)
     end

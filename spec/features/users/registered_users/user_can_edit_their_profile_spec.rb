@@ -9,7 +9,6 @@ RSpec.describe 'registered user' do
     end
 
     it 'via a link on their profile page' do
-
       visit 'profile'
 
       click_link('Edit Profile')
@@ -17,7 +16,6 @@ RSpec.describe 'registered user' do
     end
 
     it 'sees a form to edit on /profile/edit' do
-
       visit 'profile/edit'
 
       within '#edit-user-form' do
@@ -33,7 +31,6 @@ RSpec.describe 'registered user' do
     end
 
     it 'can edit successfully' do
-
       visit '/profile/edit'
 
       within '#edit-user-form' do
@@ -46,9 +43,7 @@ RSpec.describe 'registered user' do
       expect(page).to have_content('You have updated your profile')
     end
 
-
     it 'cannot edit without unique email' do
-
       visit '/profile/edit'
 
       within '#edit-user-form' do

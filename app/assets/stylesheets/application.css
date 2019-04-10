@@ -76,6 +76,11 @@ a:active {
   color: white;
 }
 
+#logged-in-msg {
+  display: flex;
+  justify-content: center;
+}
+
 .new-user-form {
   border-radius: 5px;
   background-color: #f2f2f2;

@@ -184,8 +184,11 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
 
         expect(page).to have_content("Name can't be blank")
         expect(page).to have_content("Description can't be blank")
+        
+        expect(find_field("Item Price").value).to eq("#{new_item.item_price}")
+        expect(find_field("Inventory").value).to eq("#{new_item.stock}")
 
-        expect(current_path).to eq(new_dashboard_item_path)
+        expect(current_path).to eq(dashboard_items_path)
 
         fill_in "Name", with: new_item.name
         fill_in "Description", with:new_item.description
@@ -197,7 +200,12 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
         expect(page).to have_content("Stock must be greater than 0")
         expect(page).to have_content("Item price must be greater than 0.0")
 
-        expect(current_path).to eq(new_dashboard_item_path)
+        expect(find_field("Name").value).to eq("#{new_item.name}")
+        expect(find_field("Description").value).to eq("#{new_item.description}")
+        expect(find_field("Item Price").value).to eq("0.0")
+        expect(find_field("Inventory").value).to eq("-2")
+
+        expect(current_path).to eq(dashboard_items_path)
       end
     end
   end

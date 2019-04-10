@@ -118,7 +118,7 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
     context 'when I click a delete button next to an item' do
       it 'return me to my items page, I see a confirmation message, and I no longer see the item on my page' do
 
-        expect(@item_2.nil?).to eq(false)
+        expect(Item.all).to eq([@item_1, @item_2, @item_3])
 
         within "#item-#{@item_2.id}" do
           click_on "Delete"
@@ -128,7 +128,7 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
         expect(page).to have_content("#{@item_2.name} has been deleted")
 
         expect(page).to_not have_selector('div', id: "item-#{@item_2.id}")
-        expect(Item.exists?(id: @item_2)).to eq(false)
+        expect(Item.all).to eq([@item_1, @item_3])
       end
     end
 
@@ -138,16 +138,35 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
         click_on "Add New Item"
         expect(current_path).to eq(new_dashboard_item_path)
 
+        expect(page).to have_field("Name")
+        expect(page).to have_field("Description")
+        expect(page).to have_field("Image URL")
+        expect(page).to have_field("Item Price")
+        expect(page).to have_field("Inventory")
+
+        expect(page).to have_button "Create Item"
+      end
+
+      it 'when filled out with valid info, redirects to my items page where I see the item, and a confirmation message' do
+
+        click_on "Add New Item"
+        expect(current_path).to eq(new_dashboard_item_path)
+
         new_item = Item.new(name: "Mickeys", description: "Malt Liquor", item_price: 2.00, stock: 12)
-  
+
         fill_in "Name", with: new_item.name
         fill_in "Description", with:new_item.description
-        # fill_in :image, with: new_item.
-        fill_in "Item price", with: new_item.item_price
+        fill_in "Item Price", with: new_item.item_price
         fill_in "Inventory", with: new_item.stock
 
         click_on "Create Item"
 
+        expect(current_path).to eq(dashboard_items_path)
+        expect(page).to have_content("#{new_item.name} has been added!")
+
+        expect(page).to have_content(" - #{new_item.name}")
+        expect(page).to have_content("Price: #{new_item.item_price}")
+        expect(page).to have_content("Stock: #{new_item.stock}")
       end
     end
   end

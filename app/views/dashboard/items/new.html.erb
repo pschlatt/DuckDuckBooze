@@ -1,6 +1,6 @@
-<h2>New Item Form</h2>
+<h2>New Merchant Item Form</h2>
 
-<%= form_for @item do |f| %>
+<%= form_for [@item] do |f| %>
 <p>
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -14,7 +14,7 @@
   <%= f.text_area :image %>
 </p>
 <p>
-  <%= f.label :item_price %>
+  <%= f.label :item_price, "Item Price" %>
   <%= f.number_field :item_price %>
 </p>
 <p>

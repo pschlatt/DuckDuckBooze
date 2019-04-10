@@ -13,6 +13,9 @@ class Dashboard::ItemsController < ApplicationController
     @item = Item.new
   end
 
+  # def create
+  # end
+
   def update
     item = Item.find(params[:id])
     if item.enabled?

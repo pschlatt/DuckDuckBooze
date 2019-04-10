@@ -13,7 +13,7 @@
   <p>ID: <%= item.id %> - <%= item.name %></p>
   <p>Price: <%= item.item_price %></p>
   <p>Stock: <%= item.stock %></p>
-  <p><%= link_to "Edit", dashboard_item_path(item), method: :patch %></p>
+  <p><%= link_to "Edit", edit_dashboard_item_path(item) %></p>
 
     <% if item.never_ordered? %>
       <p><%= link_to "Delete", dashboard_item_path(item), method: :delete %></p>

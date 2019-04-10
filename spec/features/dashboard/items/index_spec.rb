@@ -180,7 +180,7 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
 
         expect(page).to have_content("Name can't be blank")
         expect(page).to have_content("Description can't be blank")
-        
+
         expect(find_field("Item Price").value).to eq("#{new_item.item_price}")
         expect(find_field("Inventory").value).to eq("#{new_item.stock}")
 
@@ -202,6 +202,49 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
         expect(find_field("Inventory").value).to eq("-2")
 
         expect(current_path).to eq(dashboard_items_path)
+      end
+    end
+
+    context 'when I click an edit link next to an item' do
+      it 'it shows a form with pre-populated fields with the items attributes' do
+
+        within "#item-#{@item_1.id}" do
+          click_on "Edit"
+        end
+
+        expect(current_path).to eq(edit_dashboard_item_path(@item_1))
+
+        expect(find_field("Name").value).to eq("#{@item_1.name}")
+        expect(find_field("Description").value).to eq("#{@item_1.description}")
+        expect(find_field("Item Price").value).to eq("#{@item_1.item_price}")
+        expect(find_field("Inventory").value).to eq("#{@item_1.stock}")
+      end
+
+      it 'when I click submit after providing valid info, I see a confirmation image, and I see the items new info on my items page' do
+
+        within "#item-#{@item_1.id}" do
+          click_on "Edit"
+        end
+
+        expect(current_path).to eq(edit_dashboard_item_path(@item_1))
+
+        fill_in "Name", with: "Corey's Beer"
+        fill_in "Description", with: "The Best"
+        fill_in "Item Price", with: 5.25
+        fill_in "Inventory", with: 10
+
+        click_on "Update Item"
+
+        @item_1.reload
+
+        expect(current_path).to eq(dashboard_items_path)
+        expect(page).to have_content("#{@item_1.name} has been updated!")
+
+        within "#item-#{@item_1.id}" do
+          expect(page).to have_content("#{@item_1.id} - Corey's Beer")
+          expect(page).to have_content("5.25")
+          expect(page).to have_content("10")
+        end
       end
     end
   end

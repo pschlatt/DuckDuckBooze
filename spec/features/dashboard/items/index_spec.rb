@@ -163,29 +163,42 @@ RSpec.describe 'Merchant Items Index Page', type: :feature do
 
         expect(current_path).to eq(dashboard_items_path)
         expect(page).to have_content("#{new_item.name} has been added!")
+        expect(new_item.enabled?).to eq(true)
 
         expect(page).to have_content(" - #{new_item.name}")
         expect(page).to have_content("Price: #{new_item.item_price}")
         expect(page).to have_content("Stock: #{new_item.stock}")
       end
+
+      it 'when filled out with invalid info, I am notified of what needs to be fixed, and I see the form again' do
+
+        click_on "Add New Item"
+        expect(current_path).to eq(new_dashboard_item_path)
+
+        new_item = Item.new(name: "Mickeys", description: "Malt Liquor", item_price: 2.00, stock: 12)
+
+        fill_in "Item Price", with: new_item.item_price
+        fill_in "Inventory", with: new_item.stock
+
+        click_on "Create Item"
+
+        expect(page).to have_content("Name can't be blank")
+        expect(page).to have_content("Description can't be blank")
+
+        expect(current_path).to eq(new_dashboard_item_path)
+
+        fill_in "Name", with: new_item.name
+        fill_in "Description", with:new_item.description
+        fill_in "Item Price", with: 0.00
+        fill_in "Inventory", with: -2
+
+        click_on "Create Item"
+
+        expect(page).to have_content("Stock must be greater than 0")
+        expect(page).to have_content("Item price must be greater than 0.0")
+
+        expect(current_path).to eq(new_dashboard_item_path)
+      end
     end
   end
 end
-
-
-# As a merchant
-# When I visit my items page
-# And I click on the link to add a new item
-# My URI route should be "/dashboard/items/new"
-# I see a form where I can add new information about an item, including:
-# - the name of the item, which cannot be blank
-# - a description for the item, which cannot be blank
-# - a thumbnail image URL string, which CAN be left blank
-# - a price which must be greater than $0.00
-# - my current inventory count of this item which is 0 or greater
-
-# When I submit valid information and save the form
-# I am taken back to my items page
-# I see a flash message indicating my new item is saved
-# I see the new item on the page, and it is enabled and available for sale
-# If I left the image field blank, I see a placeholder image for the thumbnail

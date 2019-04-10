@@ -1,6 +1,6 @@
 <h2>New Merchant Item Form</h2>
 
-<%= form_for [@item] do |f| %>
+<%= form_for [:dashboard, @item] do |f| %>
 <p>
   <%= f.label :name %>
   <%= f.text_field :name %>

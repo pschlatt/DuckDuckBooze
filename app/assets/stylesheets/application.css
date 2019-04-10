@@ -100,6 +100,10 @@ a:active {
   text-align: center;
 }
 
+#admin-users-index {
+  text-align: center;
+}
+
 @media screen and (max-width: 500px) {
   body > header {
     width: 100%;

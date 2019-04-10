@@ -25,4 +25,13 @@ RSpec.describe 'Cart' do
       expect(cart.count_of(5)).to eq(0)
     end
   end
+  # describe '.item_name()' do
+  #   it "can find the item name using it's id" do
+  #     id1 = 1
+  #
+  #     expect(Cart.item_name(id1)).to eq("Heineken")
+  #     expect(Cart.item_name(id2)).to eq("Guiness")
+  #   end
+  # end
+
 end

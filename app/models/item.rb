@@ -19,4 +19,6 @@ class Item < ApplicationRecord
                     .order(quantity: updown)
     list.limit(5)
   end
+
+
 end

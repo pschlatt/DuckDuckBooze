@@ -17,7 +17,7 @@
 @user_14 = User.create(role: 1, enabled: false, name: "Bobby Buyer", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "bobby@gmail.com", password: "yolo1234")
 @user_15 = User.create(role: 1, enabled: false, name: "Betty Buyer", street: "1 Way Too Busy", city: "Los Angeles", state: "CA", zip: "90210", email: "betty@gmail.com", password: "yolo1234")
 @user_16 = User.create(role: 1, enabled: false, name: "Paul Purchaser", street: "60 Stories Too Many", city: "Seattle", state: "WA", zip: "98315", email: "paul@gmail.com", password: "password")
-@user_000 = User.create(role: 1, enabled: false, name: "Paul schlattmann", street: "60 Stories Too Many", city: "Seattle", state: "OR", zip: "98315", email: "paul.h.schlattmann@gmail.com", password: "password")
+# @user_000 = User.create(role: 1, enabled: false, name: "Paul schlattmann", street: "60 Stories Too Many", city: "Seattle", state: "OR", zip: "98315", email: "paul.h.schlattmann@gmail.com", password: "password")
 
 #five merchants
 @user_21 = User.create(role: 2, enabled: true, name: "Mike Merchant", street: "1 Old Street", city: "Golden", state: "CO", zip: "80403", email: "mike@gmail.com", password: "password")

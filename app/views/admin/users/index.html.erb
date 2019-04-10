@@ -1,7 +1,10 @@
+<section id='admin-users-index'>
+All Users:<br><br>
 <% @users.each do |user| %>
   <section class="user-<%= user.id %>-section">
     <%= link_to "#{user.name}", admin_user_path(user.id) %>
       <p>User registered on: <%= user.created_at.to_s(:long) %><p>
     <%= link_to "Upgrade to Merchant", admin_user_path(user.id), method: :patch %>
-  </section>
+  </section><br>
 <% end %>
+</section>

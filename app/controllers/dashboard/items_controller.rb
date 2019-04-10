@@ -14,13 +14,13 @@ class Dashboard::ItemsController < ApplicationController
 
   def create
     merchant = current_user
-    new_item = merchant.items.new(item_params)
-    if new_item.save
-      flash[:notice] = "#{new_item.name} has been added!"
+    @item = merchant.items.new(item_params)
+    if @item.save
+      flash[:notice] = "#{@item.name} has been added!"
       redirect_to dashboard_items_path
     else
-      flash[:notice] = new_item.errors.full_messages.join(", ")
-      redirect_to new_dashboard_item_path
+      flash[:notice] = @item.errors.full_messages.join(", ")
+      render :new
     end
   end
 

@@ -1,76 +1,80 @@
-<h1>Merchants Index</h1>
+<section id='admin-merchants-index'>
+
+<h1>Merchants Index:</h1><br>
 
 <section class="statistics">
-  <h2>Top merchants by revenue</h2>
+  <p>Top merchants by revenue</p>
   <div id="top-three-rev">
     <ol>
       <% @merchants_top_rev.each do |merchant| %>
       <li> <%= merchant.name %> - <%= number_to_currency(merchant.total_revenue) %></li>
-      <% end %>
+      <% end %><br>
     </ol>
   </div>
 
   <div id="top-three-fastest">
-    <h2>Top 3 fastest merchants</h2>
+    <p>Top 3 fastest merchants</p>
     <ol>
       <% @merchants_fastest.each do |merchant| %>
       <li> <%= merchant.name %> - <%= merchant.avg_fulfill_time.to_i %> days </li>
-      <% end %>
+      <% end %><br>
     </ol>
   </div>
 
   <div id="bot-three-fastest">
-    <h2>Slowest 3 merchants</h2>
+    <p>Slowest 3 merchants</p>
     <ol>
       <% @merchants_slowest.each do |merchant| %>
       <li> <%= merchant.name %> - <%= merchant.avg_fulfill_time.to_i %> days</li>
-      <% end %>
+      <% end %><br>
     </ol>
   </div>
 
   <div id="top-three-cities">
-    <h2>Top 3 ordering cities</h2>
+    <p>Top 3 ordering cities</p>
     <ol>
       <% @top_cities.each do |city| %>
       <li> <%= city.city %> - <%= city.total_count %></li>
-      <% end %>
+      <% end %><br>
     </ol>
   </div>
 
   <div id="top-three-states">
-    <h2>Top 3 ordering states</h2>
+    <p>Top 3 ordering states</p>
     <ol>
       <% @top_states.each do |state| %>
       <li> <%= state.state %> - <%= state.total_count %></li>
-      <% end %>
+      <% end %><br>
     </ol>
   </div>
 
   <div id="top-three-order-quantity">
-    <h2>Largest Orders</h2>
+    <p>Largest Orders</p>
     <ol>
       <% @big_orders.each do |order| %>
       <li>Order number: <%= order.id %> - <%= order.total_quantity %></li>
-      <% end %>
+      <% end %><br><br>
     </ol>
   </div>
 </section>
 
+All Merchants: <br><br>
 <% @merchants.each do |merchant| %>
 <div id="merchant-<%= merchant.id %>">
   <% if current_admin? %>
-    <h2>Name: <%= link_to merchant.name, admin_merchant_path(merchant) %></h2>
+    <p>Name: <%= link_to merchant.name, admin_merchant_path(merchant) %></p>
   <% else %>
-    <h2>Name: <%= merchant.name %></h2>
+    <p>Name: <%= merchant.name %></p>
   <% end %>
 
-  <h3>Location: <%= merchant.city %>, <%= merchant.state %></h3>
-  <h4>Registered: <%= merchant.created_at.strftime("%b %d, %Y") %></h4>
+  <p>Location: <%= merchant.city %>, <%= merchant.state %></h3>
+  <h4>Registered: <%= merchant.created_at.strftime("%b %d, %Y") %></p>
 
   <% if merchant.enabled == true && current_admin? %>
     <%= button_to "Disable", admin_merchant_path(merchant, enabled: false), method: :patch %>
   <% elsif current_admin? && merchant.enabled == false %>
     <%= button_to "Enable", admin_merchant_path(merchant, enabled: true), method: :patch %>
-  <% end %>
+  <% end %><br>
 </div>
 <% end %>
+</section>

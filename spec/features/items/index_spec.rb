@@ -30,7 +30,7 @@ RSpec.describe 'Item Index Page', type: :feature do
         expect(page).to have_content("Name: #{@beer_1.name}")
         expect(page).to have_content("Merchant: #{@beer_1.user.name}")
         expect(page).to have_content("Stock: #{@beer_1.stock}")
-        expect(page).to have_content("Price: #{@beer_1.item_price}")
+        expect(page).to have_content("Price: $#{@beer_1.item_price.round(2)}")
 
         within ".thumbnail" do
           expect(page).to have_xpath("//img[@src='#{@beer_1.image}']")
@@ -41,7 +41,7 @@ RSpec.describe 'Item Index Page', type: :feature do
         expect(page).to have_content("Name: #{@beer_2.name}")
         expect(page).to have_content("Merchant: #{@beer_2.user.name}")
         expect(page).to have_content("Stock: #{@beer_2.stock}")
-        expect(page).to have_content("Price: #{@beer_2.item_price}")
+        expect(page).to have_content("Price: $#{@beer_2.item_price.round(2)}")
 
         within ".thumbnail" do
           expect(page).to have_xpath("//img[@src='#{@beer_2.image}']")

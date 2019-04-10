@@ -4,7 +4,7 @@
 
 <h3>My Items</h3>
   <% @items.each do |item| %>
-<div id="item-<%= item.id %>">
+  <div id="item-<%= item.id %>">
 
   <a class="thumbnail">
     <img src="<%= item.image %>" alt=" beer pic " width="50">
@@ -20,10 +20,10 @@
   <% end %>
 
   <% if item.enabled? %>
-    <p><%= link_to "Disable", dashboard_item_path(item), method: :patch %></p></br>
+    <p><%= link_to "Disable", dashboard_item_path(item), method: :patch %></p><br>
     <% else %>
-    <p><%= link_to "Enable", dashboard_item_path(item), method: :patch %></p></br>
+    <p><%= link_to "Enable", dashboard_item_path(item), method: :patch %></p><br>
   <% end %>
 
-</div>
+  </div>
   <% end %>

@@ -1,5 +1,6 @@
+<section id='items-index'>
 <br/>
-<h1>Beer Index</h1><br>
+<h1>Beer Index:</h1><br>
 
 <section class="popular_items_stats">
   <h1>Top 5 Most Popular Items:</h1>
@@ -11,8 +12,8 @@
         <section class="high_stats">
           <li>Name: <%= stat.name %>, Total Quantity Purchased: <%= stat.quantity %></li>
         </section>
-      <% end %>
-    <% end %>
+      <% end %><br>
+    <% end %><br><br>
   </ul>
 
   <h1>Bottom 5 Most Popular Items:</h1>
@@ -24,8 +25,8 @@
         <section class="low_stats">
           <li>Name: <%= stat.name %>, Total Quantity Purchased: <%= stat.quantity %></li>
         </section>
-      <% end %>
-    <% end %>
+      <% end %><br>
+    <% end %><br><br>
   </ul>
 </section>
 
@@ -33,7 +34,7 @@
 <section id='item-<%= beer.id %>'>
   <a class="thumbnail" href="<%= item_path(beer) %>">
     <img src="<%= beer.image %>"
-    alt=" beer pic " width="200">
+    alt="beer pic" width="200">
   </a>
   <p>
     Name: <%= link_to beer.name, item_path(beer) %><br/>
@@ -41,6 +42,7 @@
     Merchant: <%= beer.user.name %><br/>
     Stock: <%= beer.stock %><br/>
     Price: <%= beer.item_price %>
-  </p>
+  </p><br>
 </section>
-<% end %>
+<% end %><br>
+</section>

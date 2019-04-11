@@ -29,18 +29,25 @@ class Dashboard::ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
+    @item = Item.find(params[:id])
     if params[:item].present?
-      item.update(item_params)
-      flash[:notice] = "#{item.name} has been updated!"
-    elsif item.enabled?
-      item.update(enabled: false)
-      flash[:notice] = "#{item.name} no longer available for sale"
+      if @item.update(item_params)
+        flash[:notice] = "#{@item.name} has been updated!"
+        redirect_to dashboard_items_path
+      else
+        flash[:notice] = @item.errors.full_messages.join(", ")
+        render :edit
+      end
+    elsif @item.enabled?
+      @item.update(enabled: false)
+      flash[:notice] = "#{@item.name} no longer available for sale"
+      redirect_to dashboard_items_path
     elsif
-      item.update(enabled: true)
-      flash[:notice] = "#{item.name} now available for sale!"
+      @item.update(enabled: true)
+      flash[:notice] = "#{@item.name} now available for sale!"
+      redirect_to dashboard_items_path
     end
-    redirect_to dashboard_items_path
+
   end
 
   def destroy

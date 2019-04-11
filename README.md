@@ -18,7 +18,16 @@ The following is a screenshot of the landing page:
 ![landing](Screen%20Shot%202019-04-10%20at%205.05.21%20PM.png)
 
 ### How do I access use of this application?
-The program can be ran in development from the Rails server after cloning to a local repository and running `bundle install`.  In the command line, type `rails s`.  The terminal output will show the IP address to type into the browser in order to see the project (for example, localhost:3000).  The public/production version of this application is available at:
+
+The program can be ran in development from the Rails server after following the following steps in your console:
+* clone to a local repository using ` git clone https://github.com/pschlatt/DuckDuckBooze.git`
+* change directory into the app with `cd DuckDuckBooze`
+* run `bundle install`
+* initialize the database with `rake db:{drop, create, migrate, seed}`
+* start the rails server with `rails s`
+* The terminal output will show the IP address to type into the browser in order to see the project (for example, localhost:3000)
+
+The public/production version of this application is available at:
 http://serene-temple-51699.herokuapp.com
 
 ### Ruby Version

@@ -3,7 +3,7 @@
 ## About
 
 DuckDuckBooze is a group project between four students while at Turing School of Sofware and
-Design's Backend Engineering program. The aim of the project is to hone the following skills:
+Design's Backend Engineering program. The aim of the project is to use the following skills:
 
 - Advanced database queries and manipulation using ActiveRecord and SQL 
 - Basic HTML/CSS layout and design for UX/UI
@@ -44,7 +44,7 @@ The project uses <a href="https://github.com/colszowka/simplecov"> SimpleCov</a>
 
 The project is in live production <a href="http://serene-temple-51699.herokuapp.com"> here</a> 
 
-To login as a registered user, you can register a new account or use email: `sally@gmail.com password: 12345678`
+To login as a registered user, you can register a new account or use `email: sally@gmail.com password: 12345678`
 
 To login as a merchant `email: mike@gmail.com password: password`
 

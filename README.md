@@ -17,7 +17,7 @@ Design's Backend Engineering program. The aim of the project is to use the follo
 The project is a Rails web application that acts as an e-commerce platform with three types of users: registered users, merchants, and admins. Registered users can put items into shopping cart and check out to purchase; visitors can fill carts but must registered to complete the purchase. Merchants sell items, which they can change the fulfillment status of. The last merchant to fulfill a specific order sets that order to 'shipped'. Admin can edit both registered users and merchants accounts such as downgrade/upgrade role or enable/disable their account. Each user has defined roles and these roles vary the user's permission to access pages within the web application.
 
 ### Database Schema
-![schema](duckduckbooze_schema.png)
+![schema](DuckDuckBooze_schema.png)
 
 ## Installation & Setup 
 

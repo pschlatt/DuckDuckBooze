@@ -1,25 +1,29 @@
-# README
+# DuckDuckBooze
 
-### What is DuckDuckBooze?
+## About
 
-DuckDuckBooze is a four person group project that is part of the Turing School of Sofware and
-Design's Backend Engineering Module 2 curriculum.  The aim of the project is to hone the following skills:
+DuckDuckBooze is a group project between four students while at Turing School of Sofware and
+Design's Backend Engineering program. The aim of the project is to hone the following skills:
 
-- Advanced Rails routing (nested resources and namespacing)
-- Advanced ActiveRecord for calculating statistics
-- Average HTML/CSS layout and design for UX/UI
-- Session management and use of POROs for shopping cart
-- Authentication, Authorization, separation of user roles and permissions
+- Advanced database queries and manipulation using ActiveRecord and SQL 
+- Basic HTML/CSS layout and design for UX/UI
+- Authentication & Authorization with bcrypt
+- Session management to authenticate different users and each user's respective cart
+- MVC design pattern
+- CRUD and RESTful routes, with nested resources and namspacing
+- TDD using RSpec and Capybara 
+- Version control and project management within a group environment 
 
-The project is an Rails application that acts as an e-commerce platform where users can place different selections of beer into a shopping cart and check out to purchase all of the items if they have also registered. Merchants can specify different selections of beer as "fulfilled" and the last merchant to do this for a specific order will automatically set the current order status (enum) to "shipped". Each user has roles and these roles vary the user's authorization to access some functionality within the models.
+The project is a Rails web application that acts as an e-commerce platform with three types of users: registered users, merchants, and admins. Registered users can put items into shopping cart and check out to purchase; visitors can fill carts but must registered to complete the purchase. Merchants sell items, which they can change the fulfillment status of. The last merchant to fulfill a specific order sets that order to 'shipped'. Admin can edit both registered users and merchants accounts such as downgrade/upgrade role or enable/disable their account. Each user has defined roles and these roles vary the user's permission to access pages within the web application.
 
 The following is a screenshot of the landing page: 
 
 ![landing](Screen%20Shot%202019-04-10%20at%205.05.21%20PM.png)
 
-### How do I access use of this application?
+## Installation & Setup 
 
-The program can be ran in development from the Rails server after following the following steps in your console:
+The program can run in development from the Rails server after following the following steps in your console:
+
 * clone to a local repository using ` git clone https://github.com/pschlatt/DuckDuckBooze.git`
 * change directory into the app with `cd DuckDuckBooze`
 * run `bundle install`
@@ -27,11 +31,28 @@ The program can be ran in development from the Rails server after following the 
 * start the rails server with `rails s`
 * The terminal output will show the IP address to type into the browser in order to see the project (for example, localhost:3000)
 
-The public/production version of this application is available at:
-http://serene-temple-51699.herokuapp.com
+## Testing
 
-### Ruby Version
-This project was written in Ruby on Rails, version 5.1.7.  
+The project uses <a href="https://github.com/colszowka/simplecov"> SimpleCov</a> and <a href="https://github.com/rspec/rspec"> RSpec</a> to test. 
 
-### Postgresql Version
-Postgresql version 11.2 is the database that is used for the project.
+`rspec` runs the tests.
+
+## Live Web App
+
+The project is in live production <a href="http://serene-temple-51699.herokuapp.com"> here</a> 
+
+To login as a registered user, you can register a new account or use email: sally@gmail.com password: 12345678
+To login as a merchant, email: mike@gmail.com password: password
+To login as admin, email: aaron@gmail.com password: password
+
+## System Requirements
+
+Ruby on Rails, version 5.1.7.  
+Postgresql, version 11.2 
+
+## Contributors
+
+Corey Sheesley @csheesley
+Earl Stephens @earl-stephens
+Paul Schlattmann @pschlatt
+Chi Tran @chitasan

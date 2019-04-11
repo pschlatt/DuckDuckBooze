@@ -7,35 +7,31 @@
 <%= form_for @user do |f| %>
 
   <%= f.label :name, :required => true %>
-  <%= f.text_field :name, :required => true %><br><br>
+  <%= f.text_field :name, :required => true %><br/>
 
   <%= f.label :email, :required => true %>
-  <%= f.text_field :email, :required => true %><br><br>
+  <%= f.text_field :email, :required => true %><br/>
 
   <%= f.label :password, :required => true %>
-  <%= f.password_field :password, :required => true %><br><br>
+  <%= f.password_field :password, :required => true %><br/>
 
   <%= f.label :password_confirmation, "Confirm Password", :required => true %>
-  <%= f.password_field :password_confirmation, :required => true %><br><br>
+  <%= f.password_field :password_confirmation, :required => true %><br/>
 
   <%= f.label :street, :required => true %>
-  <%= f.text_field :street, :required => true %><br><br>
+  <%= f.text_field :street, :required => true %><br/>
 
   <%= f.label :city, :required => true %>
-  <%= f.text_field :city, :required => true %><br><br>
+  <%= f.text_field :city, :required => true %><br/>
 
   <%= f.label :state, :required => true %>
-  <%= f.text_field :state, :required => true %><br><br>
+  <%= f.text_field :state, :required => true %><br/>
 
   <%= f.label :zip, :required => true %>
-  <%= f.text_field :zip, :required => true %><br><br>
+  <%= f.text_field :zip, :required => true %><br/>
 
   <div class='submit-button'>
   <%= f.submit %>
-
-  <% flash.each do |type, message| %>
-    <%= content_tag :div, message, class: type %>
-  <% end %>
   </div>
 <% end %>
 </section>

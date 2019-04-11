@@ -2,7 +2,7 @@
 
 ## About
 
-DuckDuckBooze is a group project between four students while at Turing School of Sofware and
+DuckDuckBooze is a group project between four students while at Turing School of Software and
 Design's Backend Engineering program. The aim of the project is to use the following skills:
 
 - Advanced database queries and manipulation using ActiveRecord and SQL 

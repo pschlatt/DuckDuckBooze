@@ -1,3 +1,4 @@
+<section id='cart'>
 <% if session[:cart] == nil %>
 <p>My cart is empty</p>
 <% end %>
@@ -21,3 +22,4 @@ Grand Total: <%= number_to_currency(@grand_total) %>
 
 <%= link_to "Empty Cart", cart_empty_path %>
 <% end %>
+</section>

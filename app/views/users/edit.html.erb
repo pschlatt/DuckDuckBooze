@@ -1,52 +1,52 @@
+<section id="edit-user-form">
+
 <% if @errors %>
   <% @errors.each do |e| %>
     <%= e %>
   <% end %>
 <% end %>
 
-<h2>Edit Profile for <%= current_user.name %></h2>
-
-<div id='edit-user-form'>
+<p>Edit Profile for <%= current_user.name %></p>
+<br/>
 <%= form_for :user do |f| %>
-    <p>
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
-    </p>
 
-    <p>
-      <%= f.label :email %><br>
-      <%= f.text_field :email %>
-    </p>
-    <p>
-      <%= f.label :password %><br>
-      <%= f.password_field :password %>
-    </p> 
-    <p>
-      <%= f.label :password_confirmation, "Confirm Password" %><br>
-      <%= f.password_field :password_confirmation %>
-    </p>
-    <p>
-      <%= f.label :street %><br>
-      <%= f.text_field :street %>
-    </p>
-    <p>
-      <%= f.label :city %><br>
-      <%= f.text_field :city %>
-    </p>
-    <p>
-      <%= f.label :state %><br>
-      <%= f.text_field :state %>
-    </p>
-    <p>
-      <%= f.label :zip %><br>
-      <%= f.text_field :zip %>
-    </p>
-
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br/>
+    <br/>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <br/>
+    <br/>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <br/>
+    <br/>
+    <%= f.label :password_confirmation, "Confirm Password" %>
+    <%= f.password_field :password_confirmation %>
+    <br/>
+    <br/>
+    <%= f.label :street %>
+    <%= f.text_field :street %>
+    <br/>
+    <br/>
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+    <br/>
+    <br/>
+    <%= f.label :state %>
+    <%= f.text_field :state %>
+    <br/>
+    <br/>
+    <%= f.label :zip %>
+    <%= f.text_field :zip %>
+    <br/>
+    <br/>
     <div class='submit-button'>
       <%= f.submit %>
     </div>
 <% end %>
-</div>
+</section>
 
 
 

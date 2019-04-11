@@ -1,11 +1,14 @@
-<h2 id='welcome'>Welcome, <%= current_user.name %>!</h2>
+<section id='user-profile'>
+<p id='welcome'>Welcome, <%= current_user.name %>!</p>
+<br/>
+<p>Email: <%= current_user.email %></p>
+<br/>
+<p>Address: <%= current_user.street %></p>
+<p>         <%= current_user.city %>, <%= current_user.state%> <%= current_user.zip%> </p><br>
 
-<h3>Email: <%= current_user.email %></h3>
-
-<h4>Address: <%= current_user.street %></h4><br>
-<h4>         <%= current_user.city %>,<%= current_user.state%> <%= current_user.zip%> </h4><br>
-
-<h5><%= link_to "Edit Profile", profile_edit_path %></h5>
-<h5><%= link_to "My Orders", profile_orders_path %></h5>
+<p><%= link_to "Edit Profile", profile_edit_path %></p>
+<br/>
+<p><%= link_to "My Orders", profile_orders_path %></p>
+</section>
 
 

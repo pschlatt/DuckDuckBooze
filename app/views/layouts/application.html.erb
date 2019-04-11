@@ -28,7 +28,7 @@
         <li class='nav-link' style='float:right'><%= link_to "Log Out", logout_path %></li>
         <li class='nav-link' style='float:right'><%= link_to "Profile", profile_path %></li>
         <li class='nav-link' style='float:right'><%= link_to "Cart", cart_path %>: <%= @cart.total_count %></li>
-        <li class='nav-link', id='logged-in-msg'>Logged in as <%= current_user.name %></li>
+        <div id='logged-in-msg'>Logged in as <%= current_user.name %></div
 
         <% elsif current_merchant? %>
         <li class='nav-link' style='float:right'><%= link_to "Log Out", logout_path %></li>
@@ -48,10 +48,11 @@
       </ul>
     </section>
 
+    <section id='flash-msg'>
     <% flash.each do |type, message| %>
       <%= content_tag :div, message, class: type %>
     <% end %>
-
+    </section><br/>
     <%= yield %>
   </body>
 </html>

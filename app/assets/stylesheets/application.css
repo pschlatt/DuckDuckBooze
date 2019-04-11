@@ -120,6 +120,26 @@ a:active {
   text-align: center;
 }
 
+#edit-user-form {
+  text-align: center;
+}
+
+#cart {
+  text-align: center;
+}
+
+#merchant-dashboard {
+  text-align: center;
+}
+
+#user-profile {
+  text-align: center;
+}
+
+#flash-msg {
+  text-align: center;
+}
+
 @media screen and (max-width: 500px) {
   body > header {
     width: 100%;
